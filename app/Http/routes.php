@@ -14,3 +14,13 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+
+
+//后台首页
+Route::get('/admin','Admin\AdminController@index');
+//用户添加页面
+Route::get('/admin/user/create', 'Admin\UserController@create');
+//用户添加页面
+Route::get('/admin/user/index', 'Admin\UserController@index');
