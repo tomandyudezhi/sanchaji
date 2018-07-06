@@ -39,6 +39,12 @@ class Users extends Model
     	return $this -> belongsToMany('App\Models\Users', 'blog_users_users', 'uid', 'idol_id');
     }
 
+    //对被关注的多对多关系
+    public function users_usersed()
+    {
+        return $this -> belongsToMany('App\Models\Users', 'blog_users_users', 'idol_id', 'uid');
+    }
+
     //对收藏文章的多对多关系
     public function users_articles()
     {
