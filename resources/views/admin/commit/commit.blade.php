@@ -31,7 +31,7 @@
              <!--header start here-->
 				<div class="header-main">
 					<div class="logo-w3-agile">
-								<h1><a href="index.html">三叉戟</a></h1>
+								<h1><a href="/admin">三叉戟</a></h1>
 							</div>
 					<div class="w3layouts-left">
 							
@@ -446,7 +446,7 @@
                            <div class="menu">
 									<ul id="menu" >
 										
-									 <li><a href="tabels.html"><i class="fa fa-home"></i>  <span>首页</span><div class="clearfix"></div></a></li>
+									 <li><a href="/admin"><i class="fa fa-home"></i>  <span>首页</span><div class="clearfix"></div></a></li>
 									
 									<li><a href="#"><i class="fa fa-user"></i><span>用户管理</span> <span class="fa fa-angle-right" style="float: right"></span><div class="clearfix"></div></a>
 									  <ul>
@@ -454,6 +454,7 @@
 										<li><a href="/admin/user/create"><span> 添加用户</span></a></li>
 									  </ul>
 									</li>
+									
 								  </ul>
 								</div>
 							  </div>
