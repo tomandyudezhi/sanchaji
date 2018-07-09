@@ -38,11 +38,30 @@ Route::get('/', function () {
 
 
 
+
+
+
+
+
+
+
+
+
+
+//屏蔽词首页
 Route::get('/admin/shieldwords/index','ShieldwordsController@index');
+//屏蔽词添加处理页面
 Route::post('/admin/shieldwords/store','ShieldwordsController@store');
-
-
-
+//分类管理首页
+Route::get('/admin/parts/index','PartsController@index');
+//分类管理添加
+Route::get('/admin/parts/create','PartsController@create');
+//分类添加处理
+Route::post('/admin/parts/store','PartsController@store');
+//分类修改
+Route::get('/admin/parts/edit/{id}','PartsController@edit');
+//执行分类修改
+Route::post('/admin/parts/update/{id}','PartsController@update');
 
 
 

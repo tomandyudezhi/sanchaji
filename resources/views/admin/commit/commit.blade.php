@@ -459,9 +459,14 @@
 									  </ul>
 									</li>
 
-									<li><a href="/admin/shieldwords"><i class="fa fa-user"></i><span>屏蔽词管理</span> <span class="fa fa-angle-right" style="float: right"></span><div class="clearfix"></div></a>
+									<li><a href="/admin/shieldwords/index"><i class="fa fa-user"></i><span>屏蔽词管理</span> <span class="fa fa-angle-right" style="float: right"></span><div class="clearfix"></div></a>
 									</li>
-
+									<li><a href="#"><i class="fa fa-user"></i><span>分类管理</span> <span class="fa fa-angle-right" style="float: right"></span><div class="clearfix"></div></a>
+									<ul>
+										<li><a href="/admin/parts/index"><span> 查看分类</span></a></li>
+										<li><a href="/admin/parts/create"><span> 添加分类</span></a></li>
+									  </ul>
+									</li>
 
 								  </ul>
 								</div>
