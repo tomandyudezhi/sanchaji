@@ -2,7 +2,11 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Home</title>
+<title>
+@section('title')
+首页
+@show
+</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="" />
@@ -446,7 +450,7 @@
                            <div class="menu">
 									<ul id="menu" >
 										
-									 <li><a href="/admin"><i class="fa fa-home"></i>  <span>首页</span><div class="clearfix"></div></a></li>
+									<li><a href="/admin"><i class="fa fa-home"></i>  <span>首页</span><div class="clearfix"></div></a></li>
 									
 									<li><a href="#"><i class="fa fa-user"></i><span>用户管理</span> <span class="fa fa-angle-right" style="float: right"></span><div class="clearfix"></div></a>
 									  <ul>
@@ -455,6 +459,7 @@
 									  </ul>
 									</li>
 									
+									<li><a href="/admin/review/index"><i class="fa fa-comments"></i><span>评论管理</span><div class="clearfix"></div></a></li>
 								  </ul>
 								</div>
 							  </div>
