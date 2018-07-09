@@ -48,8 +48,10 @@ Route::get('/', function () {
 
 
 
-
-
+//查看屏蔽词
+Route::get('/admin/shieldwords/index','ShieldwordsController@index');
+//执行屏蔽词修改操作
+Route::post('/admin/shieldwords/store','ShieldwordsController@store');
 
 
 

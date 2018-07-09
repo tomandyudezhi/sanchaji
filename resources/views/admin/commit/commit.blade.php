@@ -458,8 +458,8 @@
 											<li id="menu-academico-avaliacoes" ><a href="/admin/user/create">添加用户</a></li>
 										  </ul>
 									</li>
-
-									
+									<li><a href="/admin/shieldwords/index"><i class="fa fa-user"></i><span>屏蔽词管理</span><div class="clearfix"></div></a>
+									</li>
 								  </ul>
 								</div>
 							  </div>
