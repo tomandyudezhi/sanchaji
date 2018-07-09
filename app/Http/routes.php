@@ -18,9 +18,81 @@ Route::get('/', function () {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //后台首页
 Route::get('/admin','Admin\AdminController@index');
 //用户添加页面
 Route::get('/admin/user/create', 'Admin\UserController@create');
-//用户添加页面
+//用户查看页面
 Route::get('/admin/user/index', 'Admin\UserController@index');
+//执行用户添加操作
+Route::post('/admin/user/store', 'Admin\UserController@store');
+//执行用户屏蔽操作
+Route::get('/admin/user/shield/{id}','Admin\UserController@shield');
+//执行用户启用操作
+Route::get('/admin/user/unshield/{id}','Admin\UserController@unshield');
+//用户修改页面
+Route::get('/admin/user/edit/{id}', 'Admin\UserController@edit');
+//执行修改操作
+Route::post('/admin/user/update/{id}', 'Admin\UserController@update');
+//执行删除操作
+Route::get('/admin/user/del/{id}', 'Admin\UserController@del');

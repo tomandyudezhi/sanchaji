@@ -2,7 +2,11 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Home</title>
+<title>
+@section('title')
+首页
+@show
+</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="" />
@@ -36,10 +40,11 @@
 					<div class="w3layouts-left">
 							
 							<!--search-box-->
+
 								<div class="w3-search-box">
 									@section('search')
-									<form action="#" method="post">
-										<input type="text" placeholder="Search..." required="">	
+									<form action="">
+										<input type="text" placeholder="本页不能搜索..." required="">	
 										<input type="submit" value="">					
 									</form>
 									@show
@@ -447,13 +452,13 @@
 									<ul id="menu" >
 										
 									 <li><a href="/admin"><i class="fa fa-home"></i>  <span>首页</span><div class="clearfix"></div></a></li>
-									
-									<li><a href="#"><i class="fa fa-user"></i><span>用户管理</span> <span class="fa fa-angle-right" style="float: right"></span><div class="clearfix"></div></a>
-									  <ul>
-										<li><a href="/admin/user/index"><span> 查看用户</span></a></li>
-										<li><a href="/admin/user/create"><span> 添加用户</span></a></li>
-									  </ul>
+									<li id="menu-academico" ><a href="#"><i class="fa fa-user" aria-hidden="true"></i><span> 用户管理</span> <span class="fa fa-angle-right" style="float: right"></span><div class="clearfix"></div></a>
+										   <ul id="menu-academico-sub" >
+										   <li id="menu-academico-avaliacoes" ><a href="/admin/user/index">查看用户</a></li>
+											<li id="menu-academico-avaliacoes" ><a href="/admin/user/create">添加用户</a></li>
+										  </ul>
 									</li>
+
 									
 								  </ul>
 								</div>
