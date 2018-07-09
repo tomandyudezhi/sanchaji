@@ -42,9 +42,9 @@ class Articles extends Model
     	return $this -> belongsToMany('App\Models\Users', 'blog_users_articles', 'aid', 'uid');
     }
 
-    //对于文章标签的一对多关系
+    //对于文章标签的一对一关系
     public function tags()
     {
-    	return $this -> hasMany('App\Models\Tags', 'aid');
+    	return $this -> hasOne('App\Models\Tags', 'aid');
     }
 }

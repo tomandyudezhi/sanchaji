@@ -457,6 +457,19 @@
 											<li id="menu-academico-avaliacoes" ><a href="/admin/user/create">添加用户</a></li>
 										  </ul>
 									</li>
+									<li id="menu-academico" ><a href="#"><i class="fa fa-user" aria-hidden="true"></i><span> 分类管理</span> <span class="fa fa-angle-right" style="float: right"></span><div class="clearfix"></div></a>
+										   <ul id="menu-academico-sub" >
+										   <li id="menu-academico-avaliacoes" ><a href="/admin/parts/index">查看分类</a></li>
+											<li id="menu-academico-avaliacoes" ><a href="/admin/parts/create">添加分类</a></li>
+										  </ul>
+									</li>
+									<li id="menu-academico" ><a href="#"><i class="fa fa-book" aria-hidden="true"></i><span> 文章管理</span> <span class="fa fa-angle-right" style="float: right"></span><div class="clearfix"></div></a>
+										   <ul id="menu-academico-sub" >
+										   <li id="menu-academico-avaliacoes" ><a href="/admin/article/index">查看文章</a></li>
+											<li id="menu-academico-avaliacoes" ><a href="/admin/article/create">添加文章</a></li>
+											<li id="menu-academico-avaliacoes" ><a href="">回收站</a></li>
+										  </ul>
+									</li>
 									<li><a href="/admin/review/index"><i class="fa fa-comments"></i><span>评论管理</span><div class="clearfix"></div></a></li>
 									<li><a href="/admin/shieldwords/index"><i class="fa fa-user"></i><span>屏蔽词管理</span><div class="clearfix"></div></a>
 									</li>
