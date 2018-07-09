@@ -20,8 +20,16 @@ Route::get('/', function () {
 
 //后台评论路由
 Route::get('/admin/review/index','Admin\ReviewController@index');
-//后台评论搜索路由
+//后台评论删除路由
 Route::get('/admin/review/delete/{id}','Admin\ReviewController@delete');
+//后台标签路由
+Route::get('/admin/tag/index','Admin\TagController@index');
+//后台标签修改页面路由
+Route::get('/admin/tag/edit/{id}','Admin\TagController@edit');
+//后台标签修改路由
+Route::post('/admin/tag/update/{id}','Admin\TagController@update');
+//后台标签删除路由
+Route::get('/admin/tag/delete/{id}','Admin\TagController@delete');
 
 
 
@@ -41,13 +49,7 @@ Route::get('/admin/review/delete/{id}','Admin\ReviewController@delete');
 
 
 
-
-
-
-
-
-
-//屏蔽词首页
+//查看屏蔽词
 Route::get('/admin/shieldwords/index','ShieldwordsController@index');
 //屏蔽词添加处理页面
 Route::post('/admin/shieldwords/store','ShieldwordsController@store');
@@ -61,7 +63,6 @@ Route::post('/admin/parts/store','PartsController@store');
 Route::get('/admin/parts/edit/{id}','PartsController@edit');
 //执行分类修改
 Route::post('/admin/parts/update/{id}','PartsController@update');
-
 
 
 
