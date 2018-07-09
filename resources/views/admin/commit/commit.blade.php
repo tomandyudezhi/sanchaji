@@ -2,7 +2,11 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Home</title>
+<title>
+@section('title')
+首页
+@show
+</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="" />
@@ -454,7 +458,11 @@
 										<li><a href="/admin/user/create"><span> 添加用户</span></a></li>
 									  </ul>
 									</li>
-									
+
+									<li><a href="/admin/shieldwords"><i class="fa fa-user"></i><span>屏蔽词管理</span> <span class="fa fa-angle-right" style="float: right"></span><div class="clearfix"></div></a>
+									</li>
+
+
 								  </ul>
 								</div>
 							  </div>

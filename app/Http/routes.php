@@ -18,6 +18,46 @@ Route::get('/', function () {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Route::get('/admin/shieldwords/index','ShieldwordsController@index');
+Route::post('/admin/shieldwords/store','ShieldwordsController@store');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //后台首页
 Route::get('/admin','Admin\AdminController@index');
 //用户添加页面
