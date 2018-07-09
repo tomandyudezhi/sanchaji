@@ -18,11 +18,11 @@ Route::get('/', function () {
 
 
 
-
-
-
-
-
+//后台评论路由
+Route::get('/admin/review/index','Admin\ReviewController@index');
+//后台评论搜索路由
+Route::get('/admin/review/delete/{id}','Admin\ReviewController@delete');
+//后台
 
 
 
@@ -52,8 +52,6 @@ Route::get('/', function () {
 Route::get('/admin/shieldwords/index','ShieldwordsController@index');
 //执行屏蔽词修改操作
 Route::post('/admin/shieldwords/store','ShieldwordsController@store');
-
-
 
 
 
