@@ -460,6 +460,7 @@
 									<li><a href="/admin/review/index"><i class="fa fa-comments"></i><span>评论管理</span><div class="clearfix"></div></a></li>
 									<li><a href="/admin/shieldwords/index"><i class="fa fa-user"></i><span>屏蔽词管理</span><div class="clearfix"></div></a></li>
 									<li><a href="/admin/tag/index"><i class="fa fa-tag"></i><span>标签管理</span><div class="clearfix"></div></a></li>
+									<li><a href="/admin/config/index"><i class="fa fa-gear"></i><span>网站配置</span><div class="clearfix"></div></a></li>
 								  </ul>
 								</div>
 							  </div>

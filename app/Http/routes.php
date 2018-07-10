@@ -32,10 +32,10 @@ Route::post('/admin/tag/update/{id}','Admin\TagController@update');
 //后台标签删除路由
 Route::get('/admin/tag/delete/{id}','Admin\TagController@delete');
 
-
-
-
-
+//后台网站配置路由
+Route::get('/admin/config/index','Admin\ConfigController@index');
+//后台网站配置修改路由
+Route::post('/admin/config/update/{id}','Admin\ConfigController@update');
 
 
 
