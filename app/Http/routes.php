@@ -62,6 +62,7 @@ Route::post('/admin/parts/store','PartsController@store');
 Route::get('/admin/parts/edit/{id}','PartsController@edit');
 //执行分类修改
 Route::post('/admin/parts/update/{id}','PartsController@update');
+//友情链接
 
 
 
