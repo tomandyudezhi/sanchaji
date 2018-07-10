@@ -2,15 +2,6 @@
 @section('title')
 屏蔽词查看
 @endsection
-<!-- 搜索开始 -->
-@section('search')
-		<form action="" method="get">
-			<input type="text" placeholder="搜索用户名..." >	
-			<input type="submit" value="">					
-		</form>
-
-@endsection
-<!-- 搜索结束 -->
 
 <!-- 内容开始 -->
 @section('content')
