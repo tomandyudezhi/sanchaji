@@ -124,7 +124,61 @@ class ArticleController extends Controller
     {
         $res = Articles::find($id) -> delete();
         if($res){
-            return redirect('/admin/article/index') -> with('success', '删除成功');
+            // return redirect('/admin/article/index') -> with('success', '已收入回收站');
+            echo 'true';
+        }else{
+            // return back() -> with('error', '删除失败');
+            echo 'false';
+        }
+    }
+
+    /**
+     * 
+     * 回收站列表页
+     * 
+     * @return   response
+     */
+    
+    public function recycles(Request $request)
+    {
+        $search = $request -> input('search', '');
+        $data = Articles::onlyTrashed() -> where('title', 'like', "%$search%") -> paginate(3);
+
+        return view('admin.article.recycle', ['data' => $data,'search' => $search]);
+    }
+
+    /**
+     * 
+     * 恢复回收站里的文章
+     * 
+     * @param   $id 获取的回收站文章id
+     * @return   response
+     */
+    
+    public function recover($id)
+    {
+        $res = Articles::withTrashed() -> where('id', $id) -> restore();
+        if($res){
+            return redirect('/admin/article/recycle') -> with('success', '恢复成功');
+        }else{
+            return back() -> with('error', '恢复失败');
+        }
+    }
+
+    /**
+     * 
+     * 永久删除回收站里的文章
+     *
+     *  @param   $id 获取的回收站文章id
+     *  @return  response
+     * 
+     */
+    
+    public function delever($id)
+    {
+        $res = Articles::onlyTrashed() -> where('id', $id) -> forceDelete();
+        if($res){
+            return redirect('/admin/article/recycle') -> with('success', '删除成功');
         }else{
             return back() -> with('error', '删除失败');
         }

@@ -26,6 +26,8 @@
 <!-- lined-icons -->
 <link rel="stylesheet" href="/admins/css/icon-font.min.css" type='text/css' />
 <!-- //lined-icons -->
+<link rel="stylesheet" type="text/css" href="/layui/css/layui.css">
+<script type="text/javascript" src="/layui/layui.all.js"></script>
 </head> 
 <body>
    <div class="page-container">
@@ -467,7 +469,7 @@
 										   <ul id="menu-academico-sub" >
 										   <li id="menu-academico-avaliacoes" ><a href="/admin/article/index">查看文章</a></li>
 											<li id="menu-academico-avaliacoes" ><a href="/admin/article/create">添加文章</a></li>
-											<li id="menu-academico-avaliacoes" ><a href="">回收站</a></li>
+											<li id="menu-academico-avaliacoes" ><a href="/admin/article/recycle">回收站</a></li>
 										  </ul>
 									</li>
 									<li><a href="/admin/review/index"><i class="fa fa-comments"></i><span>评论管理</span><div class="clearfix"></div></a></li>

@@ -108,3 +108,9 @@ Route::get('/admin/article/edit/{id}', 'Admin\ArticleController@edit');
 Route::post('/admin/article/update/{id}', 'Admin\ArticleController@update');
 //文章删除操作
 Route::get('/admin/article/del/{id}', 'Admin\ArticleController@del');
+//文章回收站页面
+Route::get('/admin/article/recycle', 'Admin\ArticleController@recycles');
+//回收站文章恢复
+Route::get('/admin/article/recover/{id}', 'Admin\ArticleController@recover');
+//回收站文章永久删除
+Route::get('/admin/article/delever/{id}', 'Admin\ArticleController@delever');

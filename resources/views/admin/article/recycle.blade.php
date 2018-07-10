@@ -1,7 +1,7 @@
 @extends('admin.commit.commit')
 
 @section('title')
-文章列表页
+回收站
 @endsection
 
 @section('search')
@@ -26,8 +26,9 @@
 			   {{session('error')}}
 			</div>
 		@endif
-		<h2 class="text-primary">文章列表</h2>
-  	<table class="table table-bordered">
+		<h2 class="text-primary">回收站</h2>
+		<hr>
+  		<table class="table table-bordered">
 			<tr class="bg-warning text-center">
 				<th class="text-white">标题</th>
 				<th class="text-white">内容</th>
@@ -43,7 +44,7 @@
 				<tr>
 					<td>{{$v -> title}}</td>
 					<td><li style="list-style:none;max-width: 110px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">{{$v -> content}}</li></td>
-					<td class="text-center"><a href="#" class="saw layui-btn layui-btn-normal layui-btn-xs">查看</a></td>
+					<td><span><a href="#">查看</a></span></td>
 					<td>{{$v -> users -> username}}</td>
 					<td>{{$v -> parts -> part_name}}</td>
 					<td>
@@ -56,8 +57,8 @@
 					<td>{{$v->reading}}</td>
 					<td>{{$v->likes}}</td>
 					<td>
-					<a href="/admin/article/edit/{{$v -> id}}" class="btn btn-xs btn-info">修改</a>
-					<a value="{{$v -> id}}" class="bg-danger btn btn-xs btn-danger">删除</a>
+					<a href="/admin/article/recover/{{$v -> id}}" class="btn btn-xs btn-success">恢复</a>
+					<a href="/admin/article/delever/{{$v -> id}}" class="bg-danger btn btn-xs btn-danger">删除</a>
 					</td>
 				</tr>
 
@@ -65,29 +66,6 @@
 		</table>
 		<div class="pages text-center">{!!$data ->appends(['search'=>$search]) -> render()!!}</div>
 		</div>
-	<script type="text/javascript">
-		//收入回收站的ajax
-		$('.bg-danger').click(function(){
-			var id = $(this).attr('value');
-			console.log(id);
-			$.get('/admin/article/del/'+id,function(msg){
-				if(msg == 'true'){
-					layer.msg('已收入回收站');
-				}
-			});
-			$(this).parent().parent().remove();
-		});
-		//查看文章详情
-		$('.saw').click(function(){
-			var contents = $(this).parent().parent().find('li').eq(0).text();
-			layer.open({
-				type:1,
-				title:'文章内容',
-				area: ['600px', '360px'],
-      			shadeClose: true, 
-				content:contents
-			})
-		});
-	</script>
+
 @endsection
 <!-- 内容结束 -->
