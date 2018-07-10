@@ -3,7 +3,6 @@
 <!-- 搜索开始 -->
 @section('search')
 		<form action="" method="get">
-			{{ csrf_field() }}
 			<input type="text" name="searchname" value="" placeholder="搜索评论内容..." >	
 			<input type="submit" value="">					
 		</form>
