@@ -473,13 +473,14 @@
 									<li><a href="/admin/review/index"><i class="fa fa-comments"></i><span>评论管理</span><div class="clearfix"></div></a></li>
 									<li><a href="/admin/shieldwords/index"><i class="fa fa-user"></i><span>屏蔽词管理</span><div class="clearfix"></div></a>
 									</li>
-									<li><a href="/admin/frilinks/index"><i class="fa fa-tag"></i><span>标签管理</span><div class="clearfix"></div></a></li>
+									<li><a href="/admin/tag/index"><i class="fa fa-tag"></i><span>标签管理</span><div class="clearfix"></div></a></li>
 									<li id="menu-academico" ><a href="#"><i class="fa fa-chain" aria-hidden="true"></i><span> 友情链接</span> <span class="fa fa-angle-right" style="float: right"></span><div class="clearfix"></div></a>
 										   <ul id="menu-academico-sub" >
 										   <li id="menu-academico-avaliacoes" ><a href="/admin/frilinks/index">查看链接</a></li>
 											<li id="menu-academico-avaliacoes" ><a href="/admin/frilinks/create">添加链接</a></li>
 										  </ul>
 									</li>
+									<li><a href="/admin/feedbacks/index"><i class="fa fa-comment"></i><span>反馈管理</span><div class="clearfix"></div></a></li>
 								  </ul>
 								</div>
 							  </div>
