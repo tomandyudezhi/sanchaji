@@ -36,13 +36,12 @@ Route::get('/admin/config/index','Admin\ConfigController@index');
 //后台网站配置修改路由
 Route::post('/admin/config/update/{id}','Admin\ConfigController@update');
 
-
-
-
-
-
-
-
+//后台登陆路由
+Route::get('/admin/login','Admin\LoginController@index');
+//后台登陆检测
+Route::post('/admin/login/check','Admin\LoginController@check');
+//后台登出路由
+Route::get('/admin/login/out','Admin\LoginController@loginout');
 
 
 
@@ -63,6 +62,7 @@ Route::post('/admin/parts/store','PartsController@store');
 Route::get('/admin/parts/edit/{id}','PartsController@edit');
 //执行分类修改
 Route::post('/admin/parts/update/{id}','PartsController@update');
+
 
 
 

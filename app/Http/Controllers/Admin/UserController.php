@@ -40,7 +40,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return  response
      */
-    public function store(UserInsertRequest $request)
+    public function store(Request $request)
     {
         $data = $request -> except('_token');
         $user = new Users;
