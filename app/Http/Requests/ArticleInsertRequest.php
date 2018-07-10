@@ -37,7 +37,7 @@ class ArticleInsertRequest extends Request
             'title.required' => '文章标题不能为空!', 
             'content.required' => '文章内容不能为空!', 
             'pid.required' => '请选择文章分类!', 
-            'tag.required' => '请编写文章标签!'
+            'tags.required' => '请编写文章标签!'
         ];
     }
 }

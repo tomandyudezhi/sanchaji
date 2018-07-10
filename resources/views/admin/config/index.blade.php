@@ -87,12 +87,6 @@
 						<span class="input-group-addon">
 							<i class="fa fa-tags"></i>
 						</span>
-						<div class="layui-form-item">
-					    	<label class="layui-form-label">开关</label>
-					    	<div class="layui-input-block">
-					      	<input type="checkbox" name="close" lay-skin="switch" lay-text="ON|OFF"><div class="layui-unselect layui-form-switch layui-form-onswitch" lay-skin="_switch"><em>ON</em><i></i></div>
-					    	</div>
-					  	</div>
 						<select name="switch" id="">
 							<option value="y" {{($data -> switch == 'y')? 'selected':''}}>关闭</option>
 							<option value="n" {{($data -> switch == 'n')? 'selected':''}}>开启</option>
