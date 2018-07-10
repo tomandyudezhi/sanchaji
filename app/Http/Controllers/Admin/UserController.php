@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Users;
+use App\Models\UsersDetails;
 use Hash;
 use App\Http\Requests\UserInsertRequest;
 
@@ -148,6 +149,61 @@ class UserController extends Controller
             return redirect('/admin/user/index') -> with('success', '删除成功');
         }else{
             return back() -> with('error', '修改失败');
+        }
+    }
+
+    /**
+     * 
+     * 加载用户详情页面
+     * 
+     */
+    
+    public function detail($id)
+    {
+        $user = Users::find($id);
+
+        return view('admin.user.detail',['user'=>$user]);
+    }
+
+    /**
+     * 
+     * 执行用户详情添加操作
+     * 
+     */
+    
+    public function details_store(Request $request,$id)
+    {
+        $data = $request -> except('_token');
+        dump(count($data));
+        if(empty($data)){
+            return '<script>var index = parent.layer.getFrameIndex(window.name);parent.layer.msg("修改成功");parent.layer.close(index);</script>';
+        }
+        if(empty($user_detail = Users::find($id) -> users_details)){
+            $new_detail = new UsersDetails;
+            $new_detail -> uid = $id;
+            $new_detail -> pet_name = $data['pet_name'];
+            $new_detail -> profession = $data['profession'];
+            $new_detail -> birthday = $data['birthday'];
+            $new_detail -> industry = $data['industry'];
+            $new_detail -> addr = $data['addr'];
+            $new_detail -> descript = $data['descript'];
+            $res = $new_detail -> save();
+        }else{
+            $detail_id = Users::find($id) -> users_details -> id;
+            $new_detail = UsersDetails::find($detail_id);
+            $new_detail -> pet_name = $data['pet_name'];
+            $new_detail -> profession = $data['profession'];
+            $new_detail -> birthday = $data['birthday'];
+            $new_detail -> industry = $data['industry'];
+            $new_detail -> addr = $data['addr'];
+            $new_detail -> descript = $data['descript'];
+            $res = $new_detail -> save();
+        }
+
+        if($res){
+            return '<script>var index = parent.layer.getFrameIndex(window.name);parent.layer.msg("修改成功");parent.layer.close(index);</script>';
+        }else{
+            return '<script>var index = parent.layer.getFrameIndex(window.name);parent.layer.msg("修改失败");parent.layer.close(index);</script>';
         }
     }
 }

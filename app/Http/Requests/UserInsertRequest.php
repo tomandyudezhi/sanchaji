@@ -24,7 +24,7 @@ class UserInsertRequest extends Request
     public function rules()
     {
         return [
-            'username' => 'required|regex:/^[a-zA-Z]{1}[a-zA-Z0-9_]{7,15}$/',
+            'username' => 'required|regex:/^[a-zA-Z]{1}[a-zA-Z0-9_]{7,15}$/|unique:blog_users,username',
             'password' => 'sometimes|required|regex:/^[a-zA-Z0-9_]{8,}$/',
             'repass' => 'sometimes|same:password',
             'phone' => 'required|regex:/^[1][3-8][0-9]{9}$/',
@@ -43,6 +43,7 @@ class UserInsertRequest extends Request
         return [
             'username.required' => '用户名不能为空！',
             'username.regex' => '用户名必须为8-16位以字母开头的字母数字下划线组合！',
+            'username.unique' => '用户名已存在',
             'password.required' => '密码不能为空',
             'password.regex' => '密码必须为8位以上的数字字母下划线组合',
             'repass.same' => '请与密码一致',

@@ -102,6 +102,10 @@ Route::get('/admin/user/shield/{id}','Admin\UserController@shield');
 Route::get('/admin/user/unshield/{id}','Admin\UserController@unshield');
 //用户修改页面
 Route::get('/admin/user/edit/{id}', 'Admin\UserController@edit');
+//用户详细页面
+Route::get('/admin/user/detail/{id}', 'Admin\UserController@detail');
+//执行用户详细修改操作
+Route::post('/admin/user/detail/details_store/{id}','Admin\UserController@details_store');
 //执行修改操作
 Route::post('/admin/user/update/{id}', 'Admin\UserController@update');
 //执行删除操作

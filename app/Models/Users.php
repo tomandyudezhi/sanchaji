@@ -15,6 +15,12 @@ class Users extends Model
      * 
      */
     
+    //对详情表的一对一关系
+    public function users_details()
+    {
+        return $this -> hasOne('App\Models\UsersDetails', 'uid');
+    }
+    
     //对文章管理的一对多关系
     public function articles()
     {
