@@ -63,8 +63,18 @@ Route::post('/admin/parts/store','PartsController@store');
 Route::get('/admin/parts/edit/{id}','PartsController@edit');
 //执行分类修改
 Route::post('/admin/parts/update/{id}','PartsController@update');
-
-
+//友情链接添加
+Route::get('/admin/frilinks/create','Admin\FrilinksController@create');
+//友情链接执行添加
+Route::post('/admin/frilinks/store','Admin\FrilinksController@store');
+//友情链接首页
+Route::get('/admin/frilinks/index','Admin\FrilinksController@index');
+//友情链接修改
+Route::get('/admin/frilinks/edit/{id}','Admin\FrilinksController@edit');
+//执行友情链接修改
+Route::post('/admin/frilinks/update/{id}','Admin\FrilinksController@update');
+//删除友情链接
+Route::get('/admin/frilinks/delete/{id}','Admin\FrilinksController@delete');
 
 
 
