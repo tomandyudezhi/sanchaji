@@ -10,16 +10,18 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
+/*
 Route::get('/', function () {
     return view('welcome');
 });
+*/
 
 /**
  * 
  * 后台管理平台
  * 
  */
+
 
 
 //后台首页
@@ -165,9 +167,13 @@ Route::get('/admin/feedbacks/delete/{id}','Admin\FeedbacksController@delete');
 
 
 
-
-
-
-
-
-
+/**
+ * 
+ * 前台页面
+ * 
+ */
+	
+//前台首页
+Route::get('/','Home\IndexController@index');
+//文章列表页
+Route::get('/list/index','Home\ArticleController@index');
