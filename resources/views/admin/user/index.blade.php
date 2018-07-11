@@ -33,6 +33,7 @@
 				<th class="text-white">邮箱</th>
 				<th class="text-white">手机号</th>
 				<th class="text-white">性别</th>
+				<th class="text-white">详情</th>
 				<th class="text-white">注册时间</th>
 				<th class="text-white">注册IP</th>
 				<th class="text-white">是否屏蔽</th>
@@ -52,6 +53,7 @@
 					未知
 					@endif
 					</td>
+					<td><a href="#" class="saw layui-btn layui-btn-normal layui-btn-xs" details_id="{{$v -> id}}">查看</a></td>
 					<td>{{date($v->created_at)}}</td>
 					<td>{{long2ip($v->create_ip)}}</td>
 					<td>
@@ -76,4 +78,16 @@
 		</table>
 		<div class="pages text-center">{!!$data ->appends(['search'=>$search]) -> render()!!}</div>
 		</div>
+		<script type="text/javascript">
+			$('.saw').click(function(){
+				var contents = $(this).attr('details_id');
+				layer.open({
+					type:2,
+					title:'用户详细信息',
+					area: ['600px', '360px'],
+	      			shadeClose: true, 
+					content:'/admin/user/detail/'+contents
+				});
+			});
+		</script>
 @endsection
