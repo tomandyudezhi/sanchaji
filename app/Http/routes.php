@@ -10,11 +10,11 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
+/*
 Route::get('/', function () {
     return view('welcome');
 });
-
+*/
 
 
 
@@ -121,3 +121,33 @@ Route::get('/admin/article/edit/{id}', 'Admin\ArticleController@edit');
 Route::post('/admin/article/update/{id}', 'Admin\ArticleController@update');
 //文章删除操作
 Route::get('/admin/article/del/{id}', 'Admin\ArticleController@del');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//前台首页
+Route::get('/','Home\IndexController@index');
+//文章列表页
+Route::get('/list/index','Home\ArticleController@index');
