@@ -75,7 +75,10 @@ Route::get('/admin/frilinks/edit/{id}','Admin\FrilinksController@edit');
 Route::post('/admin/frilinks/update/{id}','Admin\FrilinksController@update');
 //删除友情链接
 Route::get('/admin/frilinks/delete/{id}','Admin\FrilinksController@delete');
-
+//查看反馈
+Route::get('/admin/feedbacks/index','Admin\FeedbacksController@index');
+//删除反馈
+Route::get('/admin/feedbacks/delete/{id}','Admin\FeedbacksController@delete');
 
 
 
