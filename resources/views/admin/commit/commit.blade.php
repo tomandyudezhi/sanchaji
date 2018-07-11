@@ -147,9 +147,9 @@
 									<li class="dropdown profile_details_drop">
 										<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 											<div class="profile_img">	
-												<span class="prfil-img"><img src="/admins/images/in4.jpg" alt=""> </span> 
+												<span class="prfil-img"><img src="/{{ session()->get('head_pic') }}" alt=""> </span> 
 												<div class="user-name">
-													<p>三叉戟</p>
+													<p>{{ session()->get('username') }}</p>
 													<span>管理员</span>
 												</div>
 												<i class="fa fa-angle-down"></i>
@@ -159,7 +159,7 @@
 										</a>
 										<ul class="dropdown-menu drp-mnu">
 											<li> <a href="#"><i class="fa fa-cog"></i><b>修改密码</b></a></li>
-											<li> <a href="#"><i class="fa fa-sign-out"></i><b>退出</b></a></li>
+											<li> <a href="/admin/login/out"><i class="fa fa-sign-out"></i><b>退出</b></a></li>
 										</ul>
 									</li>
 								</ul>
