@@ -167,6 +167,7 @@ Route::get('/admin/feedbacks/delete/{id}','Admin\FeedbacksController@delete');
 
 
 
+
 /**
  * 
  * 前台页面
@@ -177,3 +178,11 @@ Route::get('/admin/feedbacks/delete/{id}','Admin\FeedbacksController@delete');
 Route::get('/','Home\IndexController@index');
 //文章列表页
 Route::get('/list/index','Home\ArticleController@index');
+
+
+//前台首页
+Route::get('/','Home\IndexController@index');
+//文章列表页
+Route::get('/list/index','Home\ListController@index');
+
+

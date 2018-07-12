@@ -17,6 +17,8 @@
     <script src="/home/js/jquery-2.1.4.min.js"></script>
     <script src="/home/js/nprogress.js"></script>
     <script src="/home/js/jquery.lazyload.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/layui/css/layui.css">
+  <script type="text/javascript" src="/layui/layui.all.js"></script>
     <!--[if gte IE 9]>
       <script src="js/jquery-1.11.1.min.js" type="text/javascript"></script>
       <script src="js/html5shiv.min.js" type="text/javascript"></script>
@@ -51,16 +53,23 @@
             <button class="btn btn-default btn-search" name="search" type="submit">搜索</button>
             </span> </div>
         </form>
-
-        <ul class="nav navbar-nav navbar-right " >
-          <li><a data-cont="木庄网络博客" title="木庄网络博客" href="index.html">登录</a></li>
-          <li><a data-cont="列表页" title="列表页" href="list.html">注册</a></li>
-        </ul>
         <ul class="nav navbar-nav navbar-right">
           <li><a data-cont="木庄网络博客" title="木庄网络博客" href="index.html">首页</a></li>
           <li><a data-cont="列表页" title="列表页" href="list.html">列表页</a></li>
           <li><a data-cont="详细页" title="详细页" href="show.html">详细页</a></li>
           <li><a data-cont="404" title="404" href="404.html">404</a></li>
+
+          <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="/default.jpg" class="img-circle" style="width:40;height:40px"><span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li class="text-center"><a href="#">个人中心</a></li>
+            <li class="text-center"><a href="#">后台管理</a></li>
+            <li class="text-center"><a href="#">修改密码</a></li>
+            <li role="separator" class="divider"></li>
+            <li class="text-center"><a href="#">注销</a></li>
+          </ul>
+        </li>
+
         </ul>
       </div>
     </div>
@@ -71,6 +80,7 @@
   
   @show
   <aside class="sidebar">
+    @section('message')
     <div class="fixed">
       <div class="widget widget-tabs">
         <ul class="nav nav-tabs" role="tablist">
@@ -104,50 +114,19 @@
         </form>
       </div>
     </div>
+    @show
     <div class="widget widget_hot">
           <h3>最新评论文章</h3>
           <ul>            
-                <li><a title="用DTcms做一个独立博客网站（响应式模板）" href="http://www.muzhuangnet.com/show/269.html" ><span class="thumbnail">
-                    <img class="thumb" data-original="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" src="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）"  style="display: block;">
-                </span><span class="text">用DTcms做一个独立博客网站（响应式模板）</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
-                    2016-11-01
-                </span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i>88</span></a></li>
-                <li><a title="用DTcms做一个独立博客网站（响应式模板）" href="http://www.muzhuangnet.com/show/269.html" ><span class="thumbnail">
-                    <img class="thumb" data-original="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" src="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）"  style="display: block;">
-                </span><span class="text">用DTcms做一个独立博客网站（响应式模板）</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
-                    2016-11-01
-                </span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i>88</span></a></li>
-                <li><a title="用DTcms做一个独立博客网站（响应式模板）" href="http://www.muzhuangnet.com/show/269.html" ><span class="thumbnail">
-                    <img class="thumb" data-original="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" src="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）"  style="display: block;">
-                </span><span class="text">用DTcms做一个独立博客网站（响应式模板）</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
-                    2016-11-01
-                </span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i>88</span></a></li>
-                <li><a title="用DTcms做一个独立博客网站（响应式模板）" href="http://www.muzhuangnet.com/show/269.html" ><span class="thumbnail">
-                    <img class="thumb" data-original="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" src="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）"  style="display: block;">
-                </span><span class="text">用DTcms做一个独立博客网站（响应式模板）</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
-                    2016-11-01
-                </span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i>88</span></a></li>
-                <li><a title="用DTcms做一个独立博客网站（响应式模板）" href="http://www.muzhuangnet.com/show/269.html" ><span class="thumbnail">
-                    <img class="thumb" data-original="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" src="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）"  style="display: block;">
-                </span><span class="text">用DTcms做一个独立博客网站（响应式模板）</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
-                    2016-11-01
-                </span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i>88</span></a></li>
-                <li><a title="用DTcms做一个独立博客网站（响应式模板）" href="http://www.muzhuangnet.com/show/269.html" ><span class="thumbnail">
-                    <img class="thumb" data-original="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" src="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）"  style="display: block;">
-                </span><span class="text">用DTcms做一个独立博客网站（响应式模板）</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
-                    2016-11-01
-                </span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i>88</span></a></li>
-                <li><a title="用DTcms做一个独立博客网站（响应式模板）" href="http://www.muzhuangnet.com/show/269.html" ><span class="thumbnail">
-                    <img class="thumb" data-original="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" src="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）"  style="display: block;">
-                </span><span class="text">用DTcms做一个独立博客网站（响应式模板）</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
-                    2016-11-01
-                </span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i>88</span></a></li>
-                <li><a title="用DTcms做一个独立博客网站（响应式模板）" href="http://www.muzhuangnet.com/show/269.html" ><span class="thumbnail">
-                    <img class="thumb" data-original="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" src="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）"  style="display: block;">
-                </span><span class="text">用DTcms做一个独立博客网站（响应式模板）</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
-                    2016-11-01
-                </span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i>88</span></a></li>
-  
+              @foreach($review_data as $v)
+                <li><a title="{{$v->users->username}}" href="javascript:;" ><span class="thumbnail">
+                    <img class="thumb"  src="/default.jpg" alt="{{$v->articles->content}}"  style="display: block;width:90px;height:90px;">
+                </span><span class="text">{{$v->articles->title}}</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
+                    {{$v->articles->updated_at}}
+                </span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i>{{$v->articles->reading}}</span></a>
+                
+                </li>
+              @endforeach
           </ul>
      </div>
      <div class="widget widget_sentence">    
@@ -160,7 +139,7 @@
      </div>
     <div class="widget widget_sentence">
       <h3>友情链接</h3>
-      <div class="widget-sentence-link">
+      <div class="widget-sentence">
         @foreach ($frilink_data as $v)
         <a href="{{$v->url}}" title="{{$v->descript}}" target="_blank" style="float:left;margin-left:10px;">{{$v->title}}</a>&nbsp;&nbsp;&nbsp;
         @endforeach

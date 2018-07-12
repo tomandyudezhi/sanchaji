@@ -1,6 +1,7 @@
 @extends('home.commit.commit')
 
 
+
 @section('content')
 <div class="content-wrap">
     <div class="content">
@@ -24,12 +25,11 @@
      
       <div class="title">
         <h3>最新发布</h3>
-        <div class="more">                
-                <a href="http://www.muzhuangnet.com/list/mznetblog/" title="MZ-NetBlog主题" >MZ-NetBlog主题</a>                
-                <a href="http://www.muzhuangnet.com/list/code/" title="IT技术笔记" >IT技术笔记</a>                
-                <a href="http://www.muzhuangnet.com/list/share/" title="源码分享" >源码分享</a>                
-                <a href="http://www.muzhuangnet.com/list/money/" title="靠谱网赚" >靠谱网赚</a>                
-                <a href="http://www.muzhuangnet.com/list/news/" title="资讯分享" >资讯分享</a>                
+        <div class="more">        
+                @foreach ($part_data as $v)     
+                <a href="/list/index?part_name={{$v->id}}" title="MZ-NetBlog主题" >{{$v->part_name}}</a>    
+                @endforeach     
+                <a href="#" title="MZ-NetBlog主题" >更多...</a>
             </div>
       </div>
       @foreach ($list_data as $k => $v)

@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\Models\FriLinks;
+
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -13,6 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+
         $frilink_data = FriLinks::get();
         view()->share(['frilink_data'=>$frilink_data]);
     }

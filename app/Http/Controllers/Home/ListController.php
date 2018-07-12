@@ -6,32 +6,59 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Models\Articles;
-use App\Models\Frilinks;
 use App\Models\Reviews;
 use App\Models\Parts;
+use App\Models\Articles;
+use App\Models\Tags;
 
-class IndexController extends Controller
+class ListController extends Controller
 {
     /**
-     * $list_data:文章列表数据
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //文章列表数据
-        $list_data = Articles::get();
-        $review_data = Reviews::orderBy('created_at','desc')->distinct('aid')->limit(10)->get();
-        //分类列表数据
-        $part_data = Parts::get();
-        //dump($review_data);
-        //友情链接数据
-        $frilink_data = Frilinks::get();
+
+        $search = $request -> input('search', '');
+        //dump($search);
+        $tag_data1 = Tags::get();
+        $arr = [];
+        foreach ($tag_data1 as $key => $val) {
+           $arr[] =  $val['id'];
+        }
+        $a = (array_rand($arr,6));
+        //dump($a);
+        $tag_data1 = Tags::find($a);
+        
+        //获取id
+        $part_id = $request->input('part_name','');
+        $tag_content = $request ->input('tag_content','');
+        //dump($tag_id);
+        //dump($part_id);
+        //根据ID取数据
+        if($part_id != ''){
+            $data = Articles::where('pid','=',$part_id)->paginate(3) or [];
+        } elseif($search != '') {
+            $data = Articles::where('title','like',"%$search%")->paginate(3);
+            //dump($data);
+        } elseif($tag_content != '') {
+            $tag_data = Tags::where('content','=',$tag_content)->get();
+            $data = [];
+            foreach($tag_data as $k => $v){
+                $data[] = $v->articles;
+            }
+            //dump($data);
+        } else {
+            $data = [];
+        }
         //dump($data);
+       $part_data = Parts::get();
+        //dump($part_data);
         //加载模板
-        return view('home.commit.index',['list_data'=>$list_data,'frilink_data'=>$frilink_data,'review_data'=>$review_data,'part_data'=>$part_data]);
+        $review_data = Reviews::orderBy('created_at','desc')->distinct('aid')->limit(10)->get();
+        return view('home.list.index',['data'=>$data,'search'=>$search,'review_data'=>$review_data,'tag_data1'=>$tag_data1,'part_data'=>$part_data]);
     }
 
     /**
