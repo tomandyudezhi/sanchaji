@@ -26,6 +26,8 @@
     <!--[if lt IE 9]>
       <script>window.location.href='upgrade-browser.html';</script>
     <![endif]-->
+<link rel="stylesheet" type="text/css" href="/layui/css/layui.css">
+<script type="text/javascript" src="/layui/layui.all.js"></script>
 </head>
 <body class="user-select">
     <header class="header">
@@ -70,6 +72,7 @@
     @section('content')
   
   @show
+  @section('header')
   <aside class="sidebar">
     <div class="fixed">
       <div class="widget widget-tabs">
@@ -167,6 +170,7 @@
       </div>
     </div>
   </aside>
+  @show
 </section>
     <footer class="footer">
   <div class="container">

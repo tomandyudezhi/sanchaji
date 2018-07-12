@@ -174,3 +174,67 @@ Route::get('/list/index','Home\ListController@index');
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * 	个人信息页面
+ * 
+ */
+//加载个人信息页面
+Route::get('/user/index/{id}','Home\UserController@index');
+//加载个人信息修改页面
+Route::get('/user/edit/{id}','Home\UserController@edit');
+//执行个人信息修改操作
+Route::post('/user/detail/update/{id}', 'Home\UserController@update');
