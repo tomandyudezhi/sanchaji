@@ -65,6 +65,9 @@
 							<input type="password" class="form-control" id="password" placeholder="密码" autocomplete="off" name="password">
 						</div>
 						<div class="form-group">
+							<label for="remember"><input type="checkbox" name="remember" id="remember"> 记住密码</label>
+						</div>
+						<div class="form-group">
 							<p>没有账号？ <a href="/signup">立即注册</a>
 						<div class="form-group">
 							<input type="submit" value="登陆" class="btn btn-primary">
@@ -80,16 +83,13 @@
 			</div>
 		</div>
 	<!-- 消息提示开始 -->
-	@if (session('error'))
-	<script type="text/javascript">
-	layer.msg("{{session('error')}}")
-	</script>
-	@endif
-	@if (session('success'))
-	<script type="text/javascript">
-	layer.msg("{{session('success')}}")
-	</script>
-	@endif
+	@if(session('error'))
+            <input type="hidden" value="{{session('error')}}" id="error1">
+            <script type="text/javascript">
+              var msg = document.getElementById('error1');
+              layer.msg(msg.value);
+            </script>
+     @endif
 	<!-- 消息提示结束 -->
 	<!-- jQuery -->
 	<script src="/homelogin/js/jquery.min.js"></script>

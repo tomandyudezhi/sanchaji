@@ -34,6 +34,8 @@ Route::post('/admin/login/check','Admin\LoginController@check');
  */
 
 Route::group(['middleware'=>'adminlogin'],function(){
+
+
 //后台首页
 Route::get('/admin','Admin\AdminController@index');
 	/**
@@ -171,66 +173,32 @@ Route::get('/admin/feedbacks/delete/{id}','Admin\FeedbacksController@delete');
 
 
 
+/**
+ * 
+ * 前台页面
+ * 
+ */
+	
+
 
 //前台首页
 Route::get('/','Home\IndexController@index');
 //文章列表页
 Route::get('/list/index','Home\ListController@index');
+//前台登陆
+Route::get('/login','Home\LoginController@index');
+//前台注册
+Route::get('/signup','Home\LoginController@create');
+//前台登陆检查
+Route::post('/login/check','Home\LoginController@check');
+//前台注册验证
+Route::post('/signup/check','Home\LoginController@signupcheck'); 
+//前台文章详情
+Route::get('/detail/{id}','Home\ArticleController@index');
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//前台登录中间件
+Route::group(['middleware' => 'homelogin'],function(){
 
 
 /**
@@ -243,6 +211,11 @@ Route::get('/user/index/','Home\UserController@index');
 Route::get('/user/edit/{id}','Home\UserController@edit');
 //执行个人信息修改操作
 Route::post('/user/detail/update/{id}', 'Home\UserController@update');
+/**
+ * 
+ * 文章管理页面
+ * 
+ */
 //文章管理页面
 Route::get('/article/index', 'Home\ArticleManageController@index');
 //记载写博客页面
@@ -263,25 +236,25 @@ Route::get('/article/delever/{id}', 'Home\ArticleManageController@delever');
 Route::get('/user/follows', 'Home\ArticleManageController@follows');
 //取消关注操作
 Route::get('/user/follows/del/{id}','Home\ArticleManageController@follows_del');
+//我的收藏
+Route::get('/user/article/index','Home\UserArticleController@index');
+//取消收藏
+Route::get('/user/article/delete/{id}','Home\UserArticleController@delete');
+/**
+ * 	文章详情页面
+ * 
+ */
 
-
-//前台登陆
-Route::get('/login','Home\LoginController@index');
-//前台注册
-Route::get('/signup','Home\LoginController@create');
-//前台登陆检查
-Route::post('/login/check','Home\LoginController@check');
-//前台注册验证
-Route::post('/signup/check','Home\LoginController@signupcheck');
-//前台用户登出
-Route::get('/logout','Home\LoginController@logout');
-
-//前台文章详情
-Route::get('/detail/{id}','Home\ArticleController@index');
 //前台文章回复
 Route::post('/detail/review/{id}','Home\ArticleController@create');
 //前台文章好评
 Route::get('/detail/likes/{id}','Home\ArticleController@likes');
 //前台文章收藏
 Route::get('/collect/{id}','Home\ArticleController@collect');
-//前台文章作者关注
+/**
+ * 	前台登出操作
+ * 
+ */
+//前台用户登出
+Route::get('/logout','Home\LoginController@logout');
+});

@@ -52,16 +52,20 @@
 	</div>
 	</div>
 	<!-- 提示信息开始 -->
-	@if (session('error'))
-	<script type="text/javascript">
-		confirm('{{session('error')}}');
-	</script>
-	@endif
-	@if (session('success'))
-	<script type="text/javascript">
-		confirm('{{session('success')}}');
-	</script>
-	@endif
+		@if(session('success'))
+            <input type="hidden" value="{{session('success')}}" id="success1">
+            <script type="text/javascript">
+              var msg = document.getElementById('success1');
+              layer.msg(msg.value);
+            </script>
+        @endif
+        @if(session('error'))
+            <input type="hidden" value="{{session('error')}}" id="error1">
+            <script type="text/javascript">
+              var msg = document.getElementById('error1');
+              layer.msg(msg.value);
+            </script>
+         @endif
 	<!-- 提示信息结束 -->
 </body>
 </html>

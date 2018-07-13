@@ -119,11 +119,15 @@
 		layer.msg('请注意邮箱格式');
 		});
 		$('input').eq(3).focus(function(){
-		layer.msg('至少8位');
+		layer.msg('请输入正确的电话号码');
 		});
 		$('input').eq(4).focus(function(){
+		layer.msg('至少8位');
+		});
+		$('input').eq(5).focus(function(){
 		layer.msg('重复以确认密码');
 		});
+
 	</script>
 	</body>
 </html>

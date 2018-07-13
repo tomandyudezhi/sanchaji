@@ -61,7 +61,7 @@ class ArticleController extends Controller
     {
         $data = $request -> all();
         $articles = UsersArticles::where('aid',$id)->first();
-        if (session()->get('id') == null) {
+        if (session()->get('homeUser') -> id == null) {
             return back() -> with('error', '很抱歉，您还没有登录');
         } else {
             if ($articles  == null) {
@@ -91,9 +91,10 @@ class ArticleController extends Controller
     {
         $data = $request -> all();
         // 根据id具体查找文章
+        $user_id = session() -> get('homeUser') -> id;
         $articles = Articles::where('id',$id)->first();
-        $like = ArticlesLikes::where('aid',$id)->first();
-        if (session()->get('id') == null) {
+        $like = ArticlesLikes::where('aid',$id) ->where('uid',$user_id) ->first();
+        if (session()->get('homeUser') -> id == null) {
             return back() -> with('error', '很抱歉，您还没有登录');
         } else {
             if ($like  == null) {
@@ -111,7 +112,7 @@ class ArticleController extends Controller
                     return back() -> with('error', '点赞失败');
                 }
             } else {
-                if ($like -> aid == $id) {
+                if ($like -> uid == $user_id) {
                     return back() -> with('error', '很抱歉，您已点赞此文章');
                 }
             }   

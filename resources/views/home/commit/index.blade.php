@@ -2,7 +2,6 @@
 
 
 
-
 @section('content')
 <div class="content-wrap">
     <div class="content">
@@ -26,24 +25,23 @@
      
       <div class="title">
         <h3>最新发布</h3>
-        <div class="more">                
-                <a href="http://www.muzhuangnet.com/list/mznetblog/" title="MZ-NetBlog主题" >MZ-NetBlog主题</a>                
-                <a href="http://www.muzhuangnet.com/list/code/" title="IT技术笔记" >IT技术笔记</a>                
-                <a href="http://www.muzhuangnet.com/list/share/" title="源码分享" >源码分享</a>                
-                <a href="http://www.muzhuangnet.com/list/money/" title="靠谱网赚" >靠谱网赚</a>                
-                <a href="http://www.muzhuangnet.com/list/news/" title="资讯分享" >资讯分享</a>                
+        <div class="more">        
+                @for ($i=0;$i <= 3;$i++)     
+                <a href="/list/index?part_name={{$part_data[$i]->id}}" title="{{$part_data[$i]->part_name}}" >{{$part_data[$i]->part_name}}</a>    
+                @endfor    
+                <a href="/list/index" title="更多分类" >更多...</a>
             </div>
       </div>
       @foreach ($list_data as $k => $v)
       <article class="excerpt excerpt-{{$k}}" style="">
-      <a class="focus text-center" href="#"  target="_blank" ><img class="thumb"  src="/default.jpg""  style="display: inline;width:140px;height:140px;"></a>
-            <header><a class="cat" href="http://www.muzhuangnet.com/list/mznetblog/" title="{{$v->parts->part_name}}" >{{$v->parts->part_name}}<i></i></a>
-                <h2><a href="#" title="{{$v->title}}" target="_blank" >{{$v->title}}</a>
+      <a class="focus text-center" href="/detail/{{ $v -> id }}"  target="_blank" ><img class="thumb"  src="/{{ $v -> users -> head_pic}}""  style="display: inline;width:140px;height:140px;"></a>
+            <header><a class="cat" href="/list/index?part_name={{ $v->parts->id }}" title="{{$v->parts->part_name}}" >{{$v->parts->part_name}}<i></i></a>
+                <h2><a href="/detail/{{ $v -> id }}" title="{{$v->title}}" target="_blank" >{{$v->title}}</a>
                 </h2>
             </header>
             <p class="meta">
                 <time class="time"><i class="glyphicon glyphicon-time"></i> {{$v->created_at}}</time>
-                <span class="views"><i class="glyphicon glyphicon-eye-open"></i>{{$v->reading}}</span> <a class="comment" href="#" title="评论" target="_blank" ><i class="glyphicon glyphicon-comment"></i>{{count($v->reviews)}}</a>
+                <span class="views"><i class="glyphicon glyphicon-eye-open"></i>{{$v->reading}}</span> <a class="comment" href="/detail/{{ $v -> id }}" title="评论" target="_blank" ><i class="glyphicon glyphicon-comment"></i>{{count($v->reviews)}}</a>
             </p>
             <p class="note" style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical;">{{$v->content}}</p>
         </article>
@@ -66,6 +64,5 @@
   layer.msg("{{session('success')}}")
   </script>
   @endif
-
 
 @endsection

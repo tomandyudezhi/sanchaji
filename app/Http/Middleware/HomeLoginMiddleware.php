@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class AdminLoginMiddleware
+class HomeLoginMiddleware
 {
     /**
      * Handle an incoming request.
@@ -15,10 +15,10 @@ class AdminLoginMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if(session('adminFlag') == true){
+        if(session()-> get('homeFlag')){
             return $next($request);
         }else{
-            return redirect('/admin/login') -> with('error','请登录后再试！');
+            return redirect('/login') -> with('error', '请登录后再试！');
         }
         
     }

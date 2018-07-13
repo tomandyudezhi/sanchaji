@@ -13,7 +13,7 @@
                         <li><a href="/article/index" rel="nofollow" title="我的博客" draggable="false">文章管理</a></li>
                         <li><a href="/article/create" rel="nofollow" title="写博客" draggable="false">写博客</a></li>
                         
-                        <li><a title="我的收藏" href="javascript:;" draggable="false">我的收藏</a></li>
+                        <li><a title="我的收藏" href="/user/article/index" draggable="false">我的收藏</a></li>
                         
                         <li><a title="我的关注" href="/user/follows" draggable="false">我的关注</a></li>
                     

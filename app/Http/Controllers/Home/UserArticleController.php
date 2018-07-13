@@ -6,28 +6,24 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Models\Articles;
-use App\Models\Frilinks;
+use App\Models\Users;
 use App\Models\Reviews;
-use App\Models\Parts;
+use App\Models\Articles;
+use App\Models\UsersArticles;
 
-class IndexController extends Controller
+class UserArticleController extends Controller
 {
     /**
-     * $list_data:文章列表数据
-     * Display a listing of the resource.
+     * 个人收藏页面首页
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //文章列表数据
-        $list_data = Articles::get();
-        
-        //分类列表数据
-        $part_data = Parts::get();
-        //加载模板
-        return view('home.commit.index',['list_data'=>$list_data,'part_data'=>$part_data]);
+        $id = session() ->get('homeUser') -> id;
+        $user_data = Users::find($id);
+
+        return view('home.userarticle.index',['user_data'=>$user_data]);
     }
 
     /**
@@ -91,8 +87,14 @@ class IndexController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
-        //
+        $user_id = session() -> get('homeUser') -> id;
+        $res=  UsersArticles::where('aid','=',$id)->where('uid','=',$user_id)->delete();
+        if($res){
+            echo 'success';
+        } else {
+            echo 'error';
+        }
     }
 }

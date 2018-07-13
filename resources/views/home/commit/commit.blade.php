@@ -35,36 +35,38 @@
     <header class="header">
   <nav class="navbar navbar-default" id="navbar">
     <div class="container">
-      <div class="header-topbar hidden-xs link-border">
-        <ul class="site-nav topmenu">
-          <li><a href="http://www.muzhuangnet.com/tags/" ></a></li>
-            <li><a href="http://www.muzhuangnet.com/readers/" rel="nofollow" ></a></li>
-            <li><a href="http://www.muzhuangnet.com/rss.html" title="RSS订阅" >
-            </a></li>
-        </ul>
-  </div>
       <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-navbar" aria-expanded="false"> <span class="sr-only"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-        <h1 class="logo hvr-bounce-in"><a href="http://www.muzhuangnet.com/" title="木庄网络博客"><img src="http://www.muzhuangnet.com/upload/201610/17/201610171329086541.png" alt="木庄网络博客"></a></h1>
+        <h1 class="logo hvr-bounce-in"><a href="/" title="三叉戟博客"><img src="http://www.muzhuangnet.com/upload/201610/17/201610171329086541.png" alt="三叉戟博客"></a></h1>
       </div>
       <div class="collapse navbar-collapse" id="header-navbar">
-        <form class="navbar-form visible-xs" action="/Search" method="post">
-          <div class="input-group">
-            <input type="text" name="keyword" class="form-control" placeholder="请输入关键字" maxlength="20" autocomplete="off">
-            <span class="input-group-btn">
-            <button class="btn btn-default btn-search" name="search" type="submit">搜索</button>
-            </span> </div>
-        </form>
 
+        
+        <ul class="nav navbar-nav navbar-right">
+          <li><a data-cont="三叉戟博客首页" title="三叉戟博客首页" href="/">首页</a></li>
+          <li><a data-cont="三叉戟小组" title="三叉戟小组" href="#">关于我们</a></li>
+          @if(session() -> has('homeUser'))
+          <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="/default.jpg" class="img-circle" style="width:40;height:40px"><span class="caret"></span></a>
+          
+          <ul class="dropdown-menu">
+            <li class="text-center"><a href="/user/index">个人中心</a></li>
+            @if (session()->get('homeUser') -> qx == 1)
+            <li class="text-center"><a href="/admin">后台管理</a></li>
+            @endif
+
+            <li class="text-center"><a href="#">修改密码</a></li>
+            <li role="separator" class="divider"></li>
+            <li class="text-center"><a href="/logout">注销</a></li>
+          </ul>
+        </li>
+        @else
         <ul class="nav navbar-nav navbar-right " >
           <li><a data-cont="三叉戟博客登录" title="三叉戟博客登录" href="/login">登录</a></li>
           <li><a data-cont="三叉戟博客注册" title="三叉戟博客注册" href="/signup">注册</a></li>
         </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li><a data-cont="三叉戟博客首页" title="三叉戟博客首页" href="index.html">首页</a></li>
-          <li><a data-cont="三叉戟小组" title="三叉戟小组" href="#">关于我们</a></li>
-        </ul>
-      </div>
+        @endif
+
+        
     </div>
   </nav>
 </header>
@@ -74,6 +76,7 @@
   @show
   @section('header')
   <aside class="sidebar">
+    @section('message')
     <div class="fixed">
     @section('head')
       <div class="widget widget-tabs">
@@ -100,59 +103,28 @@
       </div>
       @show
       <div class="widget widget_search">
-        <form class="navbar-form" action="/Search" method="post">
+        <form class="navbar-form" action="/list/index" method="get">
           <div class="input-group">
-            <input type="text" name="keyword" class="form-control" size="35" placeholder="请输入关键字" maxlength="15" autocomplete="off">
+            <input type="text" name="search" class="form-control" size="35" placeholder="请输入文章标题搜索" maxlength="15" autocomplete="off">
             <span class="input-group-btn">
-            <button class="btn btn-default btn-search" name="search" type="submit">搜索</button>
+            <button class="btn btn-default btn-search"  type="submit">搜索</button>
             </span> </div>
         </form>
       </div>
     </div>
+    @show
     <div class="widget widget_hot">
           <h3>最新评论文章</h3>
           <ul>            
-                <li><a title="用DTcms做一个独立博客网站（响应式模板）" href="http://www.muzhuangnet.com/show/269.html" ><span class="thumbnail">
-                    <img class="thumb" data-original="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" src="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）"  style="display: block;">
-                </span><span class="text">用DTcms做一个独立博客网站（响应式模板）</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
-                    2016-11-01
-                </span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i>88</span></a></li>
-                <li><a title="用DTcms做一个独立博客网站（响应式模板）" href="http://www.muzhuangnet.com/show/269.html" ><span class="thumbnail">
-                    <img class="thumb" data-original="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" src="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）"  style="display: block;">
-                </span><span class="text">用DTcms做一个独立博客网站（响应式模板）</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
-                    2016-11-01
-                </span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i>88</span></a></li>
-                <li><a title="用DTcms做一个独立博客网站（响应式模板）" href="http://www.muzhuangnet.com/show/269.html" ><span class="thumbnail">
-                    <img class="thumb" data-original="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" src="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）"  style="display: block;">
-                </span><span class="text">用DTcms做一个独立博客网站（响应式模板）</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
-                    2016-11-01
-                </span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i>88</span></a></li>
-                <li><a title="用DTcms做一个独立博客网站（响应式模板）" href="http://www.muzhuangnet.com/show/269.html" ><span class="thumbnail">
-                    <img class="thumb" data-original="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" src="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）"  style="display: block;">
-                </span><span class="text">用DTcms做一个独立博客网站（响应式模板）</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
-                    2016-11-01
-                </span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i>88</span></a></li>
-                <li><a title="用DTcms做一个独立博客网站（响应式模板）" href="http://www.muzhuangnet.com/show/269.html" ><span class="thumbnail">
-                    <img class="thumb" data-original="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" src="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）"  style="display: block;">
-                </span><span class="text">用DTcms做一个独立博客网站（响应式模板）</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
-                    2016-11-01
-                </span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i>88</span></a></li>
-                <li><a title="用DTcms做一个独立博客网站（响应式模板）" href="http://www.muzhuangnet.com/show/269.html" ><span class="thumbnail">
-                    <img class="thumb" data-original="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" src="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）"  style="display: block;">
-                </span><span class="text">用DTcms做一个独立博客网站（响应式模板）</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
-                    2016-11-01
-                </span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i>88</span></a></li>
-                <li><a title="用DTcms做一个独立博客网站（响应式模板）" href="http://www.muzhuangnet.com/show/269.html" ><span class="thumbnail">
-                    <img class="thumb" data-original="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" src="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）"  style="display: block;">
-                </span><span class="text">用DTcms做一个独立博客网站（响应式模板）</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
-                    2016-11-01
-                </span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i>88</span></a></li>
-                <li><a title="用DTcms做一个独立博客网站（响应式模板）" href="http://www.muzhuangnet.com/show/269.html" ><span class="thumbnail">
-                    <img class="thumb" data-original="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" src="http://www.muzhuangnet.com/upload/201610/18/201610181739277776.jpg" alt="用DTcms做一个独立博客网站（响应式模板）"  style="display: block;">
-                </span><span class="text">用DTcms做一个独立博客网站（响应式模板）</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
-                    2016-11-01
-                </span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i>88</span></a></li>
-  
+              @foreach($review_data as $v)
+                <li><a title="{{$v->users->username}}" href="/detail/{{$v -> articles -> id}}" ><span class="thumbnail">
+                    <img class="thumb"  src="/{{$v -> articles -> users -> head_pic}}" alt="{{$v->articles->content}}"  style="display: block;width:90px;height:90px;">
+                </span><span class="text">{{$v->articles->title}}</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
+                    {{$v-> articles -> updated_at}}
+                </span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i>{{$v->articles->reading}}</span></a>
+                
+                </li>
+              @endforeach
           </ul>
      </div>
      <div class="widget widget_sentence">    
@@ -176,7 +148,7 @@
 </section>
     <footer class="footer">
   <div class="container">
-    <p>本站[<a href="http://www.muzhuangnet.com/" >木庄网络博客</a>]的部分内容来源于网络，若侵犯到您的利益，请联系站长删除！谢谢！Powered By [<a href="http://www.dtcms.net/" target="_blank" rel="nofollow" >DTcms</a>] Version 4.0 &nbsp;<a href="http://www.miitbeian.gov.cn/" target="_blank" rel="nofollow" >闽ICP备00000000号-1</a> &nbsp; <a href="http://www.muzhuangnet.com/sitemap.xml" target="_blank" class="sitemap" >网站地图</a></p>
+    <p>本站[<a href="/" >三叉戟博客</a>]的部分内容来源于网络，若侵犯到您的利益，请联系站长删除！谢谢！Powered By [<a href="http://www.dtcms.net/" target="_blank" rel="nofollow" >DTcms</a>] Version 4.0 &nbsp;<a href="http://www.miitbeian.gov.cn/" target="_blank" rel="nofollow" >闽ICP备00000000号-1</a> &nbsp; <a href="/" target="_blank" class="sitemap" >网站地图</a></p>
   </div>
   <div id="gotop"><a class="gotop"></a></div>
 </footer>

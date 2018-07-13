@@ -21,7 +21,7 @@ class UserController extends Controller
         $id = session()->get('homeUser') -> id;
         $user_data = Users::find($id);
         //记载个人信息页面
-        return view('home.user.index',compact('user_data'));
+        return view('home.user.index',['user_data'=>$user_data,'review_data'=>[]]);
     }
 
 
