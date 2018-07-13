@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class UserInsertRequest extends Request
+class HomeLoginRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,11 @@ class UserInsertRequest extends Request
     public function rules()
     {
         return [
-            'username' => 'required|regex:/^[a-zA-Z]{1}[a-zA-Z0-9_]{7,15}$/|unique:blog_users,username',
-            'password' => 'sometimes|required|regex:/^[a-zA-Z0-9_]{8,}$/',
-            'repass' => 'sometimes|same:password',
-            'email' => 'required|email'
+            'username' => 'required|regex:/^[a-zA-Z]{1}[a-zA-Z0-9_]{5,15}$/|unique:blog_users,username',
+            'password' => 'required|regex:/^[a-zA-Z0-9_]{8,}$/',
+            'repass' => 'same:password',
+            'phone' => 'required|regex:/^[1][3-8][0-9]{9}$/',
+            'email' => 'required|email',
         ];
     }
 
@@ -36,7 +37,6 @@ class UserInsertRequest extends Request
      * 定义错误验证的消息
      * 
      */
-    
     public function messages()
     {
         return [
@@ -46,9 +46,7 @@ class UserInsertRequest extends Request
             'password.required' => '密码不能为空',
             'password.regex' => '密码必须为8位以上的数字字母下划线组合',
             'repass.same' => '请与密码一致',
-            'phone.required' => '电话号码不能为空',
-            'phone.regex' => '请输入电话号码',
-            'email.email' => '请输入邮箱',
+            'email.email' => '请输入正确邮箱',
             'email.required' => '邮箱不能为空'
         ];
     }

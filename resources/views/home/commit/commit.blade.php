@@ -17,6 +17,8 @@
     <script src="/home/js/jquery-2.1.4.min.js"></script>
     <script src="/home/js/nprogress.js"></script>
     <script src="/home/js/jquery.lazyload.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/layui/css/layui.css">
+    <script type="text/javascript" src="/layui/layui.all.js"></script>
     <!--[if gte IE 9]>
       <script src="js/jquery-1.11.1.min.js" type="text/javascript"></script>
       <script src="js/html5shiv.min.js" type="text/javascript"></script>
@@ -72,6 +74,7 @@
   @show
   <aside class="sidebar">
     <div class="fixed">
+    @section('head')
       <div class="widget widget-tabs">
         <ul class="nav nav-tabs" role="tablist">
           <li role="presentation" class="active"><a href="#notice" aria-controls="notice" role="tab" data-toggle="tab" >统计信息</a></li>
@@ -94,6 +97,7 @@
           </div>
         </div>
       </div>
+      @show
       <div class="widget widget_search">
         <form class="navbar-form" action="/Search" method="post">
           <div class="input-group">
@@ -160,7 +164,7 @@
      </div>
     <div class="widget widget_sentence">
       <h3>友情链接</h3>
-      <div class="widget-sentence-link">
+      <div class="widget-sentence">
         @foreach ($frilink_data as $v)
         <a href="{{$v->url}}" title="{{$v->descript}}" target="_blank" style="float:left;margin-left:10px;">{{$v->title}}</a>&nbsp;&nbsp;&nbsp;
         @endforeach

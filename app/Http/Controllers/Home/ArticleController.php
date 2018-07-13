@@ -6,83 +6,113 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Models\Articles;
+use App\Models\Reviews;
+use App\Models\UsersArticles;
+use App\Models\ArticlesLikes;
 
 class ArticleController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * 前台文章显示
      *
-     * @return \Illuminate\Http\Response
+     * @return 模板
      */
-    public function index()
+    public function index($id)
     {
-        //
-        
+        // 根据id查找文章数据
+        $articles = Articles::find($id);
+        // 根据id查找回复数据
+        $reviews = Reviews::find($id);
+        // 显示模板
+        return view('home.articlesdetail.index',['articles' => $articles,'reviews' => $reviews]);
     }
 
     /**
-     * Show the form for creating a new resource.
+     * 前台文章回复
      *
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return bool
      */
-    public function create()
+    public function create(Request $request,$id)
     {
-        //
+        $data = $request -> except('_token');
+        // dd($data);
+        $review = new Reviews;
+        $review -> uid = $data['uid'];
+        $review -> aid = $id;
+        $review -> content = $data['content'];
+        $res = $review -> save();
+        if($res){
+            return redirect('/detail/'.$id) -> with('success', '回复成功');
+        }else{
+            return back() -> with('error', '回复失败');
+        }
     }
 
     /**
-     * Store a newly created resource in storage.
+     * 文章收藏
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param int $id
      */
-    public function store(Request $request)
+    public function collect(Request $request,$id)
     {
-        //
+        $data = $request -> all();
+        $articles = UsersArticles::where('aid',$id)->first();
+        if (session()->get('id') == null) {
+            return back() -> with('error', '很抱歉，您还没有登录');
+        } else {
+            if ($articles  == null) {
+                $usersarticles = new UsersArticles;
+                $usersarticles -> uid = $data['uid'];
+                $usersarticles -> aid = $id;
+                $res = $usersarticles -> save();
+                if($res){
+                    return redirect('/detail/'.$id) -> with('success', '收藏成功');
+                }else{
+                    return back() -> with('error', '收藏失败');
+                }
+            } else {
+                if ($articles -> aid = $id) {
+                return back() -> with('error', '很抱歉，您已收藏此文章');
+                }
+            }   
+        }
     }
 
     /**
-     * Display the specified resource.
+     * 文章好评
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function likes(Request $request,$id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $data = $request -> all();
+        // 根据id具体查找文章
+        $articles = Articles::where('id',$id)->first();
+        $like = ArticlesLikes::where('aid',$id)->first();
+        if (session()->get('id') == null) {
+            return back() -> with('error', '很抱歉，您还没有登录');
+        } else {
+            if ($like  == null) {
+                // 写入点赞关系表
+                $like = new ArticlesLikes;
+                $like -> uid = $data['uid'];
+                $like -> aid = $id;
+                $res = $like -> save();
+                // 写入文章表
+                $articles -> likes = ($articles -> likes)+1;
+                $res2 = $articles -> save();
+                if($res && $res2){
+                    return redirect('/detail/'.$id) -> with('success', '点赞成功');
+                }else{
+                    return back() -> with('error', '点赞失败');
+                }
+            } else {
+                if ($like -> aid == $id) {
+                    return back() -> with('error', '很抱歉，您已点赞此文章');
+                }
+            }   
+        }
     }
 }
