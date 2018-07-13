@@ -22,7 +22,7 @@ class ArticleManageController extends Controller
      */
     public function index()
     {
-        $data = Users::find(14);
+        $data = Users::find(session()->get('homeUser') ->id);
         return view('home.article.index',['data'=> $data]);
     }
 
@@ -49,7 +49,8 @@ class ArticleManageController extends Controller
      */
     public function recycle()
     {
-        $data = Articles::onlyTrashed() -> where('uid','=','14') -> get();
+        $id = session() -> get('homeUser') -> id;
+        $data = Articles::onlyTrashed() -> where('uid','=',$id) -> get();
 
         return view('home.article.recycle',['data' => $data]);
     }
@@ -95,7 +96,8 @@ class ArticleManageController extends Controller
      */
     public function pri()
     {
-        $data = Articles::where('hidd','=','y') -> where('id',14) -> get();
+        $id = session() ->get('homeUser') ->id;
+        $data = Articles::where('hidd','=','y') -> where('id',$id) -> get();
         return view('home.article.private',['data'=>$data]);
     }
 
@@ -107,7 +109,8 @@ class ArticleManageController extends Controller
      */
     public function follows()
     {
-        $data = Users::find(14);
+        $id = session() ->get('homeUser') ->id;
+        $data = Users::find($id);
         return view('home.article.follows',['data' => $data]);
     }
 
@@ -119,7 +122,8 @@ class ArticleManageController extends Controller
     
     public function follows_del($id)
     {
-        $res = UsersUsers::where('uid',14) -> where('idol_id',$id) -> delete();
+        $id = session() ->get('homeUser') ->id;
+        $res = UsersUsers::where('uid',$id) -> where('idol_id',$id) -> delete();
         if($res){
             echo 'success';
         }else{
@@ -146,18 +150,22 @@ class ArticleManageController extends Controller
     public function store(ArticleInsertRequest $request)
     {
         $data = $request -> except('_token');
+        $id = session() ->get('homeUser') -> id;
         $article = new Articles;
         $article -> title = $data['title'];
         $article -> content = $data['content'];
         $article -> a_type = $data['a_type'];
         $article -> pid = $data['pid'];
-        $article -> hidd = $data['hidd'];
-        $article -> uid = 14; //session uid
+        if(isset($data['hidd'])){
+            $article -> hidd = $data['hidd'];
+        }
+        
+        $article -> uid = $id; //session uid
         $res1 =  $article -> save();
         //添加文章标签
         $tag = new Tags;
         $tag -> aid = $article -> id;
-        $tag -> uid = 14; //session uid
+        $tag -> uid = $id; //session uid
         $tag -> content = $data['tags'];
         $res2 = $tag -> save();
 

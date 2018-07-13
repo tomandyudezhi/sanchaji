@@ -44,21 +44,12 @@
           </span> 
           <span class="item article-meta-source" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="作者：{{ $articles -> users -> username }}"><i class="glyphicon glyphicon-globe"></i> {{ $articles -> users -> username }}</span> 
           <span class="item article-meta-category" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="文章分类：{{ $articles -> parts -> part_name }}"><i class="glyphicon glyphicon-list"></i> {{ $articles -> parts -> part_name }}<a href="javascript:;" title="{{ $articles -> parts -> part_name }}" draggable="false"></a></span> 
-          <span class="item article-meta-views" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="浏览量：219"><i class="glyphicon glyphicon-eye-open"></i> {{ $articles -> reading }}</span> 
+          <span class="item article-meta-views" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="浏览量"><i class="glyphicon glyphicon-eye-open"></i> {{ $articles -> reading }}</span> 
           <span class="item article-meta-comment" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="评论量"><i class="glyphicon glyphicon-comment"></i> {{ count($articles -> reviews) }}</span> 
         </div>
       </header>
-      <!-- 收藏 -->
-      <div id="respond">
-        <form action="/collect/{{ $articles -> id }}">
-            <input type="hidden" value="{{ session()->get('id') }}" name="uid">
-            <button type="submit" class="btn btn-success">收藏</button>
-        </form>
-      </div>
-      <!-- 收藏结束 -->
+      
       <article class="article-content">
-        <p><img src="/home/images/sanchaji.jpg" alt="" draggable="false" style="display: block;"></p>
-        <hr>
         <p>
             
 			    {!! $articles -> content !!}
@@ -66,14 +57,28 @@
         </p>
       </article>
       <hr>
-      <div class="article-tags">
+      <div class="article-tags" style="margin-right: 40px;">
 	      标签：<a href="">{{ $articles -> tags -> content }}</a>
       </div>
       <div class="article-header">
-        <form action="/detail/likes/{{ $articles -> id }}">
-            <input type="hidden" value="{{ session()->get('id') }}" name="uid">
-            <button type="submit" class="btn btn-danger">好评 {{ $articles -> likes }}</button>
+        <table width="100%">
+          <tr>
+            <td class="text-center">
+              <form action="/detail/likes/{{ $articles -> id }}" style="display: inline-table;">
+              <input type="hidden" value="{{ session()->get('homeUser') -> id }}" name="uid">
+              <button type="submit" class="btn btn-danger" style="margin-left:100px;">好评 {{ $articles -> likes }}</button>
         </form>
+            </td>
+            <td class="text-center">
+               <form action="/collect/{{ $articles -> id }}">
+                <input type="hidden" value="{{ session()->get('homeUser') -> id}}" name="uid">
+                <button type="submit" class="btn btn-success" style="position: relative;right:270px;">收藏</button>
+              </form>
+            </td>
+          </tr>
+        </table> 
+        
+       
       </div>
       <script type="text/javascript">
           $(function(){
@@ -85,11 +90,11 @@
         <h3>评论</h3>
       </div>
       <div id="respond">
-            <form id="comment-form" name="comment-form" action="/detail/review/{{ $articles -> id }}" method="POST">
+            <form id="comment-form" name="comment-form" action="/detail/review/{{ $articles -> id }}" method="post">
             {{ csrf_field() }}
                     <div class="comment-box">
                         <textarea placeholder="您的评论或留言（必填）" name="content" id="comment-textarea" cols="100%" rows="3" tabindex="3"></textarea>
-                        <input type="hidden" value="{{ session()->get('id') }}" name="uid">
+                        <input type="hidden" value="{{ session()->get('homeUser') ->id }}" name="uid">
                         <div class="comment-ctrl text-right">
                             <button type="submit" id="comment-f" class="btn btn-primary" tabindex="5" style="margin-right:0;"">评论</button>
                         </div>

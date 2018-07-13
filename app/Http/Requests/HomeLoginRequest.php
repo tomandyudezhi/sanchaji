@@ -45,6 +45,8 @@ class HomeLoginRequest extends Request
             'username.unique' => '用户名已存在',
             'password.required' => '密码不能为空',
             'password.regex' => '密码必须为8位以上的数字字母下划线组合',
+            'phone.required' => '电话号码不能为空',
+            'phone.regex' => '请输入正确的电话格式',
             'repass.same' => '请与密码一致',
             'email.email' => '请输入正确邮箱',
             'email.required' => '邮箱不能为空'

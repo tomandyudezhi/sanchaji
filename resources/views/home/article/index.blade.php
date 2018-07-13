@@ -50,7 +50,7 @@
                       <div class="col-md-1 text-right" style="color:#999;"><i class="layui-icon layui-icon-read"></i> {{ $v -> reading}}</div>
                       <div class="col-md-1" style="color:#999;"><i class="layui-icon layui-icon-dialogue"></i>  {{ count($v -> reviews)}}</div>
                       <div class="col-md-6 text-right" >
-                        <a href="" class="layui-btn layui-btn-xs layui-btn-normal">查看</a>
+                        <a href="/detail/{{$v->id}}" class="layui-btn layui-btn-xs layui-btn-normal">查看</a>
                         <a href="javascript:;" value="{{$v->id}}" class="layui-btn layui-btn-xs layui-btn-danger layui-btn-warm">删除</a>
                       </div>
                       <br>

@@ -54,19 +54,23 @@
 						<h2>注 册</h2>
 						<div class="form-group">
 							<label for="name" class="sr-only">姓名</label>
-							<input type="text" class="form-control" id="username" title="" placeholder="名称" autocomplete="off" name="username">
+							<input type="text" class="form-control" id="username" title="" placeholder="用户名"  name="username">
 						</div>
 						<div class="form-group">
 							<label for="email" class="sr-only">邮箱</label>
-							<input type="email" class="form-control" id="email" placeholder="邮箱" autocomplete="off" name="email">
+							<input type="text" class="form-control" id="email" placeholder="邮箱" name="email">
+						</div>
+						<div class="form-group">
+							<label for="phone" class="sr-only">电话</label>
+							<input type="text" class="form-control" id="phone" placeholder="电话" name="phone">
 						</div>
 						<div class="form-group">
 							<label for="password" class="sr-only">密码</label>
-							<input type="password" class="form-control" id="password" placeholder="密码" autocomplete="off" name="password">
+							<input type="password" class="form-control" id="password" placeholder="密码"  name="password">
 						</div>
 						<div class="form-group">
 							<label for="re-password" class="sr-only">重复密码</label>
-							<input type="password" class="form-control" id="repass" placeholder="重复密码" autocomplete="off" name="repass">
+							<input type="password" class="form-control" id="repass" placeholder="重复密码"  name="repass">
 							<input type="hidden" value="2" name="qx">
 						</div>
 						<div class="form-group">
@@ -87,11 +91,13 @@
 		</div>
 
 		<!-- 消息提示开始 -->
-		@if (count($errors) > 0)
-		<script type="text/javascript">
-		layer.alert("注册项错误，请重新检查",{btn:['知道了']});
-		</script>
-		@endif
+		@if(count($errors) >0)
+        	<input type="hidden" value="{{$errors -> all()[0]}}" id="hidd" >
+			<script type="text/javascript">
+				var msg = document.getElementById('hidd');
+				layer.msg(msg.value);
+			</script>
+        @endif
 		<!-- 消息提示结束 -->
 	
 	<!-- jQuery -->
@@ -110,10 +116,10 @@
 		layer.msg('以字母开头由下划线和数字组成的6-16位名字');
 		});
 		$('input').eq(2).focus(function(){
-		layer.msg('请注意正确格式');
+		layer.msg('请注意邮箱格式');
 		});
 		$('input').eq(3).focus(function(){
-		layer.msg('由6-18位组成');
+		layer.msg('至少8位');
 		});
 		$('input').eq(4).focus(function(){
 		layer.msg('重复以确认密码');

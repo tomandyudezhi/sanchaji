@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Users;
+use App\Models\UsersDetails;
 use Hash;
 use App\Http\Requests\HomeLoginRequest;
 
@@ -52,10 +53,8 @@ class LoginController extends Controller
         $res = Hash::check($login_push, $user -> password);
         if ($res) {
             if ($user -> shield == 'n') {
-                session() -> put('username',$login['username']);
-                session() -> put('head_pic',$user['head_pic']);
-                session() -> put('id',$user['id']);
-                session() -> put('qx',$user['qx']);
+                session() -> put('homeUser',$user);
+                session() -> put('homeFlag',true);
                 return redirect('/')->with('success','登陆成功');
             } else {
                 return back()->with('error','登陆失败,您是被屏蔽用户');
@@ -71,20 +70,21 @@ class LoginController extends Controller
      */
     public function signupcheck(HomeLoginRequest $request)
     {
-        echo 123;
         // 查询数据
         $data = $request -> except('_token');
-        dump($data);
         $user = new Users;
         $user -> username = $data['username'];
         $user -> password = Hash::make($data['password']);
         $user -> email = $data['email'];
         $user -> qx = $data['qx'];
+        $user -> phone = $data['phone'];
         $user -> create_ip = ip2long($_SERVER['REMOTE_ADDR']);
-        $res = $user -> save();
-        dump($res);
-        if($res){
-            return redirect('/') -> with('success', '注册成功');
+        $res1 = $user -> save();
+        $detail = new UsersDetails;
+        $detail -> uid = $user -> id;
+        $res2 = $detail -> save();
+        if($res1 && $res2){
+            return redirect('/login') -> with('success', '注册成功');
         }else{
             return back() -> with('error', '注册失败');
         }

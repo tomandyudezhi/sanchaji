@@ -22,6 +22,9 @@ class ArticleController extends Controller
     {
         // 根据id查找文章数据
         $articles = Articles::find($id);
+        if($articles == null){
+            return back() -> with('error','很抱歉。该文章已被删除');
+        }
         // 根据id查找回复数据
         $reviews = Reviews::find($id);
         // 显示模板
@@ -37,7 +40,6 @@ class ArticleController extends Controller
     public function create(Request $request,$id)
     {
         $data = $request -> except('_token');
-        // dd($data);
         $review = new Reviews;
         $review -> uid = $data['uid'];
         $review -> aid = $id;
