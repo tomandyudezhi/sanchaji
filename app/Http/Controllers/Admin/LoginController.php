@@ -41,8 +41,8 @@ class LoginController extends Controller
         if ($res) {
             if ($user -> shield == 'n') {
                 if ($user -> qx == 1) {
-                    session() -> put('username',$login['username']);
-                    session() -> put('head_pic',$user['head_pic']);
+                    session() -> put('adminFlag',true);
+                    session() -> put('adminUser',$user);
                     return redirect('/admin')->with('success','登陆成功');
                 } else {
                     return back()->with('error','登陆失败,您不是管理员');
@@ -63,6 +63,7 @@ class LoginController extends Controller
     public function loginout()
     {
         session() -> flush();
+        session('adminFlag',false);
         return redirect('/admin/login')->with('success','退出成功');
     }
 }

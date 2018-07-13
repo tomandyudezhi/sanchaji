@@ -54,12 +54,12 @@ class ArticleController extends Controller
         $article -> a_type = $data['a_type'];
         $article -> hidd = $data['hidd'];
         $article -> pid = $data['pid'];
-        // $article -> uid = session('user_id');
+        $article -> uid = session() -> get('adminUser') -> id;
         $res1 = $article -> save();
         //添加文章标签
         $tag = new Tags;
         $tag -> aid = $article -> id;
-        // $tag -> uid = session('user_id');
+        $tag -> uid = session() -> get('adminUser') -> id;
         $tag -> content = $data['tags'];
         $res2 = $tag -> save();
         if($res1 && $res2){

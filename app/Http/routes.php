@@ -11,9 +11,21 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+
+
+/**
+ * 	后台登录模块
+ * 
+ */
+//后台登陆路由
+Route::get('/admin/login','Admin\LoginController@index');
+//后台登陆检测
+Route::post('/admin/login/check','Admin\LoginController@check');
+
 
 /**
  * 
@@ -21,7 +33,7 @@ Route::get('/', function () {
  * 
  */
 
-
+Route::group(['middleware'=>'adminlogin'],function(){
 //后台首页
 Route::get('/admin','Admin\AdminController@index');
 	/**
@@ -101,14 +113,7 @@ Route::get('/admin/tag/delete/{id}','Admin\TagController@delete');
 Route::get('/admin/config/index','Admin\ConfigController@index');
 //后台网站配置修改路由
 Route::post('/admin/config/update/{id}','Admin\ConfigController@update');
-	/**
-	 * 	后台登录模块
-	 * 
-	 */
-//后台登陆路由
-Route::get('/admin/login','Admin\LoginController@index');
-//后台登陆检测
-Route::post('/admin/login/check','Admin\LoginController@check');
+
 //后台登出路由
 Route::get('/admin/login/out','Admin\LoginController@loginout');
 	/**
@@ -158,7 +163,7 @@ Route::get('/admin/feedbacks/index','Admin\FeedbacksController@index');
 //删除反馈
 Route::get('/admin/feedbacks/delete/{id}','Admin\FeedbacksController@delete');
 
-
+});
 
 
 
@@ -238,3 +243,23 @@ Route::get('/user/index/{id}','Home\UserController@index');
 Route::get('/user/edit/{id}','Home\UserController@edit');
 //执行个人信息修改操作
 Route::post('/user/detail/update/{id}', 'Home\UserController@update');
+//文章管理页面
+Route::get('/article/index', 'Home\ArticleManageController@index');
+//记载写博客页面
+Route::get('/article/create','Home\ArticleManageController@create');
+//写博客操作
+Route::post('/article/store', 'Home\ArticleManageController@store');
+//文章收入回收站操作
+Route::get('/article/del/{id}', 'Home\ArticleManageController@del');
+//查看私密文章
+Route::get('/article/private', 'Home\ArticleManageController@pri');
+//查看回收站
+Route::get('/article/recycle', 'Home\ArticleManageController@recycle');
+//执行恢复操作
+Route::get('/article/recover/{id}', 'Home\ArticleManageController@recover');
+//回收站文章永久删除
+Route::get('/article/delever/{id}', 'Home\ArticleManageController@delever');
+//加载我的关注页面
+Route::get('/user/follows', 'Home\ArticleManageController@follows');
+//取消关注操作
+Route::get('/user/follows/del/{id}','Home\ArticleManageController@follows_del');

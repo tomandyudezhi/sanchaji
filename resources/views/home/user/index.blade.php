@@ -6,11 +6,11 @@
 		    <div class="pagemenus">
 		      <ul class="pagemenu">
 		                    <li><a href="/user/index" title="个人信息页面" draggable="false">个人信息</a></li>
-		                    <li><a href="javascript:;" rel="nofollow" title="我的博客" draggable="false">文章管理</a></li>
-		                    
+		                    <li><a href="/article/index" rel="nofollow" title="我的博客" draggable="false">文章管理</a></li>
+		                    <li><a href="/article/create" rel="nofollow" title="写博客" draggable="false">写博客</a></li>
 		                    <li><a title="我的收藏" href="javascript:;" draggable="false">我的收藏</a></li>
 		                    
-		                    <li><a title="我的关注" href="javascript:;" draggable="false">我的关注</a></li>
+		                    <li><a title="我的关注" href="/user/follows" draggable="false">我的关注</a></li>
 		                    
 		                </ul>
 		            </div>
@@ -88,12 +88,12 @@
 		           		<h2>我的博客</h2>
 		           		<hr>
 		           		<div class="row text-right">
-							<a href="javascript:;" class="layui-btn layui-btn-normal" style="font-size: 20px;">文章管理</a>
+							<a href="/article/index" class="layui-btn layui-btn-normal" style="font-size: 20px;">文章管理</a>
 		           		</div>
 		           		
 		           			@if((empty($user_data -> articles[0])))
 		           				<div class="text-center" style="width:800px;">
-									<h3>你还没有写博客哦~<a href="" class="layui-btn layui-btn-danger">写博客</a></h3>
+									<h3>你还没有写博客哦~<a href="/article/create" class="layui-btn layui-btn-danger">写博客</a></h3>
 									
 		           				</div>
 		           			@else	
@@ -104,8 +104,6 @@
 				                @endforeach
 				                </div>
 				            @endif
-		           		
-		           		
 		           	</div>
 		 		 </div>
 		</section>
