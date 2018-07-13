@@ -26,10 +26,10 @@
       <div class="title">
         <h3>最新发布</h3>
         <div class="more">        
-                @foreach ($part_data as $v)     
-                <a href="/list/index?part_name={{$v->id}}" title="MZ-NetBlog主题" >{{$v->part_name}}</a>    
-                @endforeach     
-                <a href="#" title="MZ-NetBlog主题" >更多...</a>
+                @for ($i=0;$i <= 3;$i++)     
+                <a href="/list/index?part_name={{$part_data[$i]->id}}" title="{{$part_data[$i]->part_name}}" >{{$part_data[$i]->part_name}}</a>    
+                @endfor    
+                <a href="/list/index" title="更多分类" >更多...</a>
             </div>
       </div>
       @foreach ($list_data as $k => $v)

@@ -26,11 +26,20 @@ class ListController extends Controller
         $tag_data1 = Tags::get();
         $arr = [];
         foreach ($tag_data1 as $key => $val) {
-           $arr[] =  $val['id'];
+           $arr[] =  $val ->id;
         }
-        $a = (array_rand($arr,6));
+        if(count($arr) <= 8){
+             $a = $arr;
+             $tag_data1 = Tags::whereIn('id',$a) -> get();
+        }else{
+            $a = array_rand($arr,8);
+            $tag_data1 = [];
+            for($i=0;$i<8;$i++){
+                $tag_data1[] = Tags::find($arr[$a[$i]]);
+            }
+        }
         //dump($a);
-        $tag_data1 = Tags::find($a);
+        
         
         //获取id
         $part_id = $request->input('part_name','');

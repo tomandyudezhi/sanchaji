@@ -16,6 +16,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
 
+
         $frilink_data = FriLinks::get();
         view()->share(['frilink_data'=>$frilink_data]);
     }

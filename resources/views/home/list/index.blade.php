@@ -69,13 +69,13 @@
 
 		@foreach($data as $k => $v)
          <article class="excerpt excerpt-5"><a class="focus" href="#" title="{{$v->title}}" target="_blank" ><img class="thumb" data-original="/default.jpg" src="/default.jpg" alt="{{$v->title}}"  style="display: inline;width:150px;height:150px;"></a>
-        <header><a class="cat" href="http://www.muzhuangnet.com/list/mznetblog/" title="{{$v->parts->part_name}}" >{{$v->parts->part_name}}<i></i></a>
-          <h2><a href="http://www.muzhuangnet.com/show/269.html" title="{{$v->title}}" target="_blank" >{{$v->title}}</a></h2>
+        <header><a class="cat" href="#" title="{{$v->parts->part_name}}" >{{$v->parts->part_name}}<i></i></a>
+          <h2><a href="#" title="{{$v->title}}" target="_blank" >{{$v->title}}</a></h2>
         </header>
         <p class="meta">
           <time class="time"><i class="glyphicon glyphicon-time"></i> {{$v->created_at}}</time>
           <span class="views"><i class="glyphicon glyphicon-eye-open"></i> {{$v->reading}}</span> <a class="comment" href="#" title="评论" target="_blank" ><i class="glyphicon glyphicon-comment"></i>{{count($v->reviews)}}</a></p>
-        <p class="note">{{$v->content}}</p>
+        <p class="note" style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical;">{{$v->content}}</p>
       </article>
       @endforeach
       <nav class="pagination" style="display: none;">

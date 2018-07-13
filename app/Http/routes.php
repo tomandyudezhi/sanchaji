@@ -184,5 +184,72 @@ Route::get('/list/index','Home\ArticleController@index');
 Route::get('/','Home\IndexController@index');
 //文章列表页
 Route::get('/list/index','Home\ListController@index');
+//我的收藏
+Route::get('/user/article/index','Home\UserArticleController@index');
+//取消收藏
+Route::get('/user/article/delete/{id}','Home\UserArticleController@delete');
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * 	个人信息页面
+ * 
+ */
+//加载个人信息页面
+Route::get('/user/index/{id}','Home\UserController@index');
+//加载个人信息修改页面
+Route::get('/user/edit/{id}','Home\UserController@edit');
+//执行个人信息修改操作
+Route::post('/user/detail/update/{id}', 'Home\UserController@update');

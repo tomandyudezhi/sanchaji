@@ -28,6 +28,8 @@
     <!--[if lt IE 9]>
       <script>window.location.href='upgrade-browser.html';</script>
     <![endif]-->
+<link rel="stylesheet" type="text/css" href="/layui/css/layui.css">
+<script type="text/javascript" src="/layui/layui.all.js"></script>
 </head>
 <body class="user-select">
     <header class="header">
@@ -63,10 +65,13 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="/default.jpg" class="img-circle" style="width:40;height:40px"><span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li class="text-center"><a href="#">个人中心</a></li>
-            <li class="text-center"><a href="#">后台管理</a></li>
+          @if (session()->get('qx') == 1)
+            <li class="text-center"><a href="/admin">后台管理</a></li>
+          @endif
+
             <li class="text-center"><a href="#">修改密码</a></li>
             <li role="separator" class="divider"></li>
-            <li class="text-center"><a href="#">注销</a></li>
+            <li class="text-center"><a href="/logout">注销</a></li>
           </ul>
         </li>
 
@@ -79,6 +84,7 @@
     @section('content')
   
   @show
+  @section('header')
   <aside class="sidebar">
     @section('message')
     <div class="fixed">
@@ -122,7 +128,7 @@
                 <li><a title="{{$v->users->username}}" href="javascript:;" ><span class="thumbnail">
                     <img class="thumb"  src="/default.jpg" alt="{{$v->articles->content}}"  style="display: block;width:90px;height:90px;">
                 </span><span class="text">{{$v->articles->title}}</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
-                    {{$v->articles->updated_at}}
+                    {{$v-> articles -> updated_at}}
                 </span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i>{{$v->articles->reading}}</span></a>
                 
                 </li>
@@ -146,6 +152,7 @@
       </div>
     </div>
   </aside>
+  @show
 </section>
     <footer class="footer">
   <div class="container">

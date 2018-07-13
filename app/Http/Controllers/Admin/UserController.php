@@ -174,7 +174,6 @@ class UserController extends Controller
     public function details_store(Request $request,$id)
     {
         $data = $request -> except('_token');
-        dump(count($data));
         if(empty($data)){
             return '<script>var index = parent.layer.getFrameIndex(window.name);parent.layer.msg("修改成功");parent.layer.close(index);</script>';
         }

@@ -22,6 +22,7 @@ class TagController extends Controller
         $searchname = $request -> input('searchname');
         //查询所有评论
         $data = Tags::where('content','like',"%{$searchname}%" )->paginate(5);
+        //dump($data);
         //加载模板
         return view('admin.tag.index',['title' => '标签管理','data' => $data,'searchname' => $searchname]);
     }
