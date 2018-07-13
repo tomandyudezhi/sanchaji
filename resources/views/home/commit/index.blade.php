@@ -59,6 +59,13 @@
       </nav>
     </div>
   </div>
+  
+  <!-- 登陆信息提示 -->
+  @if (session('success'))
+  <script type="text/javascript">
+  layer.msg("{{session('success')}}")
+  </script>
+  @endif
 
 
 @endsection

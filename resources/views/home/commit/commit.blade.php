@@ -17,6 +17,8 @@
     <script src="/home/js/jquery-2.1.4.min.js"></script>
     <script src="/home/js/nprogress.js"></script>
     <script src="/home/js/jquery.lazyload.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/layui/css/layui.css">
+    <script type="text/javascript" src="/layui/layui.all.js"></script>
     <!--[if gte IE 9]>
       <script src="js/jquery-1.11.1.min.js" type="text/javascript"></script>
       <script src="js/html5shiv.min.js" type="text/javascript"></script>
@@ -55,14 +57,12 @@
         </form>
 
         <ul class="nav navbar-nav navbar-right " >
-          <li><a data-cont="木庄网络博客" title="木庄网络博客" href="index.html">登录</a></li>
-          <li><a data-cont="列表页" title="列表页" href="list.html">注册</a></li>
+          <li><a data-cont="三叉戟博客登录" title="三叉戟博客登录" href="/login">登录</a></li>
+          <li><a data-cont="三叉戟博客注册" title="三叉戟博客注册" href="/signup">注册</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li><a data-cont="木庄网络博客" title="木庄网络博客" href="index.html">首页</a></li>
-          <li><a data-cont="列表页" title="列表页" href="list.html">列表页</a></li>
-          <li><a data-cont="详细页" title="详细页" href="show.html">详细页</a></li>
-          <li><a data-cont="404" title="404" href="404.html">404</a></li>
+          <li><a data-cont="三叉戟博客首页" title="三叉戟博客首页" href="index.html">首页</a></li>
+          <li><a data-cont="三叉戟小组" title="三叉戟小组" href="#">关于我们</a></li>
         </ul>
       </div>
     </div>
@@ -75,6 +75,7 @@
   @section('header')
   <aside class="sidebar">
     <div class="fixed">
+    @section('head')
       <div class="widget widget-tabs">
         <ul class="nav nav-tabs" role="tablist">
           <li role="presentation" class="active"><a href="#notice" aria-controls="notice" role="tab" data-toggle="tab" >统计信息</a></li>
@@ -97,6 +98,7 @@
           </div>
         </div>
       </div>
+      @show
       <div class="widget widget_search">
         <form class="navbar-form" action="/Search" method="post">
           <div class="input-group">
@@ -163,7 +165,7 @@
      </div>
     <div class="widget widget_sentence">
       <h3>友情链接</h3>
-      <div class="widget-sentence-link">
+      <div class="widget-sentence">
         @foreach ($frilink_data as $v)
         <a href="{{$v->url}}" title="{{$v->descript}}" target="_blank" style="float:left;margin-left:10px;">{{$v->title}}</a>&nbsp;&nbsp;&nbsp;
         @endforeach

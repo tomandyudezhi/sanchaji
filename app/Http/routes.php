@@ -263,3 +263,25 @@ Route::get('/article/delever/{id}', 'Home\ArticleManageController@delever');
 Route::get('/user/follows', 'Home\ArticleManageController@follows');
 //取消关注操作
 Route::get('/user/follows/del/{id}','Home\ArticleManageController@follows_del');
+
+
+//前台登陆
+Route::get('/login','Home\LoginController@index');
+//前台注册
+Route::get('/signup','Home\LoginController@create');
+//前台登陆检查
+Route::post('/login/check','Home\LoginController@check');
+//前台注册验证
+Route::post('/signup/check','Home\LoginController@signupcheck');
+//前台用户登出
+Route::get('/logout','Home\LoginController@logout');
+
+//前台文章详情
+Route::get('/detail/{id}','Home\ArticleController@index');
+//前台文章回复
+Route::post('/detail/review/{id}','Home\ArticleController@create');
+//前台文章好评
+Route::get('/detail/likes/{id}','Home\ArticleController@likes');
+//前台文章收藏
+Route::get('/collect/{id}','Home\ArticleController@collect');
+//前台文章作者关注

@@ -31,6 +31,15 @@
                     <li class="layui-nav-item"><a href="/article/private">私密</a></li>\
                     <li class="layui-nav-item"><a href="/article/recycle">回收站</a></li>
                   </ul>
+                  <div class="row" style="position: relative;right:0;">
+                  <div class="col-md-3 offset-md-9">
+                  <li class="layui-nav-item layui-hide-xs" lay-unselect="">
+                    <input type="text" placeholder="搜索..." autocomplete="off" class="layui-input layui-input-search" layadmin-event="serach" lay-action="template/search.html?keywords="> 
+                  </li>
+                  </div>
+                  </div>
+                 
+                  
                   @foreach($data -> articles as $k => $v)
                     <div class="row" style="padding-left:20px;padding-top:20px;font-size: 22px;">
                       <div style=""><strong>{{$v -> title}}</strong></div>
