@@ -11,12 +11,12 @@
                         <li><a title="我的收藏" href="/user/article/index" draggable="false">我的收藏</a></li>
                         
                         <li><a title="我的关注" href="/user/follows" draggable="false">我的关注</a></li>
-                    
+                        <li><a title="我的关注" href="/repass" draggable="false">修改密码</a></li>
                 </ul>
             </div>
         </div>
         <div class="content" style="min-height: 800px;">
-            <h1 class="article-title text-left" style="color:#009688;">收藏管理</h1>
+            <h1 class="article-title text-left" style="color:#009688;">我的关注</h1>
             <hr>
             <div class="readers">
                 @if(count($data -> users_users) == 0)

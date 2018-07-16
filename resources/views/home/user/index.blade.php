@@ -12,7 +12,7 @@
 		                    <li><a title="我的收藏" href="/user/article/index" draggable="false">我的收藏</a></li>
 		                    
 		                    <li><a title="我的关注" href="/user/follows" draggable="false">我的关注</a></li>
-		                    
+		                    <li><a title="我的关注" href="/repass" draggable="false">修改密码</a></li>
 		                </ul>
 		            </div>
 		        </div>
@@ -140,6 +140,14 @@
 				});
 			});
 		</script>
+		<!-- 信息提示 -->
+		@if(session('success'))
+            <input type="hidden" value="{{session('success')}}" id="success1">
+            <script type="text/javascript">
+				var msg = document.getElementById('success1');
+				layer.msg(msg.value);
+            </script>
+        @endif
 @endsection
 
 

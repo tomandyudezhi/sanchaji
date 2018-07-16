@@ -5,7 +5,7 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>木庄网络博客-MZ-NetBlog主题模板</title>
+    <title>三叉戟博客</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <link rel="stylesheet" type="text/css" href="/home/css/bootstrap.min.css">
@@ -54,7 +54,7 @@
             <li class="text-center"><a href="/admin">后台管理</a></li>
             @endif
 
-            <li class="text-center"><a href="#">修改密码</a></li>
+            <li class="text-center"><a href="/repass">修改密码</a></li>
             <li role="separator" class="divider"></li>
             <li class="text-center"><a href="/logout">注销</a></li>
           </ul>
