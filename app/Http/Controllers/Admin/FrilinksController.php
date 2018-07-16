@@ -20,7 +20,7 @@ class FrilinksController extends Controller
     {
         $search = $request -> input('search');
         //获取数据
-        $data = FriLinks::where('title','like',"%{$search}%")-> paginate(2);
+        $data = FriLinks::where('title','like',"%{$search}%")-> paginate(5);
         //dump($data);
         //加载模板
         return view('admin.frilinks.index',['data'=>$data,'search'=>$search]);

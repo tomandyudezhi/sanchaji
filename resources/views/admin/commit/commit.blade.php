@@ -483,6 +483,12 @@
 										  </ul>
 									</li>
 									<li><a href="/admin/feedbacks/index"><i class="fa fa-comment"></i><span>反馈管理</span><div class="clearfix"></div></a></li>
+									<li id="menu-academico" ><a href="/admin/adverts/index"><i class="fa  fa-scissors" aria-hidden="true"></i><span> 广告管理</span> <span class="fa fa-angle-right" style="float: right"></span><div class="clearfix"></div></a>
+										   <ul id="menu-academico-sub" >
+										   <li id="menu-academico-avaliacoes" ><a href="/admin/adverts/index">查看广告</a></li>
+											<li id="menu-academico-avaliacoes" ><a href="/admin/adverts/create">添加广告</a></li>
+										  </ul>
+									</li>
 									<li><a href="/admin/config/index"><i class="fa fa-gear"></i><span>网站配置</span><div class="clearfix"></div></a></li>
 								  </ul>
 								</div>

@@ -164,7 +164,22 @@ Route::get('/admin/frilinks/delete/{id}','Admin\FrilinksController@delete');
 Route::get('/admin/feedbacks/index','Admin\FeedbacksController@index');
 //删除反馈
 Route::get('/admin/feedbacks/delete/{id}','Admin\FeedbacksController@delete');
-
+	/**
+	 * 	广告管理模块
+	 * 
+	 */
+//查看广告
+Route::get('/admin/adverts/index','Admin\AdvertsController@index');
+//添加广告
+Route::get('/admin/adverts/create','Admin\AdvertsController@create');
+//执行添加广告
+Route::post('/admin/adverts/store','Admin\AdvertsController@store');
+//修改
+Route::get('/admin/adverts/edit/{id}','Admin\AdvertsController@edit');
+//执行修改
+Route::post('/admin/adverts/update/{id}','Admin\AdvertsController@update');
+//删除广告
+Route::get('/admin/adverts/delete/{id}','Admin\AdvertsController@delete');
 });
 
 
@@ -259,4 +274,26 @@ Route::get('/follows/{id}','Home\ArticleController@follows');
  */
 //前台用户登出
 Route::get('/logout','Home\LoginController@logout');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//前台反馈列表页
+Route::get('/user/feedbacks/index','Home\FeedbacksController@index');
+//前台反馈添加页
+Route::get('/user/feedbacks/create','Home\FeedbacksController@create');
+Route::post('/user/feedbacks/store','Home\FeedbacksController@store');
 });
