@@ -1,5 +1,8 @@
 @extends('admin.commit.commit')
 
+@section('title')
+广告管理
+@endsection
 <!-- 搜索开始 -->
 @section('search')
 		<form action="/admin/adverts/index" method="get">
@@ -14,18 +17,6 @@
 <!-- 内容开始 -->
 @section('content')
 	<div class="agile-tables">
-	@if(session('error'))
-	<div class="alert alert-warning alert-dismissible" role="alert">
-	  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	  {{session('error')}}
-	</div>
-	@endif
-	@if(session('success'))
-	<div class="alert alert-success alert-dismissible" role="alert">
-	  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	  {{session('success')}}
-	</div>
-	@endif
 		<h2 class="text-primary">广告列表</h2>
 		<hr>
 		<table class="table table-bordered">

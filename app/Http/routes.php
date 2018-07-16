@@ -166,7 +166,22 @@ Route::get('/admin/frilinks/delete/{id}','Admin\FrilinksController@delete');
 Route::get('/admin/feedbacks/index','Admin\FeedbacksController@index');
 //删除反馈
 Route::get('/admin/feedbacks/delete/{id}','Admin\FeedbacksController@delete');
-
+	/**
+	 * 	广告管理模块
+	 * 
+	 */
+//查看广告
+Route::get('/admin/adverts/index','Admin\AdvertsController@index');
+//添加广告
+Route::get('/admin/adverts/create','Admin\AdvertsController@create');
+//执行添加广告
+Route::post('/admin/adverts/store','Admin\AdvertsController@store');
+//修改
+Route::get('/admin/adverts/edit/{id}','Admin\AdvertsController@edit');
+//执行修改
+Route::post('/admin/adverts/update/{id}','Admin\AdvertsController@update');
+//删除广告
+Route::get('/admin/adverts/delete/{id}','Admin\AdvertsController@delete');
 });
 
 
@@ -307,8 +322,6 @@ Route::get('/logout','Home\LoginController@logout');
 
 
 
-
-
 //头像上传页面
 Route::get('/user/pic/{id}','Home\UserController@upload_pic');
 //头像上传操作
@@ -317,4 +330,9 @@ Route::post('/user/uploads','Home\UserController@uploads');
 Route::get('/repass','Home\LoginController@repass');
 //前台用户修改用户检查
 Route::post('/repass/check','Home\LoginController@checkrepass');
+//前台反馈列表页
+Route::get('/user/feedbacks/index','Home\FeedbacksController@index');
+//前台反馈添加页
+Route::get('/user/feedbacks/create','Home\FeedbacksController@create');
+Route::post('/user/feedbacks/store','Home\FeedbacksController@store');
 });

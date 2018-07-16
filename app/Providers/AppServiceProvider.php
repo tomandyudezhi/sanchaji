@@ -5,7 +5,8 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use App\Models\FriLinks;
 use App\Models\Reviews;
-
+use App\Models\Adverts;
+use App\Models\Configs;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -18,8 +19,9 @@ class AppServiceProvider extends ServiceProvider
     {
 
         $review_data = Reviews::orderBy('created_at','desc')->limit(4)->get();
+        $adverts_data = Adverts::get();
         $frilink_data = FriLinks::get();
-        view()->share(['frilink_data'=>$frilink_data,'review_data'=>$review_data]);
+        view()->share(['frilink_data'=>$frilink_data,'review_data'=>$review_data,'adverts_data'=>$adverts_data]);
     }
 
     /**
