@@ -69,8 +69,8 @@
 
 		@foreach($data as $k => $v)
          <article class="excerpt excerpt-5"><a class="focus" href="/detail/{{$v -> id}}" title="{{$v->title}}" target="_blank" ><img class="thumb" data-original="/{{$v -> users -> head_pic}}" src="/{{$v -> users -> head_pic}}" alt="{{$v->title}}"  style="display: inline;width:150px;height:150px;"></a>
-        <header><a class="cat" href="#" title="{{$v->parts->part_name}}" >{{$v->parts->part_name}}<i></i></a>
-          <h2><a href="#" title="{{$v->title}}" target="_blank" >{{$v->title}}</a></h2>
+        <header><a class="cat" href="/list/index?part_name={{ $v ->parts ->id}}" title="{{$v->parts->part_name}}" >{{$v->parts->part_name}}<i></i></a>
+          <h2><a href="/detail/{{$v -> id}}" title="{{$v->title}}" target="_blank" >{{$v->title}}</a></h2>
         </header>
         <p class="meta">
           <time class="time"><i class="glyphicon glyphicon-time"></i> {{$v->created_at}}</time>

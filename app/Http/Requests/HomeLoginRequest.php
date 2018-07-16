@@ -24,7 +24,7 @@ class HomeLoginRequest extends Request
     public function rules()
     {
         return [
-            'username' => 'required|regex:/^[a-zA-Z]{1}[a-zA-Z0-9_]{5,15}$/|unique:blog_users,username',
+            'username' => 'required|regex:/^[a-zA-Z]{1}[a-zA-Z0-9_]{7,15}$/|unique:blog_users,username',
             'password' => 'required|regex:/^[a-zA-Z0-9_]{8,}$/',
             'repass' => 'same:password',
             'phone' => 'required|regex:/^[1][3-8][0-9]{9}$/',

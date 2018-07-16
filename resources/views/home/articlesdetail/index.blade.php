@@ -8,7 +8,15 @@
             <p class="text-left">
                 <a href=""><img src="/{{ $articles -> users -> head_pic }}" alt="用户头像" width="80" style="margin:5px"></a>
                 <a href="" target="_blank" class="text-left" id="uid"><b>{{ $articles -> users -> username }}</b></a>
-                <a class="btn btn-danger text-right" href="" style="float:right;margin:25px 5px;">关注</a>
+                @if(session() -> has('homeUser'))
+                  @if(session() ->get('homeUser')->id != $articles -> users -> id)
+                    @if(in_array(session() ->get('homeUser')->id,$fensi))
+                      <button class="layui-btn layui-btn-disabled text-right guanzhu" value="{{$articles -> users->id}}"  style="float:right;margin:25px 5px;">已关注</button>
+                    @else
+                    <button class="layui-btn layui-btn-normal text-right guanzhu" value="{{$articles -> users->id}}"  style="float:right;margin:25px 5px;">关注</button>
+                    @endif
+                  @endif
+                @endif
             </p>
         </div>
     <div class="table text-center">
@@ -64,15 +72,11 @@
         <table width="100%">
           <tr>
             <td class="text-center">
-              <form action="/detail/likes/{{ $articles -> id }}" style="display: inline-table;">
-              <input type="hidden" value="{{ session()->get('homeUser') -> id }}" name="uid">
-              <button type="submit" class="btn btn-danger" style="margin-left:100px;">好评 {{ $articles -> likes }}</button>
-        </form>
+              <button  value="{{ $articles -> id }}" class="btn btn-danger haopin" style="margin-left:90px;"><i class="layui-icon layui-icon-praise"></i>好评<span>{{ $articles -> likes }}</span> </button>
             </td>
             <td class="text-center">
                <form action="/collect/{{ $articles -> id }}">
-                <input type="hidden" value="{{ session()->get('homeUser') -> id}}" name="uid">
-                <button type="submit" class="btn btn-success" style="position: relative;right:270px;">收藏</button>
+                <button type="submit" class="btn btn-success shoucang" style="position: relative;right:260px;"><i class="layui-icon layui-icon-star"></i>收藏</button>
               </form>
             </td>
           </tr>
@@ -94,7 +98,6 @@
             {{ csrf_field() }}
                     <div class="comment-box">
                         <textarea placeholder="您的评论或留言（必填）" name="content" id="comment-textarea" cols="100%" rows="3" tabindex="3"></textarea>
-                        <input type="hidden" value="{{ session()->get('homeUser') ->id }}" name="uid">
                         <div class="comment-ctrl text-right">
                             <button type="submit" id="comment-f" class="btn btn-primary" tabindex="5" style="margin-right:0;"">评论</button>
                         </div>
@@ -129,6 +132,48 @@
     </script>
     @endif
     <!-- 消息提示结束 -->
+    <script type="text/javascript">
+    $(function(){
+      //关注
+      $('.guanzhu').click(function(){
+          var id = $(this).attr('value');
+          var ele = $(this);
+          if(ele.hasClass('layui-btn-disabled') == false){
+          $.get('/follows/'+id,function(msg){
+              if(msg == 'success'){
+                layer.msg('关注成功');
+                ele.removeClass('layui-btn-normal');
+                ele.addClass('layui-btn-disabled');
+                ele.text('已关注');
+              }else if(msg == 'not'){
+                layer.msg('请登录后再试!');
+              }else{
+                layer.msg('关注失败');
+              }
+          });
+            }
+        });
+
+      //点赞
+      $('.haopin').click(function(){
+          var id = $(this).attr('value');
+          var ele = $(this);
+          $.get('/detail/likes/'+id,function(msg){
+            if(msg == 'not login'){
+              layer.msg('请登录后再试！');
+            }else if(msg == 'liked'){
+              layer.msg('很抱歉，你已经点赞过！');
+            }else if(msg == 'success'){
+              layer.msg('点赞成功');
+              ele.find('span').text(parseInt(ele.find('span').text()) + 1);
+            }else if(msg == 'error'){
+              layer.msg('点赞失败');
+            }
+          });
+      });
+    });
+        
+    </script>
 </div>
 @endsection
 <!-- 文章内容结束 -->

@@ -113,7 +113,7 @@
 
 	<script type="text/javascript">
 		$('input').eq(1).focus(function(){
-		layer.msg('以字母开头由下划线和数字组成的6-16位名字');
+		layer.msg('以字母开头由下划线和数字组成的8-16位名字');
 		});
 		$('input').eq(2).focus(function(){
 		layer.msg('请注意邮箱格式');

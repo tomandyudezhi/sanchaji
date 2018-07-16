@@ -19,10 +19,14 @@ class IndexController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //文章列表数据
-        $list_data = Articles::get();
+        $list_data = Articles::orderBy('created_at','desc') -> paginate(2);
+        if($request -> ajax()){
+            $view = view('home.commit.data',compact('list_data'))->render();
+            return response()->json(['html'=>$view]);
+        }
         
         //分类列表数据
         $part_data = Parts::get();

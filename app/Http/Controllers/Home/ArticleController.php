@@ -10,6 +10,7 @@ use App\Models\Articles;
 use App\Models\Reviews;
 use App\Models\UsersArticles;
 use App\Models\ArticlesLikes;
+use App\Models\UsersUsers;
 
 class ArticleController extends Controller
 {
@@ -25,10 +26,14 @@ class ArticleController extends Controller
         if($articles == null){
             return back() -> with('error','很抱歉。该文章已被删除');
         }
+        $arr = [];
+        foreach ($articles -> users -> users_usersed as $key => $v) {
+            $arr[] = $v -> id;
+        }
         // 根据id查找回复数据
         $reviews = Reviews::find($id);
         // 显示模板
-        return view('home.articlesdetail.index',['articles' => $articles,'reviews' => $reviews]);
+        return view('home.articlesdetail.index',['articles' => $articles,'reviews' => $reviews,'fensi'=> $arr]);
     }
 
     /**
@@ -40,8 +45,9 @@ class ArticleController extends Controller
     public function create(Request $request,$id)
     {
         $data = $request -> except('_token');
+        $user_id = session() -> get('honeUser') -> id;
         $review = new Reviews;
-        $review -> uid = $data['uid'];
+        $review -> uid = $user_id;
         $review -> aid = $id;
         $review -> content = $data['content'];
         $res = $review -> save();
@@ -60,7 +66,8 @@ class ArticleController extends Controller
     public function collect(Request $request,$id)
     {
         $data = $request -> all();
-        $articles = UsersArticles::where('aid',$id)->first();
+        $user_id = session() ->get('homeUser') ->id;
+        $articles = UsersArticles::where('aid',$id) ->where('uid',$user_id) ->first();
         if (session()->get('homeUser') -> id == null) {
             return back() -> with('error', '很抱歉，您还没有登录');
         } else {
@@ -91,31 +98,55 @@ class ArticleController extends Controller
     {
         $data = $request -> all();
         // 根据id具体查找文章
-        $user_id = session() -> get('homeUser') -> id;
-        $articles = Articles::where('id',$id)->first();
-        $like = ArticlesLikes::where('aid',$id) ->where('uid',$user_id) ->first();
-        if (session()->get('homeUser') -> id == null) {
-            return back() -> with('error', '很抱歉，您还没有登录');
+        
+        if (empty(session()->get('homeUser') -> id )) {
+            return 'not login';
         } else {
+            $user_id = session() -> get('homeUser') -> id;
+            $articles = Articles::where('id',$id)->first();
+            $like = ArticlesLikes::where('aid',$id) ->where('uid',$user_id) ->first();
             if ($like  == null) {
                 // 写入点赞关系表
                 $like = new ArticlesLikes;
-                $like -> uid = $data['uid'];
+                $like -> uid = $user_id;
                 $like -> aid = $id;
                 $res = $like -> save();
                 // 写入文章表
                 $articles -> likes = ($articles -> likes)+1;
                 $res2 = $articles -> save();
                 if($res && $res2){
-                    return redirect('/detail/'.$id) -> with('success', '点赞成功');
+                    return 'success';
                 }else{
-                    return back() -> with('error', '点赞失败');
+                    return 'error';
                 }
             } else {
                 if ($like -> uid == $user_id) {
-                    return back() -> with('error', '很抱歉，您已点赞此文章');
+                    return 'liked';
                 }
             }   
+        }
+    }
+
+    /**
+     *  发布人关注操作
+     *
+     * 
+     */
+    public function follows($id)
+    {
+
+        if(empty(session() ->get('homeUser') -> id)){
+            return 'not';
+        }
+        $user_id = session() ->get('homeUser') -> id;
+        $guanzhu = new UsersUsers;
+        $guanzhu -> uid = $user_id;
+        $guanzhu -> idol_id = $id;
+        $res = $guanzhu -> save();
+        if($res){
+            return 'success';
+        }else{
+            return 'error';
         }
     }
 }

@@ -198,7 +198,7 @@ Route::get('/detail/{id}','Home\ArticleController@index');
 
 
 //前台登录中间件
-Route::group(['middleware' => 'homelogin'],function(){
+Route::group([],function(){
 
 
 /**
@@ -251,6 +251,8 @@ Route::post('/detail/review/{id}','Home\ArticleController@create');
 Route::get('/detail/likes/{id}','Home\ArticleController@likes');
 //前台文章收藏
 Route::get('/collect/{id}','Home\ArticleController@collect');
+//前台文章关注
+Route::get('/follows/{id}','Home\ArticleController@follows');
 /**
  * 	前台登出操作
  * 
