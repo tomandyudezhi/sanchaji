@@ -11,7 +11,7 @@
                         <li><a title="我的收藏" href="/user/article/index" draggable="false">我的收藏</a></li>
                         
                         <li><a title="我的关注" href="/user/follows" draggable="false">我的关注</a></li>
-                        
+                        <li><a title="我的关注" href="/repass" draggable="false">修改密码</a></li>
                     </ul>
                 </div>
             </div>

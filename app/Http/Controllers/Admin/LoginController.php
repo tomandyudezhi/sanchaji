@@ -66,4 +66,36 @@ class LoginController extends Controller
         session('adminFlag',false);
         return redirect('/admin/login')->with('success','退出成功');
     }
-}
+
+    /**
+     * 后台修改密码
+     *
+     * @return 模板 
+     */
+    public function repass()
+    {
+        // 显示模板
+        return view('admin.repass.index');
+    }
+
+    /**
+     * 后台修改检查
+     * 
+     */
+    public function checkrepass(Request $request)
+    {
+        // 查询数据
+        $data = $request -> except('_token');
+        $user = Users::find($data['id']);
+        // 验证旧密码
+        $res = Hash::check($data['oldpassword'],$user -> password);
+        if ($res) {
+            $user -> password = Hash::make($data['newpassword']);
+            $user -> save();
+            session() -> put('adminUser',$user);
+            return redirect('/admin') -> with('success', '修改成功');
+        } else {
+            return back() -> with('error', '修改失败');
+        }
+    }
+}   

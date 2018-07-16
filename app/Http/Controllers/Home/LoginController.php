@@ -10,6 +10,7 @@ use App\Models\Users;
 use App\Models\UsersDetails;
 use Hash;
 use App\Http\Requests\HomeLoginRequest;
+use App\Http\Requests\RepassRequest;
 
 class LoginController extends Controller
 {
@@ -98,5 +99,36 @@ class LoginController extends Controller
     {
         session() -> flush();
         return redirect('/')->with('success','退出成功');
+    }
+
+    /**
+     * 前台修改密码
+     *
+     * @return  模板
+     */
+    public function repass()
+    {
+        //显示模板
+        return view('home.repass.index');
+    }
+
+    /*
+     *前台修改密码检查
+     */
+    public function checkrepass(RepassRequest $request)
+    {
+        // 查询数据
+        $data = $request -> except('_token');
+        $user = Users::find($data['id']);
+        // 验证旧密码
+        $res = Hash::check($data['oldpassword'],$user -> password);
+        if ($res) {
+            $user -> password = Hash::make($data['newpassword']);
+            $user -> save();
+            session() -> put('homeUser',$user);
+            return redirect('/user/index') -> with('success', '修改成功');
+        } else {
+            return back() -> with('error', '修改失败');
+        }
     }
 }
