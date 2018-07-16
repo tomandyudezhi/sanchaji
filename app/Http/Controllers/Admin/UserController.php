@@ -162,7 +162,7 @@ class UserController extends Controller
     {
         $user = Users::find($id);
 
-        return view('admin.user.detail',['user'=>$user]);
+        return view('admin.user.edit2',['user'=>$user]);
     }
 
     /**

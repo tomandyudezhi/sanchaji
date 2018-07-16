@@ -46,7 +46,7 @@
           <li><a data-cont="三叉戟小组" title="三叉戟小组" href="#">关于我们</a></li>
           @if(session() -> has('homeUser'))
           <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="/default.jpg" class="img-circle" style="width:40;height:40px"><span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="/{{session() -> get('homeUser')->head_pic}}" class="img-circle" style="width:40;height:40px"><span class="caret"></span></a>
           
           <ul class="dropdown-menu">
             <li class="text-center"><a href="/user/index">个人中心</a></li>
@@ -117,6 +117,7 @@
           <h3>最新评论文章</h3>
           <ul>            
               @foreach($review_data as $v)
+                @if(!$v -> articles == null)
                 <li><a title="{{$v->users->username}}" href="/detail/{{$v -> articles -> id}}" ><span class="thumbnail">
                     <img class="thumb"  src="/{{$v -> articles -> users -> head_pic}}" alt="{{$v->articles->content}}"  style="display: block;width:90px;height:90px;">
                 </span><span class="text">{{$v->articles->title}}</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
@@ -124,6 +125,7 @@
                 </span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i>{{$v->articles->reading}}</span></a>
                 
                 </li>
+                @endif
               @endforeach
           </ul>
      </div>

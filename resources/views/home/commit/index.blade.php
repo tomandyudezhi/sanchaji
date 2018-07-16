@@ -50,7 +50,7 @@
         @endforeach
         </div>
       <div class="ajax-load text-center" style="display:none">
-        <i class="layui-icon layui-icon-loading"></i>正在加载
+        <img src="/home/images/loading.gif" alt="正在加载">
       </div>
     </div>
   </div>

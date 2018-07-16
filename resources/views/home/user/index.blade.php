@@ -22,7 +22,7 @@
 		           	<div class="container">
 		           		<div class="row">
 							<div class="col-md-3 text-center">
-								<a href="javascript:;"><img style="width:150px;height:150px;" src="/default.jpg" title="点击修改头像" alt="个人头像"></a>
+								<a href="javascript:;" id="pic" value="{{$user_data -> id}}"><img style="width:150px;height:150px;" src="/{{$user_data -> head_pic}}" title="点击修改头像" alt="个人头像"></a>
 								<br>
 								<div style="width:200px;" class="text-center">
 									<span style="margin-right: 20px;font-size: 15px;"><b>{{count($user_data -> users_users)}}</b></span>
@@ -109,15 +109,31 @@
 		 		 </div>
 		</section>
 		<script type="text/javascript">
+		//修改个人信息
 			$('#details').click(function(){
 				var id = $(this).attr('value');
-				console.log(id);
 				layer.open({
 					type:2,
 					title:'用户详细信息',
 					area: ['600px', '360px'],
 	      			shadeClose: true, 
 					content:'/user/edit/'+id,
+					end:function(){
+						location.reload(true);
+					}
+				});
+			});
+
+			//修改头像
+			$('#pic').click(function(){
+				var id = $(this).attr('value');
+				var ele = $(this);
+				layer.open({
+					type:2,
+					title:'头像上传',
+					area: ['600px', '360px'],
+	      			shadeClose: true, 
+					content:'/user/pic/'+id,
 					end:function(){
 						location.reload(true);
 					}

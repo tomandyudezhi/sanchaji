@@ -66,7 +66,7 @@
       </article>
       <hr>
       <div class="article-tags" style="margin-right: 40px;">
-	      标签：<a href="">{{ $articles -> tags -> content }}</a>
+	      标签：<a href="/list/index?tag_content={{ $articles -> tags -> content }}">{{ $articles -> tags -> content }}</a>
       </div>
       <div class="article-header">
         <table width="100%">
@@ -75,9 +75,7 @@
               <button  value="{{ $articles -> id }}" class="btn btn-danger haopin" style="margin-left:90px;"><i class="layui-icon layui-icon-praise"></i>好评<span>{{ $articles -> likes }}</span> </button>
             </td>
             <td class="text-center">
-               <form action="/collect/{{ $articles -> id }}">
-                <button type="submit" class="btn btn-success shoucang" style="position: relative;right:260px;"><i class="layui-icon layui-icon-star"></i>收藏</button>
-              </form>
+                <button type="submit" value="{{ $articles -> id }}" class="btn btn-success shoucang" style="position: relative;right:260px;"><i class="layui-icon layui-icon-star"></i>收藏</button>
             </td>
           </tr>
         </table> 
@@ -90,6 +88,16 @@
           });
             
       </script> 
+      <div class="relates">
+        <div class="title">
+          <h3>相关推荐</h3>
+        </div>
+        <ul>
+        @foreach($recommend_data as $v)
+          <li><a href="/detail/{{$v['id']}}" title="{{$v['title']}}" draggable="false">{{$v['title']}}</a></li>
+        @endforeach
+        </ul>
+      </div>
       <div class="title" id="comment">
         <h3>评论</h3>
       </div>
@@ -168,6 +176,24 @@
               ele.find('span').text(parseInt(ele.find('span').text()) + 1);
             }else if(msg == 'error'){
               layer.msg('点赞失败');
+            }
+          });
+      });
+
+      //收藏
+      //点赞
+      $('.shoucang').click(function(){
+          var id = $(this).attr('value');
+          var ele = $(this);
+          $.get('/collect/'+id,function(msg){
+            if(msg == 'not login'){
+              layer.msg('请登录后再试！');
+            }else if(msg == 'collected'){
+              layer.msg('很抱歉，你已经收藏过！');
+            }else if(msg == 'success'){
+              layer.msg('收藏成功');
+            }else if(msg == 'error'){
+              layer.msg('收藏失败');
             }
           });
       });

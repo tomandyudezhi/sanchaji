@@ -31,16 +31,13 @@
                     <li class="layui-nav-item"><a href="/article/private">私密</a></li>\
                     <li class="layui-nav-item"><a href="/article/recycle">回收站</a></li>
                   </ul>
-                  <div class="row" style="position: relative;right:0;">
-                  <div class="col-md-3 offset-md-9">
-                  <li class="layui-nav-item layui-hide-xs" lay-unselect="">
-                    <input type="text" placeholder="搜索..." autocomplete="off" class="layui-input layui-input-search" layadmin-event="serach" lay-action="template/search.html?keywords="> 
-                  </li>
-                  </div>
-                  </div>
-                 
-                  
-                  @foreach($data -> articles as $k => $v)
+                  <form action="/article/index" class="form-inline text-right" style="margin-top: 5px;">
+                    <div class="form-group">
+                      <input type="text" class="form-control" name="search" id="title" placeholder="请输入标题关键字...">
+                    </div>
+                    <button type="submit" class="layui-btn">搜索</button>
+                  </form>
+                  @foreach($data as $k => $v)
                     <div class="row" style="padding-left:20px;padding-top:20px;font-size: 22px;">
                       <div style=""><strong>{{$v -> title}}</strong></div>
                     </div>
@@ -57,6 +54,15 @@
                       <hr>
                     </div>
                   @endforeach
+                  <div class="page text-center">
+                    {!! $data -> appends(['search'=>$search]) -> render() !!}
+                  </div>
+                  
+                  <script type="text/javascript">
+                      $(function(){
+                        $('.page ul').css('display','block');
+                      });
+                  </script>
                 </div>
          </div>
     </section>

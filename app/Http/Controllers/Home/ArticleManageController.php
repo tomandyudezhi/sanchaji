@@ -20,10 +20,12 @@ class ArticleManageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data = Users::find(session()->get('homeUser') ->id);
-        return view('home.article.index',['data'=> $data]);
+        $search = $request -> input('search','');
+        $id = session()->get('homeUser') ->id;
+        $data = Articles::where('uid','=',$id) -> where('title','like',"%{$search}%") ->paginate(2);
+        return view('home.article.index',['data'=> $data,'search'=>$search]);
     }
 
     /**
@@ -47,12 +49,13 @@ class ArticleManageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function recycle()
+    public function recycle(Request $request)
     {
         $id = session() -> get('homeUser') -> id;
-        $data = Articles::onlyTrashed() -> where('uid','=',$id) -> get();
+        $search = $request -> input('search','');
+        $data = Articles::onlyTrashed() -> where('uid','=',$id) -> where('title','like',"%{$search}%") -> paginate(2);
 
-        return view('home.article.recycle',['data' => $data]);
+        return view('home.article.recycle',['data' => $data,'search'=>$search]);
     }
 
     /**
@@ -94,11 +97,12 @@ class ArticleManageController extends Controller
      * 
      * @return \Illuminate\Http\Response
      */
-    public function pri()
+    public function pri(Request $request)
     {
         $id = session() ->get('homeUser') ->id;
-        $data = Articles::where('hidd','=','y') -> where('id',$id) -> get();
-        return view('home.article.private',['data'=>$data]);
+        $search = $request -> input('search','');
+        $data = Articles::where('hidd','=','y') -> where('uid',$id) -> where('title','like',"%{$search}%") -> paginate(2);
+        return view('home.article.private',['data'=>$data,'search'=>$search]);
     }
 
     /**

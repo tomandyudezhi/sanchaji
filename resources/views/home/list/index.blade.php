@@ -5,6 +5,7 @@
 
 
 @section('message')
+  </style>
       <div class="widget widget_search">
         <form class="navbar-form" action="/list/index" method="get">
           <div class="input-group">
@@ -52,7 +53,7 @@
         @elseif(!empty($_GET['search']))
         <h3 style="line-height: 1.3">搜索标题"{{$_GET['search']}}"</h3>
         @elseif(!empty($_GET['tag_content']))
-				<h3 style="line-height: 1.3">标签:"{{$data[0]->tags->content}}"</h3>
+				<h3 style="line-height: 1.3">标签:"{{$tag_content}}"</h3>
    
         @endif
         <br>
@@ -66,8 +67,24 @@
 
         </ul>
       </div>
-
+    @if(!empty($data))
+    @if(!empty($tag_content))
 		@foreach($data as $k => $v)
+         <article class="excerpt excerpt-5"><a class="focus" href="/detail/{{$v -> articles -> id}}" title="{{$v -> articles->title}}" target="_blank" ><img class="thumb" data-original="/{{$v -> articles -> users -> head_pic}}" src="/{{$v -> articles -> users -> head_pic}}" alt="{{$v -> articles->title}}"  style="display: inline;width:150px;height:150px;"></a>
+        <header><a class="cat" href="/list/index?part_name={{ $v -> articles ->parts ->id}}" title="{{$v -> articles->parts->part_name}}" >{{$v -> articles->parts->part_name}}<i></i></a>
+          <h2><a href="/detail/{{$v -> articles -> id}}" title="{{$v -> articles->title}}" target="_blank" >{{$v -> articles->title}}</a></h2>
+        </header>
+        <p class="meta">
+          <time class="time"><i class="glyphicon glyphicon-time"></i> {{$v -> articles->created_at}}</time>
+          <span class="views"><i class="glyphicon glyphicon-eye-open"></i> {{$v -> articles->reading}}</span> <a class="comment" href="#" title="评论" target="_blank" ><i class="glyphicon glyphicon-comment"></i>{{count($v -> articles->reviews)}}</a></p>
+        <p class="note" style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical;">{{$v -> articles->content}}</p>
+      </article>
+      @endforeach
+      <div class="page" >
+        {!! $data -> appends(['tag_content' => $tag_content]) -> render() !!}
+      </div>
+      @else
+      @foreach($data as $k => $v)
          <article class="excerpt excerpt-5"><a class="focus" href="/detail/{{$v -> id}}" title="{{$v->title}}" target="_blank" ><img class="thumb" data-original="/{{$v -> users -> head_pic}}" src="/{{$v -> users -> head_pic}}" alt="{{$v->title}}"  style="display: inline;width:150px;height:150px;"></a>
         <header><a class="cat" href="/list/index?part_name={{ $v ->parts ->id}}" title="{{$v->parts->part_name}}" >{{$v->parts->part_name}}<i></i></a>
           <h2><a href="/detail/{{$v -> id}}" title="{{$v->title}}" target="_blank" >{{$v->title}}</a></h2>
@@ -78,18 +95,17 @@
         <p class="note" style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical;">{{$v->content}}</p>
       </article>
       @endforeach
-      <nav class="pagination" style="display: none;">
-        <ul>
-          <li class="prev-page"></li>
-          <li class="active"><span>1</span></li>
-          <li><a href="?page=2">2</a></li>
-          <li class="next-page"><a href="?page=2">下一页</a></li>
-          <li><span>共 2 页</span></li>
-        </ul>
-      </nav>
+      <div class="page" >
+        {!! $data ->appends(['search'=>$search,'part_name'=> $part_name]) -> render() !!}
+      </div>
+      @endif
+      @endif
     </div>
   </div>
-
-
+<script type="text/javascript">
+$(function(){
+  $('.page ul').css('display','block');
+});
+</script> 
 
 @endsection

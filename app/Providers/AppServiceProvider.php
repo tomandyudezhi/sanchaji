@@ -17,7 +17,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
 
-        $review_data = Reviews::orderBy('created_at','desc')->distinct('aid')->limit(10)->get();
+        $review_data = Reviews::orderBy('created_at','desc')->limit(4)->get();
         $frilink_data = FriLinks::get();
         view()->share(['frilink_data'=>$frilink_data,'review_data'=>$review_data]);
     }

@@ -23,6 +23,25 @@ class ListController extends Controller
 
         $search = $request -> input('search', '');
         //dump($search);
+        
+        
+        //获取id
+        $part_id = $request->input('part_name','');
+        $tag_content = $request ->input('tag_content','');
+        //根据ID取数据
+        if($part_id != ''){
+            $data = Articles::where('pid','=',$part_id)->paginate(2) or [];
+        } elseif($search != '') {
+            $data = Articles::where('title','like',"%$search%")->paginate(2);
+            //dump($data);
+        } elseif($tag_content != '') {
+            $data = Tags::where('content','=',$tag_content)->paginate(2);
+            //dump($data);
+        } else {
+            $data = [];
+        }
+        
+        //标签云
         $tag_data1 = Tags::get();
         $arr = [];
         foreach ($tag_data1 as $key => $val) {
@@ -38,30 +57,10 @@ class ListController extends Controller
                 $tag_data1[] = Tags::find($arr[$a[$i]]);
             }
         }
-        
-        //获取id
-        $part_id = $request->input('part_name','');
-        $tag_content = $request ->input('tag_content','');
-        //根据ID取数据
-        if($part_id != ''){
-            $data = Articles::where('pid','=',$part_id)->paginate(3) or [];
-        } elseif($search != '') {
-            $data = Articles::where('title','like',"%$search%")->paginate(3);
-            //dump($data);
-        } elseif($tag_content != '') {
-            $tag_data = Tags::where('content','=',$tag_content)->get();
-            $data = [];
-            foreach($tag_data as $k => $v){
-                $data[] = $v->articles;
-            }
-            //dump($data);
-        } else {
-            $data = [];
-        }
+        //分区
        $part_data = Parts::get();
         //加载模板
-        $review_data = Reviews::orderBy('created_at','desc')->distinct('aid')->limit(10)->get();
-        return view('home.list.index',['data'=>$data,'search'=>$search,'review_data'=>$review_data,'tag_data1'=>$tag_data1,'part_data'=>$part_data]);
+        return view('home.list.index',['data'=>$data,'search'=>$search,'tag_data1'=>$tag_data1,'part_data'=>$part_data,'part_name'=>$part_id,'tag_content'=>$tag_content]);
     }
 
     /**

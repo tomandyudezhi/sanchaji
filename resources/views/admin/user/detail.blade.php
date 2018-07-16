@@ -25,7 +25,7 @@
 </head>
 <body>
 	<div class="container">
-		<form id="form" role="form" class="form-inline" action="/admin/user/detail/details_store/{{$user ->id}}" method="post">
+		<form id="form" role="form" class="form-inline" action="" method="post">
 			{{csrf_field()}}
 			<div class="form-inline ">
 				<label class="col-md-2 control-label">昵称</label>
