@@ -28,6 +28,7 @@
 <!-- //lined-icons -->
 <link rel="stylesheet" type="text/css" href="/layui/css/layui.css">
 <script type="text/javascript" src="/layui/layui.all.js"></script>
+<link rel="icon" href="/title.png" type="image/x-icon"/>
 </head> 
 <body>
    <div class="page-container">
@@ -158,7 +159,7 @@
 											</div>	
 										</a>
 										<ul class="dropdown-menu drp-mnu">
-											<li> <a href="#"><i class="fa fa-cog"></i><b>修改密码</b></a></li>
+											<li> <a href="/admin/repass"><i class="fa fa-cog"></i><b>修改密码</b></a></li>
 											<li> <a href="/admin/login/out"><i class="fa fa-sign-out"></i><b>退出</b></a></li>
 										</ul>
 									</li>
@@ -579,5 +580,13 @@
 	   
 	});
 	</script>
+	<!-- 信息提示 -->
+		@if(session('success'))
+            <input type="hidden" value="{{session('success')}}" id="success1">
+            <script type="text/javascript">
+				var msg = document.getElementById('success1');
+				layer.msg(msg.value);
+            </script>
+        @endif
 </body>
 </html>

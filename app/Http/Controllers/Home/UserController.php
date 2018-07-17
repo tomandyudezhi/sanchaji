@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Users;
 use App\Models\UsersDetails;
+use Image;
 
 class UserController extends Controller
 {
@@ -80,6 +81,45 @@ class UserController extends Controller
             return '<script>var index = parent.layer.getFrameIndex(window.name);parent.layer.msg("修改失败");parent.layer.close(index);</script>';
         }
         
+    }
+
+    /**
+     *  加载头像上传页面
+     * 
+     * 
+     */
+    public function upload_pic($id)
+    {
+        $data = Users::find($id);
+        return view('home.user.uploads',['data'=>$data]);
+    }
+
+    /**
+     *  执行头像上传操作
+     * 
+     */
+    public function uploads(Request $request)
+    {
+        $id = session() ->get('homeUser') -> id;
+        $file = $request -> file('head_pic');
+        $ext = $file -> getClientOriginalExtension();
+        $filename  = $id.'_'.time().'.'.$ext;
+        $filepath = 'uploads/'.date('Ymd',time());
+        $basename = $filepath.'/'.$filename;
+        if(!is_dir($filepath)){
+            mkdir($filepath,0777,true);
+        }
+        $res = Image::make($file) -> resize(150,150,function ($constraint) {$constraint->aspectRatio();}) -> save('./'.$basename);
+        $user = Users::find($id);
+        $user-> head_pic = $basename;
+        $res2 = $user -> save();
+        if($res2){
+            session() -> put('homeUser',$user);
+            return '<script>var index = parent.layer.getFrameIndex(window.name);parent.layer.msg("上传成功");parent.layer.close(index);</script>';
+        }else{
+            return '<script>var index = parent.layer.getFrameIndex(window.name);parent.layer.msg("失败成功");parent.layer.close(index);</script>';
+        }
+
     }
 
 }

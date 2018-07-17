@@ -25,8 +25,6 @@
 Route::get('/admin/login','Admin\LoginController@index');
 //后台登陆检测
 Route::post('/admin/login/check','Admin\LoginController@check');
-
-
 /**
  * 
  * 后台管理平台
@@ -62,6 +60,10 @@ Route::post('/admin/user/detail/details_store/{id}','Admin\UserController@detail
 Route::post('/admin/user/update/{id}', 'Admin\UserController@update');
 //执行删除操作
 Route::get('/admin/user/del/{id}', 'Admin\UserController@del');
+//后台修改密码路由
+Route::get('/admin/repass','Admin\LoginController@repass');
+//后台修改密码检查
+Route::post('/admin/repass/check','Admin\LoginController@checkrepass');
 	/**
 	 * 
 	 * 文章管理模块
@@ -213,7 +215,7 @@ Route::get('/detail/{id}','Home\ArticleController@index');
 
 
 //前台登录中间件
-Route::group([],function(){
+Route::group(['middleware'=>'homelogin'],function(){
 
 
 /**
@@ -291,6 +293,43 @@ Route::get('/logout','Home\LoginController@logout');
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//头像上传页面
+Route::get('/user/pic/{id}','Home\UserController@upload_pic');
+//头像上传操作
+Route::post('/user/uploads','Home\UserController@uploads');
+//前台用户修改密码
+Route::get('/repass','Home\LoginController@repass');
+//前台用户修改用户检查
+Route::post('/repass/check','Home\LoginController@checkrepass');
 //前台反馈列表页
 Route::get('/user/feedbacks/index','Home\FeedbacksController@index');
 //前台反馈添加页

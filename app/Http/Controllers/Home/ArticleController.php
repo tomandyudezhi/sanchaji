@@ -11,7 +11,7 @@ use App\Models\Reviews;
 use App\Models\UsersArticles;
 use App\Models\ArticlesLikes;
 use App\Models\UsersUsers;
-
+use DB;
 class ArticleController extends Controller
 {
     /**
@@ -30,10 +30,12 @@ class ArticleController extends Controller
         foreach ($articles -> users -> users_usersed as $key => $v) {
             $arr[] = $v -> id;
         }
+        //相关推荐
+        $recommend_data = DB::select('select * from blog_articles where pid='.$articles->pid.' order by rand() limit 5');
         // 根据id查找回复数据
         $reviews = Reviews::find($id);
         // 显示模板
-        return view('home.articlesdetail.index',['articles' => $articles,'reviews' => $reviews,'fensi'=> $arr]);
+        return view('home.articlesdetail.index',['articles' => $articles,'reviews' => $reviews,'fensi'=> $arr,'recommend_data'=>$recommend_data]);
     }
 
     /**
@@ -45,7 +47,13 @@ class ArticleController extends Controller
     public function create(Request $request,$id)
     {
         $data = $request -> except('_token');
-        $user_id = session() -> get('honeUser') -> id;
+        if(!session()->has('homeUser')){
+            return back() -> with('error','请登录后再试');
+        }
+        if(empty($data['content'])){
+            return back() -> with('error','评论内容不能为空');
+        }
+        $user_id = session() -> get('homeUser') -> id;
         $review = new Reviews;
         $review -> uid = $user_id;
         $review -> aid = $id;
@@ -66,24 +74,25 @@ class ArticleController extends Controller
     public function collect(Request $request,$id)
     {
         $data = $request -> all();
-        $user_id = session() ->get('homeUser') ->id;
-        $articles = UsersArticles::where('aid',$id) ->where('uid',$user_id) ->first();
-        if (session()->get('homeUser') -> id == null) {
-            return back() -> with('error', '很抱歉，您还没有登录');
+        
+        if (!session()->has('homeUser')) {
+            return 'not login';
         } else {
+            $user_id = session() ->get('homeUser') ->id;
+            $articles = UsersArticles::where('aid',$id) ->where('uid',$user_id) ->first();
             if ($articles  == null) {
                 $usersarticles = new UsersArticles;
-                $usersarticles -> uid = $data['uid'];
+                $usersarticles -> uid = $user_id;
                 $usersarticles -> aid = $id;
                 $res = $usersarticles -> save();
                 if($res){
-                    return redirect('/detail/'.$id) -> with('success', '收藏成功');
+                    return 'success';
                 }else{
-                    return back() -> with('error', '收藏失败');
+                    return 'error';
                 }
             } else {
                 if ($articles -> aid = $id) {
-                return back() -> with('error', '很抱歉，您已收藏此文章');
+                return 'collected';
                 }
             }   
         }

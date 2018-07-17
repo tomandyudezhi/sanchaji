@@ -20,10 +20,8 @@ class ConfigController extends Controller
     {
         //查找对应数据
         $data = Configs::find(1);
-        $str = $data->logo;
-        $logolink=substr($str,1);
         //加载模板
-        return view('admin.config.index',['data' => $data,'title' => '网站配置','logolink' => $logolink]);
+        return view('admin.config.index',['data' => $data,'title' => '网站配置']);
     }
 
     /**
@@ -39,6 +37,7 @@ class ConfigController extends Controller
         $configs -> title = $data['title'];
         $configs -> keywords = $data['keywords'];
         $configs -> copyright = $data['copyright'];
+        $configs -> notice = $data['notice'];
         $configs -> switch = $data['switch'];
         
 
@@ -51,7 +50,10 @@ class ConfigController extends Controller
             $temp_name = str_random(20);
             $name =  $temp_name.'.'.$ext;
             $dirname = date('Ymd',time());
-            $configs -> logo = $profile -> move('./uploads/'.$dirname,$name);
+            
+            $str = $profile -> move('./uploads/'.$dirname,$name);
+            $src = substr($str,1);
+            $configs -> logo = $src;
         }
 
        $res = $configs -> save();

@@ -12,7 +12,8 @@
 		                    <li><a title="我的收藏" href="/user/article/index" draggable="false">我的收藏</a></li>
 		                    
 		                    <li><a title="我的关注" href="/user/follows" draggable="false">我的关注</a></li>
-		                    <li><a title="我的关注" href="/user/feedbacks/index" draggable="false">反馈与建议</a></li>		                    
+		                    <li><a title="修改密码" href="/repass" draggable="false">修改密码</a></li>
+		                    <li><a title="反馈与建议" href="/user/feedbacks/index" draggable="false">反馈与建议</a></li>
 		                </ul>
 		            </div>
 		        </div>
@@ -22,7 +23,7 @@
 		           	<div class="container">
 		           		<div class="row">
 							<div class="col-md-3 text-center">
-								<a href="javascript:;"><img style="width:150px;height:150px;" src="/default.jpg" title="点击修改头像" alt="个人头像"></a>
+								<a href="javascript:;" id="pic" value="{{$user_data -> id}}"><img style="width:150px;height:150px;" src="/{{$user_data -> head_pic}}" title="点击修改头像" alt="个人头像"></a>
 								<br>
 								<div style="width:200px;" class="text-center">
 									<span style="margin-right: 20px;font-size: 15px;"><b>{{count($user_data -> users_users)}}</b></span>
@@ -109,9 +110,9 @@
 		 		 </div>
 		</section>
 		<script type="text/javascript">
+		//修改个人信息
 			$('#details').click(function(){
 				var id = $(this).attr('value');
-				console.log(id);
 				layer.open({
 					type:2,
 					title:'用户详细信息',
@@ -123,7 +124,31 @@
 					}
 				});
 			});
+
+			//修改头像
+			$('#pic').click(function(){
+				var id = $(this).attr('value');
+				var ele = $(this);
+				layer.open({
+					type:2,
+					title:'头像上传',
+					area: ['600px', '360px'],
+	      			shadeClose: true, 
+					content:'/user/pic/'+id,
+					end:function(){
+						location.reload(true);
+					}
+				});
+			});
 		</script>
+		<!-- 信息提示 -->
+		@if(session('success'))
+            <input type="hidden" value="{{session('success')}}" id="success1">
+            <script type="text/javascript">
+				var msg = document.getElementById('success1');
+				layer.msg(msg.value);
+            </script>
+        @endif
 @endsection
 
 

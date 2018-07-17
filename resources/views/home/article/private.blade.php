@@ -11,7 +11,7 @@
                         <li><a title="我的收藏" href="/user/article/index" draggable="false">我的收藏</a></li>
                         
                         <li><a title="我的关注" href="/user/follows" draggable="false">我的关注</a></li>
-                        
+                        <li><a title="我的关注" href="/repass" draggable="false">修改密码</a></li>
                     </ul>
                 </div>
             </div>
@@ -24,6 +24,12 @@
                     <li class="layui-nav-item layui-this"><a href="/article/private">私密</a></li>\
                     <li class="layui-nav-item"><a href="/article/recycle">回收站</a></li>
                   </ul>
+                  <form action="/article/private" class="form-inline text-right" style="margin-top: 5px;">
+                    <div class="form-group">
+                      <input type="text" class="form-control" name="search" id="title" placeholder="请输入标题关键字...">
+                    </div>
+                    <button type="submit" class="layui-btn">搜索</button>
+                  </form>
                   @foreach($data as $k => $v)
                     <div class="row" style="padding-left:20px;padding-top:20px;font-size: 22px;">
                       <div style=""><strong>{{$v -> title}}</strong></div>
@@ -41,6 +47,14 @@
                       <hr>
                     </div>
                   @endforeach
+                  <div class="page text-center">
+                    {!! $data -> appends(['search'=>$search]) -> render() !!}
+                  </div>
+                  <script type="text/javascript">
+                      $(function(){
+                        $('.page ul').css('display','block');
+                      });
+                  </script>
                 </div>
          </div>
     </section>

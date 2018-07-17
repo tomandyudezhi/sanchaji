@@ -42,15 +42,15 @@
                 </h2>
             </header>
             <p class="meta">
-                <time class="time"><i class="glyphicon glyphicon-time"></i> {{$v->created_at}}</time>
-                <span class="views"><i class="glyphicon glyphicon-eye-open"></i>{{$v->reading}}</span> <a class="comment" href="/detail/{{ $v -> id }}" title="评论" target="_blank" ><i class="glyphicon glyphicon-comment"></i>{{count($v->reviews)}}</a>
+                <time class="time"><i class="glyphicon glyphicon-time"> </i> {{$v->created_at}}</time>
+                <span class="views"><i class="glyphicon glyphicon-eye-open"> </i> {{$v->reading}}</span> <a class="comment" href="/detail/{{ $v -> id }}" title="评论" target="_blank" ><i class="glyphicon glyphicon-comment"> </i> {{count($v->reviews)}}</a>
             </p>
             <p class="note" style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical;">{{$v->content}}</p>
         </article>
         @endforeach
         </div>
       <div class="ajax-load text-center" style="display:none">
-        <i class="layui-icon layui-icon-loading"></i>正在加载
+        <img src="/home/images/loading.gif" alt="正在加载">
       </div>
     </div>
   </div>
