@@ -166,7 +166,22 @@ Route::get('/admin/frilinks/delete/{id}','Admin\FrilinksController@delete');
 Route::get('/admin/feedbacks/index','Admin\FeedbacksController@index');
 //删除反馈
 Route::get('/admin/feedbacks/delete/{id}','Admin\FeedbacksController@delete');
-
+	/**
+	 * 轮播图管理模块
+	 * 
+	 */
+//轮播图添加
+Route::get('/admin/turnimage/create','Admin\ImageController@create');
+//轮播图执行添加
+Route::post('/admin/turnimage/store','Admin\ImageController@store');
+//轮播图列表
+Route::get('/admin/turnimage/index','Admin\ImageController@index');
+//轮播图删除
+Route::get('/admin/turnimage/delete/{id}','Admin\ImageController@delete');
+//轮播图修改
+Route::get('/admin/turnimage/edit/{id}','Admin\ImageController@edit');
+//轮播图执行修改
+Route::post('/admin/turnimage/update/{id}','Admin\ImageController@update');
 });
 
 
