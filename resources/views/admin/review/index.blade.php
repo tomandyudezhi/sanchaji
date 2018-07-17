@@ -62,7 +62,6 @@
 				<td>{{ $v -> articles -> title}}</td>
 				<td>{{ $v -> content }}</td>
 				<th style="text-align:center;">
-					<a href="" class="bg-info btn">查看</a>
 					<a href="/admin/review/delete/{{$v->id}}" class="bg-danger btn">删除</a>
 				</th>
 			</tr>

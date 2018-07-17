@@ -10,6 +10,7 @@ use App\Models\Articles;
 use App\Models\Parts;
 use App\Models\Tags;
 use App\Http\Requests\ArticleInsertRequest;
+use App\Models\ShieldWords;
 
 class ArticleController extends Controller
 {
@@ -47,6 +48,21 @@ class ArticleController extends Controller
     public function store(ArticleInsertRequest $request)
     {
         $data = $request -> except('_token');
+        // 获取屏蔽字段
+        $shieldwords = ShieldWords::find(1);
+        // 处理屏蔽词
+        $str = explode('|',$shieldwords -> content);
+        // 完成处理
+        foreach($str as $v)
+        {
+            $length = strlen($v);
+            $replace = '';
+            for($i = 0; $i < $length; $i++){
+            $replace .= '*';
+            }
+            $data['content'] = str_replace($v,$replace,$data['content']);
+            $data['tags'] = str_replace($v,$replace,$data['tags']);
+        }
         //添加文章
         $article = new Articles;
         $article -> title = $data['title'];
@@ -60,6 +76,7 @@ class ArticleController extends Controller
         $tag = new Tags;
         $tag -> aid = $article -> id;
         $tag -> uid = session() -> get('adminUser') -> id;
+        //处理标签
         $tag -> content = $data['tags'];
         $res2 = $tag -> save();
         if($res1 && $res2){

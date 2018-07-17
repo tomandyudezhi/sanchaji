@@ -12,6 +12,8 @@ use App\Models\UsersArticles;
 use App\Models\ArticlesLikes;
 use App\Models\UsersUsers;
 use DB;
+use App\Models\ShieldWords;
+
 class ArticleController extends Controller
 {
     /**
@@ -54,6 +56,21 @@ class ArticleController extends Controller
             return back() -> with('error','评论内容不能为空');
         }
         $user_id = session() -> get('homeUser') -> id;
+        // 获取屏蔽字段
+        $shieldwords = ShieldWords::find(1);
+        // 处理屏蔽词
+        $str = explode('|',$shieldwords -> content);
+        // 完成处理
+        foreach($str as $v)
+        {
+            $length = strlen($v);
+            $replace = '';
+            for($i = 0; $i < $length; $i++){
+            $replace .= '*';
+            }
+            $data['content'] = str_replace($v,$replace,$data['content']);
+        }
+
         $review = new Reviews;
         $review -> uid = $user_id;
         $review -> aid = $id;
