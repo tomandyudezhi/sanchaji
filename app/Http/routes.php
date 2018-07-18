@@ -182,6 +182,25 @@ Route::get('/admin/adverts/edit/{id}','Admin\AdvertsController@edit');
 Route::post('/admin/adverts/update/{id}','Admin\AdvertsController@update');
 //删除广告
 Route::get('/admin/adverts/delete/{id}','Admin\AdvertsController@delete');
+/**
+ * 	后台站内信管理
+ *
+ * 
+ */
+// //站内信添加页面
+Route::get('/admin/letters/index','Admin\LettersController@index');
+//站内信删除操作
+Route::get('/admin/letters/del/{id}','Admin\LettersController@del');
+//发送系统通知页面
+Route::get('/admin/letters/create/{id}','Admin\LettersController@create');
+//执行发送系统通知操作
+Route::post('/admin/letters/store/{id}','Admin\LettersController@store');
+//查看系统消息列表
+Route::get('/admin/letters/sys','Admin\LettersController@sys');
+//发送反馈回复页面
+Route::get('/admin/letters/creates/{id}/{feed_id}','Admin\LettersController@creates');
+//反馈恢复操作
+Route::post('/admin/letters/replyed/{id}/{feed_id}','Admin\LettersController@replyed');
 });
 
 
@@ -277,51 +296,6 @@ Route::get('/follows/{id}','Home\ArticleController@follows');
 //前台用户登出
 Route::get('/logout','Home\LoginController@logout');
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //头像上传页面
 Route::get('/user/pic/{id}','Home\UserController@upload_pic');
 //头像上传操作
@@ -335,4 +309,29 @@ Route::get('/user/feedbacks/index','Home\FeedbacksController@index');
 //前台反馈添加页
 Route::get('/user/feedbacks/create','Home\FeedbacksController@create');
 Route::post('/user/feedbacks/store','Home\FeedbacksController@store');
+/**
+ * 	前台站内信管理
+ *
+ * 
+ */
+//前台写信件页面
+Route::get('/letters/searchusers','Home\LettersController@searchusers');
+//前台站内信发送页面
+Route::get('/letters/create/{id}','Home\LettersController@create');
+//执行发信操作
+Route::post('/letters/store/{id}','Home\LettersController@store');
+//最近收信人页面
+Route::get('/letters/history','Home\LettersController@historyusers');
+//前台站内信管理页面
+Route::get('/letters/index','Home\LettersController@index');
+//前台未读信件页面
+Route::get('/letters/noread','Home\LettersController@noread');
+//修改信件状态
+Route::get('/letters/read_status/{id}','Home\LettersController@read_status');
+//已读信件列表页
+Route::get('/letters/readed','Home\LettersController@readed');
+//删除信件操作
+Route::get('/letters/del/{id}','Home\LettersController@del');
+//查看系统通知
+Route::get('/leters/sys','Home\LettersController@sys');
 });

@@ -14,18 +14,6 @@
 
 @section('content')
 		<div class="agile-tables">
-		@if (session('success'))
-				<div class="alert alert-success alert-dismissible" role="alert">
-			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			   {{session('success')}}
-			</div>
-		@endif
-		@if (session('error'))
-				<div class="alert alert-danger alert-dismissible" role="alert">
-			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			   {{session('error')}}
-			</div>
-		@endif
 		<h2 class="text-primary">用户列表</h2>
   	<table class="table table-bordered">
 			<tr class="bg-warning text-center">
@@ -66,6 +54,7 @@
 					<td>
 					@if($v -> shield == 'n')
 					<a href="/admin/user/shield/{{$v -> id}}" class="btn btn-xs btn-warning">屏蔽</a>
+					<a href="javascript:;" class="btn btn-xs btn-primary send" value="{{$v -> id}}">通知</a>
 					@else
 					<a href="/admin/user/unshield/{{$v -> id}}" class="btn btn-xs btn-success">启用</a>
 					@endif
@@ -87,6 +76,17 @@
 					area: ['600px', '360px'],
 	      			shadeClose: true, 
 					content:'/admin/user/detail/'+contents
+				});
+			});
+			//发送系统通知
+			$('.send').click(function(){
+				var id = $(this).attr('value');
+				layer.open({
+					type:2,
+					title:'发送系统消息',
+					area: ['900px', '500px'],
+	      			shadeClose: true, 
+					content:'/admin/letters/create/'+id
 				});
 			});
 		</script>

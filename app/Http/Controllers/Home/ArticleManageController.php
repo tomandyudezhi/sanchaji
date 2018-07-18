@@ -126,8 +126,8 @@ class ArticleManageController extends Controller
     
     public function follows_del($id)
     {
-        $id = session() ->get('homeUser') ->id;
-        $res = UsersUsers::where('uid',$id) -> where('idol_id',$id) -> delete();
+        $user_id = session() ->get('homeUser') ->id;
+        $res = UsersUsers::where('uid',$user_id) -> where('idol_id',$id) -> delete();
         if($res){
             echo 'success';
         }else{

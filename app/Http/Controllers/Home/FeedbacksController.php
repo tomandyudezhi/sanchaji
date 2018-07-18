@@ -15,11 +15,13 @@ class FeedbacksController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $feedbacks_data = Feedbacks::get();
+        $id = session() -> get('homeUser') -> id;
+        $search = $request -> input('search','');
+        $feedbacks_data = Feedbacks::where('uid','=',$id) -> where('content','like',"%{$search}%") -> paginate(2);
         //dump($feedbacks_data);
-        return view('home.feedbacks.index',['feedbacks_data'=>$feedbacks_data]);
+        return view('home.feedbacks.index',['feedbacks_data'=>$feedbacks_data,'search'=>$search]);
     }
 
     /**
@@ -41,6 +43,9 @@ class FeedbacksController extends Controller
     public function store(Request $request)
     {
         $data = $request -> except('_token');
+        if(strlen($data['content']) == 0){
+             return back() -> with('error', '反馈内容不能为空');
+        }
         //dump($data);
         $feedbacks = new FeedBacks;
         $feedbacks -> content = $data['content'];

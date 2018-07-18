@@ -23,6 +23,9 @@ class ArticleController extends Controller
     {
         // 根据id查找文章数据
         $articles = Articles::find($id);
+        $a = $articles -> reading;
+        $articles -> reading = $a +1;
+        $articles -> save();
         if($articles == null){
             return back() -> with('error','很抱歉。该文章已被删除');
         }

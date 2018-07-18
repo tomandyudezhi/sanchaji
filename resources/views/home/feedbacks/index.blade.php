@@ -6,12 +6,15 @@
         <div class="pagemenus">
           <ul class="pagemenu">
                         <li><a href="/user/index" title="个人信息页面" draggable="false">个人信息</a></li>
-                        <li><a href="javascript:;" rel="nofollow" title="我的博客" draggable="false">文章管理</a></li>
+                        <li><a href="/article/index" rel="nofollow" title="我的博客" draggable="false">文章管理</a></li>
                         <li><a href="/article/create" rel="nofollow" title="写博客" draggable="false">写博客</a></li>
                         <li><a title="我的收藏" href="/user/article/index" draggable="false">我的收藏</a></li>
                         
                         <li><a title="我的关注" href="/user/follows" draggable="false">我的关注</a></li>
-                        <li><a title="我的关注" href="/user/feedbacks/index" draggable="false">反馈与建议</a></li>
+                        <li><a title="站内信管理" href="/letters/index" draggable="false">站内信管理</a></li>
+                        <li><a title="写信件" href="/letters/searchusers" draggable="false">写信件</a></li>
+                        <li><a title="修改密码" href="/repass" draggable="false">修改密码</a></li>
+                        <li><a title="反馈与建议" href="/user/feedbacks/index" draggable="false">反馈与建议</a></li>
                         
                     </ul>
                 </div>
@@ -23,15 +26,14 @@
                 <div class="container">
                   <ul class="layui-nav layui-bg-blue" style="" lay-filter="demo">
                     <li class="layui-nav-item layui-this"><a href="/user/feedbacks/index">查看</a></li>
-                    <li class="layui-nav-item layui-this"><a href="/user/feedbacks/create">发表建议</a></li>
+                    <li class="layui-nav-item"><a href="/user/feedbacks/create">发表建议</a></li>
                   </ul>
-                  <div class="row" style="position: relative;right:0;">
-                  <div class="col-md-3 offset-md-9">
-                  <li class="layui-nav-item layui-hide-xs" lay-unselect="">
-                    <input type="text" placeholder="搜索..." autocomplete="off" class="layui-input layui-input-search" layadmin-event="serach" lay-action="template/search.html?keywords="> 
-                  </li>
-                  </div>
-                  </div>
+                  <form action="" class="form-inline text-right" style="margin-top: 5px;">
+                    <div class="form-group">
+                      <input type="text" class="form-control" name="search" id="title" placeholder="请输入内容关键字...">
+                    </div>
+                    <button type="submit" class="layui-btn">搜索</button>
+                  </form>
                     @foreach($feedbacks_data as $k => $v)
                     <div class="row" style="padding-left:20px;padding-top:20px;font-size: 22px;">
                       {{ $v -> content}}
@@ -52,7 +54,14 @@
                       <hr>
                     </div>
                   @endforeach
-
+                <div class="page">
+                  {!! $feedbacks_data -> appends(['search'=>$search]) -> render()  !!}
+                </div>
+                <script type="text/javascript">
+                      $(function(){
+                        $('.page ul').css('display','block');
+                      });
+                  </script>
                 </div>
          </div>
     </section>

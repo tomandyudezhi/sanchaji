@@ -460,7 +460,7 @@
 											<li id="menu-academico-avaliacoes" ><a href="/admin/user/create">添加用户</a></li>
 										  </ul>
 									</li>
-									<li id="menu-academico" ><a href="#"><i class="fa fa-user" aria-hidden="true"></i><span> 分类管理</span> <span class="fa fa-angle-right" style="float: right"></span><div class="clearfix"></div></a>
+									<li id="menu-academico" ><a href="#"><i class="fa fa-sitemap" aria-hidden="true"></i><span> 分类管理</span> <span class="fa fa-angle-right" style="float: right"></span><div class="clearfix"></div></a>
 										   <ul id="menu-academico-sub" >
 										   <li id="menu-academico-avaliacoes" ><a href="/admin/parts/index">查看分类</a></li>
 											<li id="menu-academico-avaliacoes" ><a href="/admin/parts/create">添加分类</a></li>
@@ -473,8 +473,14 @@
 											<li id="menu-academico-avaliacoes" ><a href="/admin/article/recycle">回收站</a></li>
 										  </ul>
 									</li>
+									<li id="menu-academico" ><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i><span> 站内信管理</span> <span class="fa fa-angle-right" style="float: right"></span><div class="clearfix"></div></a>
+										   <ul id="menu-academico-sub" >
+										   <li id="menu-academico-avaliacoes" ><a href="/admin/letters/index">查看站内信</a></li>
+										   <li id="menu-academico-avaliacoes" ><a href="/admin/letters/sys">查看系统消息</a></li>
+										  </ul>
+									</li>
 									<li><a href="/admin/review/index"><i class="fa fa-comments"></i><span>评论管理</span><div class="clearfix"></div></a></li>
-									<li><a href="/admin/shieldwords/index"><i class="fa fa-user"></i><span>屏蔽词管理</span><div class="clearfix"></div></a>
+									<li><a href="/admin/shieldwords/index"><i class="fa fa-lock"></i><span>屏蔽词管理</span><div class="clearfix"></div></a>
 									</li>
 									<li><a href="/admin/tag/index"><i class="fa fa-tag"></i><span>标签管理</span><div class="clearfix"></div></a></li>
 									<li id="menu-academico" ><a href="#"><i class="fa fa-chain" aria-hidden="true"></i><span> 友情链接</span> <span class="fa fa-angle-right" style="float: right"></span><div class="clearfix"></div></a>
@@ -585,6 +591,13 @@
             <input type="hidden" value="{{session('success')}}" id="success1">
             <script type="text/javascript">
 				var msg = document.getElementById('success1');
+				layer.msg(msg.value);
+            </script>
+        @endif
+        @if(session('error'))
+            <input type="hidden" value="{{session('error')}}" id="error1">
+            <script type="text/javascript">
+				var msg = document.getElementById('error1');
 				layer.msg(msg.value);
             </script>
         @endif
