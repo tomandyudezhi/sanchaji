@@ -65,7 +65,7 @@
 							<input type="password" class="form-control" id="password" placeholder="密码" autocomplete="off" name="password">
 						</div>
 						<div class="form-group">
-							<label for="remember"><input type="checkbox" name="remember" id="remember"> 记住密码</label>
+							<label for="remember"><input type="text" class="form-control" id="code" placeholder="验证码" autocomplete="off" name="code" style="display:inline;width:65%;"><a><img src="/login/yanzhengma"  onclick="rand_code(this)"></a>
 						</div>
 						<div class="form-group">
 							<p>没有账号？ <a href="/signup">立即注册</a>
@@ -74,7 +74,7 @@
 						</div>
 					</form>
 					<!-- 登陆结束 -->
-
+		
 
 				</div>
 			</div>
@@ -101,7 +101,12 @@
 	<script src="/homelogin/js/jquery.waypoints.min.js"></script>
 	<!-- Main JS -->
 	<script src="/homelogin/js/main.js"></script>
+	<script type="text/javascript">
+		function rand_code(obj){
+			obj.src = obj.src+'?a='+Math.random();
+		}
 
+	</script>
 	</body>
 </html>
 

@@ -16,6 +16,8 @@ class AdminController extends Controller
      */
     public function index()
     {
+        
+        
         //后台首页
         return view('admin.commit.commit');
     }

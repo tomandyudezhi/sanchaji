@@ -6,18 +6,6 @@
 <!-- 内容开始 -->
 @section('content')
 	<div class="agile-tables">
-	@if(session('error'))
-	<div class="alert alert-warning alert-dismissible" role="alert">
-	  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	  {{session('error')}}
-	</div>
-	@endif
-	@if(session('success'))
-	<div class="alert alert-success alert-dismissible" role="alert">
-	  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	  {{session('success')}}
-	</div>
-	@endif
 		<h2 class="text-primary">屏蔽词管理</h2>
 		<form action="/admin/shieldwords/store"  method="post">
 		{{csrf_field()}}

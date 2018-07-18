@@ -360,3 +360,6 @@ Route::get('/leters/sys','Home\LettersController@sys');
 });
 
 });
+
+//验证码
+Route::get('/login/yanzhengma','Home\LoginController@yanzhengma');
