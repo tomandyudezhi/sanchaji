@@ -11,6 +11,8 @@ use App\Models\UsersDetails;
 use Hash;
 use App\Http\Requests\HomeLoginRequest;
 use App\Http\Requests\RepassRequest;
+use Gregwar\Captcha\CaptchaBuilder;
+use Gregwar\Captcha\PhraseBuilder;
 
 class LoginController extends Controller
 {
@@ -45,6 +47,9 @@ class LoginController extends Controller
         //  查询数据
         $login = $request -> except('_token');
         $user = Users::where('username',$login['username'])->first();
+        if ($login['code'] != session('code')) {
+            return back()->with('error','登陆失败,验证码错误');
+        }
         if ($user == null) {
             return back()->with('error','登陆失败,用户名错误');
         }
@@ -134,11 +139,31 @@ class LoginController extends Controller
             return back() -> with('error', '修改失败');
         }
     }
-
-    /**
-     *  发送邮件
-     *
-     * 
-     */
     
+    /*
+     *生成验证码
+     */
+    public function yanzhengma()
+    {
+        $phrase = new PhraseBuilder;
+        // 设置验证码位数
+        $code = $phrase->build(4);
+        // 生成验证码图片的Builder对象，配置相应属性
+        $builder = new CaptchaBuilder($code, $phrase);
+        // 设置背景颜色
+        $builder->setBackgroundColor(123, 203, 230);
+        $builder->setMaxAngle(25);
+        $builder->setMaxBehindLines(0);
+        $builder->setMaxFrontLines(0);
+        // 可以设置图片宽高及字体
+        $builder->build($width = 90, $height = 35, $font = null);
+        // 获取验证码的内容
+        $phrase = $builder->getPhrase();
+        // 把内容存入session
+        session(['code'=>$phrase]);
+        // 生成图片
+        header("Cache-Control: no-cache, must-revalidate");
+        header("Content-Type:image/jpeg");
+        $builder->output();
+    }
 }

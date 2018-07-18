@@ -39,7 +39,6 @@
         <div class="container">
             <div class="content">
                 <div class="title">Laravel 5</div>
-                <a href="/admin/user/index">后台</a>
             </div>
         </div>
     </body>

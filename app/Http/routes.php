@@ -225,10 +225,9 @@ Route::post('/admin/turnimage/update/{id}','Admin\ImageController@update');
 //网站维护
 Route::get('/webclose','Home\WebcloseController@index');
 
-//关闭验证
+
+//网站维护中间件
 Route::group(['middleware'=>'homeclose'],function(){
-
-
 
 
 /**
@@ -256,6 +255,8 @@ Route::get('/detail/{id}','Home\ArticleController@index');
 //邮箱验证
 Route::post('/send','Home\SendController@sendmail');
 
+//验证码
+Route::get('/login/yanzhengma','Home\LoginController@yanzhengma');
 
 //前台登录中间件
 Route::group(['middleware'=>'homelogin'],function(){
@@ -358,6 +359,9 @@ Route::get('/letters/readed','Home\LettersController@readed');
 Route::get('/letters/del/{id}','Home\LettersController@del');
 //查看系统通知
 Route::get('/leters/sys','Home\LettersController@sys');
+
+
+
 });
 
 });

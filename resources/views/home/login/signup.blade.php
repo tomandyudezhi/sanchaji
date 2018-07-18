@@ -60,11 +60,11 @@
 							<label for="email" class="sr-only">邮箱</label>
 							<input type="text" class="form-control" id="email" placeholder="邮箱" name="email">
 						</div>
-						<div class="form-group">
+						<!-- <div class="form-group">
 							<label for="" class="sr-only">验证码</label>
 							<input type="text" style="width:60%;display: inline;" class="form-control"  placeholder="邮箱验证码" name="code">
 							<span class="layui-btn text-center" style="width:110px;height:50px;line-height:50px;" id="code">获取验证码</span>
-						</div>
+						</div> -->
 						<div class="form-group">
 							<label for="phone" class="sr-only">电话</label>
 							<input type="text" class="form-control" id="phone" placeholder="电话" name="phone">
@@ -124,13 +124,13 @@
 		$('input').eq(2).focus(function(){
 		layer.msg('请注意邮箱格式');
 		});
-		$('input').eq(3).focus(function(){
+		$('input').eq(4).focus(function(){
 		layer.msg('请输入正确的电话号码');
 		});
-		$('input').eq(4).focus(function(){
+		$('input').eq(5).focus(function(){
 		layer.msg('至少8位');
 		});
-		$('input').eq(5).focus(function(){
+		$('input').eq(6).focus(function(){
 		layer.msg('重复以确认密码');
 		});
 

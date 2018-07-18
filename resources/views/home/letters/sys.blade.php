@@ -1,5 +1,6 @@
 @extends('home.commit.commit')
 
+
 @section('title')
     站内信管理
 @endsection
