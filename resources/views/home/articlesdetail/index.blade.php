@@ -1,5 +1,9 @@
 @extends('home.commit.commit')
 
+@section('title')
+    {{$articles -> title}}
+@endsection
+
 <!-- 文章作者信息开始 -->
 @section('head')
 <div class="widget widget-tabs">

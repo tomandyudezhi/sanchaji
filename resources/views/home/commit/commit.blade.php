@@ -5,7 +5,11 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{$configs_data -> title}}</title>
+    <title>
+    @section('title')
+    {{$configs_data -> title}}
+    @show
+    </title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <link rel="stylesheet" type="text/css" href="/home/css/bootstrap.min.css">

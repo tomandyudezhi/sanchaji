@@ -56,85 +56,9 @@
 						 </div>
 						 <div class="w3layouts-right">
 							<div class="profile_details_left"><!--notifications of menu start -->
-								<ul class="nofitications-dropdown">
-									<li class="dropdown head-dpdn">
-										<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-envelope"></i><span class="badge">3</span></a>
-										<ul class="dropdown-menu">
-											<li>
-												<div class="notification_header">
-													<h3>You have 3 new messages</h3>
-												</div>
-											</li>
-											<li><a href="#">
-											   <div class="user_img"><img src="/admins/images/in11.jpg" alt=""></div>
-											   <div class="notification_desc">
-												<p>Lorem ipsum dolor</p>
-												<p><span>1 hour ago</span></p>
-												</div>
-											   <div class="clearfix"></div>	
-											</a></li>
-											<li class="odd"><a href="#">
-												<div class="user_img"><img src="/admins/images/in10.jpg" alt=""></div>
-											   <div class="notification_desc">
-												<p>Lorem ipsum dolor </p>
-												<p><span>1 hour ago</span></p>
-												</div>
-											  <div class="clearfix"></div>	
-											</a></li>
-											<li><a href="#">
-											   <div class="user_img"><img src="/admins/images/in9.jpg" alt=""></div>
-											   <div class="notification_desc">
-												<p>Lorem ipsum dolor</p>
-												<p><span>1 hour ago</span></p>
-												</div>
-											   <div class="clearfix"></div>	
-											</a></li>
-											<li>
-												<div class="notification_bottom">
-													<a href="#">See all messages</a>
-												</div> 
-											</li>
-										</ul>
-									</li>
-									<li class="dropdown head-dpdn">
-										<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-bell"></i><span class="badge blue">3</span></a>
-										<ul class="dropdown-menu">
-											<li>
-												<div class="notification_header">
-													<h3>You have 3 new notification</h3>
-												</div>
-											</li>
-											<li><a href="#">
-												<div class="user_img"><img src="/admins/images/in8.jpg" alt=""></div>
-											   <div class="notification_desc">
-												<p>Lorem ipsum dolor</p>
-												<p><span>1 hour ago</span></p>
-												</div>
-											  <div class="clearfix"></div>	
-											 </a></li>
-											 <li class="odd"><a href="#">
-												<div class="user_img"><img src="/admins/images/in6.jpg" alt=""></div>
-											   <div class="notification_desc">
-												<p>Lorem ipsum dolor</p>
-												<p><span>1 hour ago</span></p>
-												</div>
-											   <div class="clearfix"></div>	
-											 </a></li>
-											 <li><a href="#">
-												<div class="user_img"><img src="/admins/images/in7.jpg" alt=""></div>
-											   <div class="notification_desc">
-												<p>Lorem ipsum dolor</p>
-												<p><span>1 hour ago</span></p>
-												</div>
-											   <div class="clearfix"></div>	
-											 </a></li>
-											 <li>
-												<div class="notification_bottom">
-													<a href="#">See all notifications</a>
-												</div> 
-											</li>
-										</ul>
-									</li>
+								<ul class="nofitications-dropdown" style="height:45px;">
+									
+									
 									<div class="clearfix"> </div>
 								</ul>
 								<div class="clearfix"> </div>
@@ -178,7 +102,7 @@
 							</div>
 							<div class="four-text">
 								<h3>注册用户</h3>
-								<h4> 24,420  </h4>
+								<h4> {{$user_count}}  </h4>
 								
 							</div>
 							
@@ -187,11 +111,11 @@
 					<div class="col-md-3 four-grid">
 						<div class="four-agileinfo">
 							<div class="icon">
-								<i class="glyphicon glyphicon-phone" aria-hidden="true"></i>
+								<i class="glyphicon glyphicon glyphicon-send" aria-hidden="true"></i>
 							</div>
 							<div class="four-text">
-								<h3>在线人数</h3>
-								<h4>15,520</h4>
+								<h3>评论总数</h3>
+								<h4>{{$review_count}}</h4>
 
 							</div>
 							
@@ -203,8 +127,8 @@
 								<i class="glyphicon glyphicon-list-alt" aria-hidden="true"></i>
 							</div>
 							<div class="four-text">
-								<h3>新增博客</h3>
-								<h4>12,430</h4>
+								<h3 title="当月新增博客">新增博客</h3>
+								<h4>{{$article_month_count}}</h4>
 								
 							</div>
 							
@@ -217,7 +141,7 @@
 							</div>
 							<div class="four-text">
 								<h3>博客总数</h3>
-								<h4>14,430</h4>
+								<h4>{{$article_count}}</h4>
 								
 							</div>
 							
@@ -240,11 +164,11 @@
                                         
                                         <div class="row m-0 md-bg-grey-100 p-l-20 p-r-20">
                                             <div class="col-md-6 col-sm-6 col-xs-6 w3layouts-aug">
-                                                <h3>August 2016</h3>
-                                                <p>REPORT</p>
+                                                <h3>管理员</h3>
+                                                <p>列表</p>
                                             </div>
                                             <div class="col-md-6 col-sm-6 col-xs-6 ">
-                                                <h2 class="text-right c-teal f-300 m-t-20">$21,235</h2>
+                                                <h2 class="text-right c-teal f-300 m-t-20">{{count($man)}}</h2>
                                             </div>
                                         </div>
                                         
@@ -253,37 +177,20 @@
                                                 <thead>
                                                     <tr>
                                                         <th>ID</th>
-                                                        <th>Name</th>
-                                                        <th>Amount</th>
+                                                        <th>用户名</th>
+                                                        <th>身份</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                	@foreach($man as $k => $v)
+                                                		@if($k <= 5)
                                                     <tr>
-                                                        <td>2356</td>
-                                                        <td>dummy text </td>
-                                                        <td>6,200.00</td>
+                                                        <td>{{$v -> id}}</td>
+                                                        <td>{{$v -> username}}</td>
+                                                        <td>管理员</td>
                                                     </tr>
-                                                    <tr>
-                                                        <td>4589</td>
-                                                        <td>Lorem Ipsum</td>
-                                                        <td>6,500.00</td>
-                                                    </tr>
-                                                    
-                                                    <tr>
-                                                        <td>3269</td>
-                                                        <td>specimen book</td>
-                                                        <td>6,800.00</td>
-                                                    </tr>                                                    
-                                                    <tr>
-                                                        <td>5126</td>
-                                                        <td>Letraset sheets</td>
-                                                        <td>7,200.00</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>7425</td>
-                                                        <td>PageMaker</td>
-                                                        <td>5,900.00</td>
-                                                    </tr>
+                                                    	@endif
+                                                    @endforeach
                                                 </tbody>
                                             </table>    
                                         </div>
@@ -297,7 +204,7 @@
                             <div class="card card-contact-list">
 							<div class="agileinfo-cdr">
                                 <div class="card-header">
-                                    <h3>Contacts</h3>
+                                    <h3>开发人员</h3>
                                 </div>
                                 <div class="card-body p-b-20">
                                     <div class="list-group">
@@ -307,11 +214,11 @@
                                             </div>
                                             <div class="media-body">
                                                 <div class="pull-left">
-                                                	<div class="lg-item-heading">Lorem</div>
-                                                	<small class="lg-item-text">lorem@gmail.com</small>
+                                                	<div class="lg-item-heading">余德智</div>
+                                                	<small class="lg-item-text">zuzhang@qq.com</small>
                                                 </div>
                                                 <div class="pull-right">
-                                                	<div class="lg-item-heading">Ceo</div>
+                                                	<div class="lg-item-heading">组长</div>
                                                 </div>
                                             </div>
                                         </a>
@@ -321,11 +228,11 @@
                                             </div>
                                             <div class="media-body">
                                                 <div class="pull-left">
-                                                	<div class="lg-item-heading">Ipsum</div>
-                                                	<small class="lg-item-text">ipsum@hotmail.com</small>
+                                                	<div class="lg-item-heading">石佳</div>
+                                                	<small class="lg-item-text">zuyuan1@qq.com</small>
                                                 </div>
                                                 <div class="pull-right">
-                                                	<div class="lg-item-heading">Director</div>
+                                                	<div class="lg-item-heading">组员</div>
                                                 </div>
                                             </div>
                                         </a>
@@ -335,30 +242,14 @@
                                             </div>
                                             <div class="media-body">
                                                 <div class="pull-left">
-                                                	<div class="lg-item-heading">Unknown</div>
-                                                	<small class="lg-item-text">unknown@gmail.com</small>
+                                                	<div class="lg-item-heading">胡涛</div>
+                                                	<small class="lg-item-text">zuyuan2@qq.com</small>
                                                 </div>
                                                 <div class="pull-right">
-                                                	<div class="lg-item-heading">Manager</div>
+                                                	<div class="lg-item-heading">组员</div>
                                                 </div>
                                             </div>
                                         </a>
-                                        <a class="list-group-item media" href="">
-                                            <div class="pull-left">
-                                                <img class="lg-item-img" src="/admins/images/in4.jpg" alt="">
-                                            </div>
-                                            <div class="media-body">
-                                            	<div class="pull-left">
-                                                	<div class="lg-item-heading">Specimen</div>
-                                                	<small class="lg-item-text">specimen@hotmail.com</small>
-                                                </div>
-                                                <div class="pull-right">
-                                                	<div class="lg-item-heading">Assistan</div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                       
-                                        
                                    	</div>
                                 </div>
                             </div>
@@ -369,42 +260,20 @@
                                 <div class="card-body card-padding">
                                     <div class="widget">
                                         <header class="widget-header">
-                                            <h4 class="widget-title">Activities</h4>
+                                            <h4 class="widget-title">最新博客</h4>
                                         </header>
                                         <hr class="widget-separator">
                                         <div class="widget-body">
                                             <div class="streamline">
+                                            	@foreach($new_data as $v)
                                                 <div class="sl-item sl-primary">
                                                     <div class="sl-content">
-                                                        <small class="text-muted">5 mins ago</small>
-                                                        <p>Williams has just joined Project X</p>
-                                                    </div>
-                                                </div>
-                                                <div class="sl-item sl-danger">
-                                                    <div class="sl-content">
-                                                        <small class="text-muted">25 mins ago</small>
-                                                        <p>Jane has sent a request for access</p>
-                                                    </div>
-                                                </div>
-                                                <div class="sl-item sl-success">
-                                                    <div class="sl-content">
-                                                        <small class="text-muted">40 mins ago</small>
-                                                        <p>Kate added you to her team</p>
-                                                    </div>
-                                                </div>
-                                                <div class="sl-item">
-                                                    <div class="sl-content">
-                                                        <small class="text-muted">45 minutes ago</small>
-                                                        <p>John has finished his task</p>
-                                                    </div>
-                                                </div>
-                                                <div class="sl-item sl-warning">
-                                                    <div class="sl-content">
-                                                        <small class="text-muted">55 mins ago</small>
-                                                        <p>Jim shared a folder with you</p>
+                                                        <small class="text-muted">{{$v -> created_at}}</small>
+                                                        <p>{{$v -> title}}</p>
                                                     </div>
                                                 </div>
                                                 
+                                                @endforeach
                                             </div>
                                         </div>
 

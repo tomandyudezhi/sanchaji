@@ -1,6 +1,8 @@
 @extends('home.commit.commit')
 
-
+@section('title')
+    {{$configs_data -> title}}
+@endsection
 
 @section('content')
 <div class="content-wrap">
@@ -89,7 +91,7 @@
             }).done(function(data)
             {
                 //console.log(data.html);
-                if(data.html == " "){
+                if(data.html == ""){
                     $('.ajax-load').html("没有数据了……");
                     return;
                 }

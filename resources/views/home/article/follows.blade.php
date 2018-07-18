@@ -1,5 +1,9 @@
 @extends('home.commit.commit')
 
+@section('title')
+    我的关注
+@endsection
+
 @section('content')
 <section class="container container-page">
   <div class="pageside">

@@ -1,5 +1,9 @@
 @extends('home.commit.commit')
 
+@section('title')
+   	写博客
+@endsection
+
 @section('content')
 <!-- 配置文件 -->
 <script type="text/javascript" src="/ueditor/ueditor.config.js"></script>

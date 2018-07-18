@@ -1,5 +1,9 @@
 @extends('home.commit.commit')
 
+@section('title')
+    修改密码
+@endsection
+
 @section('content')
 <section class="container container-page">
 <div class="pageside">

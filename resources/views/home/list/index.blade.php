@@ -43,18 +43,30 @@
        <ul class="plinks ptags"> 
        <li>
         @if(!empty($_GET['part_name']))
+          @section('title')
+            {{$data[0]->parts ->part_name}}-分区 --列表页
+          @endsection
    				@if(empty($data[0]))
 				<h3 style="line-height: 1.3">很抱歉!分区下没有数据</h3>
-				@else
+				  @else
 				<h3 style="line-height: 1.3">{{$data[0]->parts ->part_name}}</h3>
-       			 @endif
+       		@endif
         
 
         @elseif(!empty($_GET['search']))
+        @section('title')
+            搜索标题"{{$_GET['search']}}" --列表页
+        @endsection
         <h3 style="line-height: 1.3">搜索标题"{{$_GET['search']}}"</h3>
         @elseif(!empty($_GET['tag_content']))
+        @section('title')
+            标签:"{{$tag_content}}" --列表页
+        @endsection
 				<h3 style="line-height: 1.3">标签:"{{$tag_content}}"</h3>
         @elseif(!empty($_GET['user_id']))
+        @section('title')
+            发表人:"{{$data[0]->users->username}}" --列表页
+        @endsection
         <h3 style="line-height: 1.3">发表人:"{{$data[0]->users->username}}"</h3>
    
         @endif

@@ -1,5 +1,8 @@
 @extends('home.commit.commit')
 
+@section('title')
+    写信件
+@endsection
 
 @section('content')
 <section class="container container-page">

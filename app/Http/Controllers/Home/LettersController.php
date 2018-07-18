@@ -26,7 +26,7 @@ class LettersController extends Controller
         	$id = session() -> get('homeUser') -> id;
         	$data = Users::where('username','like',"%{$search}%") -> where('id','<>',$id) ->paginate(1);
         }else{
-        	$data =[];
+        	$data = [];
         }
        
 

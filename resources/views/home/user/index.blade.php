@@ -1,5 +1,9 @@
 @extends('home.commit.commit')
 
+@section('title')
+    {{ $user_data -> username }} --个人信息
+@endsection
+
 @section('content')
 	<section class="container container-page">
 		  <div class="pageside">
