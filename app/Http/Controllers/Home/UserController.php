@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Users;
 use App\Models\UsersDetails;
 use Image;
+use App\Models\ShieldWords;
 
 class UserController extends Controller
 {
@@ -50,6 +51,20 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $data = $request -> except('_token');
+        // 获取屏蔽字段
+        $shieldwords = ShieldWords::find(1);
+        // 处理屏蔽词
+        $str = explode('|',$shieldwords -> content);
+        // 完成处理
+        foreach($str as $v)
+        {
+            $length = strlen($v);
+            $replace = '';
+            for($i = 0; $i < $length; $i++){
+            $replace .= '*';
+            }
+            $data['descript'] = str_replace($v,$replace,$data['descript']);
+        }
         //修改个人信息
         $user = Users::find($id);
         $user -> sex = $data['sex'];

@@ -14,18 +14,6 @@
 <!-- 内容开始 -->
 @section('content')
 	<div class="agile-tables">
-	@if(session('error'))
-	<div class="alert alert-warning alert-dismissible" role="alert">
-	  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	  {{session('error')}}
-	</div>
-	@endif
-	@if(session('success'))
-	<div class="alert alert-success alert-dismissible" role="alert">
-	  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	  {{session('success')}}
-	</div>
-	@endif
 		<h2 class="text-primary">反馈列表</h2>
 		<hr>
 		<table class="table table-bordered">
@@ -47,19 +35,37 @@
 				<td>{{$v->updated_at}}</td>
 				<td class="text-center">
 				@if($v-> replyed == 'y')
-				<a href="#" class="btn btn-success">已回复</a>
+				<a href="#" class="btn btn-success btn-xs">已回复</a>
 				@else
-				<a href="#" class="btn btn-danger">未回复</a>
+				<a href="#" class="btn btn-danger btn-xs">未回复</a>
 				</td>
 				@endif
 				<td class="text-center">
-					<a href="/admin/feedbacks/delete/{{$v->id}}" class="bg-danger btn btn-danger">删除</a>
-					<a href="" class="btn btn-primary">回复</a>
+					<a href="/admin/feedbacks/delete/{{$v->id}}" class="bg-danger btn btn-danger btn-xs">删除</a>
+					<a href="javascript:;" class="btn btn-primary btn-xs replyed" feed_id="{{$v->id}}" value="{{$v -> users->id}}">回复</a>
 				</td>
 			</tr>
 			@endforeach
 		</table>
 		<div style="text-align:center">{!! $data->appends(['search'=>$search])->render() !!}</div>
 	</div>
+	<script type="text/javascript">
+		//发送系统通知
+			$('.replyed').click(function(){
+				var id = $(this).attr('value');
+				var feed_id = $(this).attr('feed_id');
+				var ele = $(this).parent().prev().find('a');
+				ele.removeClass('btn-danger');
+				ele.addClass('btn-success');
+				ele.text('已回复');
+				layer.open({
+					type:2,
+					title:'发送系统消息',
+					area: ['900px', '500px'],
+	      			shadeClose: true, 
+					content:'/admin/letters/creates/'+id+'/'+feed_id
+				});
+			});
+	</script>
 @endsection
 <!-- 内容结束 -->

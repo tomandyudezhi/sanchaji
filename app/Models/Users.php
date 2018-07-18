@@ -62,4 +62,16 @@ class Users extends Model
     {
     	return $this -> hasMany('App\Models\Tags', 'uid');
     }
+
+    //该用户收到的所有信件
+    public function lettersed()
+    {
+        return $this -> hasMany('App\Models\Letters','rec_id');
+    }
+
+    //该用户发的所有信件
+    public function letters()
+    {
+        return $this -> hasMany('App\Models\Letters','send_id');
+    }
 }

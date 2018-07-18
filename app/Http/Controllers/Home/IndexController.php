@@ -10,6 +10,7 @@ use App\Models\Articles;
 use App\Models\Frilinks;
 use App\Models\Reviews;
 use App\Models\Parts;
+use App\Models\TurnImage;
 
 class IndexController extends Controller
 {
@@ -30,8 +31,10 @@ class IndexController extends Controller
         
         //分类列表数据
         $part_data = Parts::get();
+        //轮播图数据
+        $turnimage = TurnImage::all();
         //加载模板
-        return view('home.commit.index',['list_data'=>$list_data,'part_data'=>$part_data]);
+        return view('home.commit.index',['list_data'=>$list_data,'part_data'=>$part_data,'turnimage' => $turnimage]);
     }
 
     /**

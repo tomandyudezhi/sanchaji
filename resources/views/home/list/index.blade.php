@@ -54,6 +54,8 @@
         <h3 style="line-height: 1.3">搜索标题"{{$_GET['search']}}"</h3>
         @elseif(!empty($_GET['tag_content']))
 				<h3 style="line-height: 1.3">标签:"{{$tag_content}}"</h3>
+        @elseif(!empty($_GET['user_id']))
+        <h3 style="line-height: 1.3">发表人:"{{$data[0]->users->username}}"</h3>
    
         @endif
         <br>
@@ -96,7 +98,7 @@
       </article>
       @endforeach
       <div class="page" >
-        {!! $data ->appends(['search'=>$search,'part_name'=> $part_name]) -> render() !!}
+        {!! $data ->appends(['search'=>$search,'part_name'=> $part_name,'tag_content'=>$tag_content,'user_id'=>$user_id]) -> render() !!}
       </div>
       @endif
       @endif

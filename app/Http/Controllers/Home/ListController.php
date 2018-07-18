@@ -26,13 +26,17 @@ class ListController extends Controller
         
         
         //获取id
-        $part_id = $request->input('part_name','');
-        $tag_content = $request ->input('tag_content','');
+        $part_id = $request -> input('part_name','');
+        $tag_content = $request -> input('tag_content','');
+        $user_id = $request -> input('user_id','');
         //根据ID取数据
         if($part_id != ''){
             $data = Articles::where('pid','=',$part_id)->paginate(2) or [];
         } elseif($search != '') {
             $data = Articles::where('title','like',"%$search%")->paginate(2);
+            //dump($data);
+        } elseif($user_id != '') {
+            $data = Articles::where('uid','=',"$user_id")->paginate(2);
             //dump($data);
         } elseif($tag_content != '') {
             $data = Tags::where('content','=',$tag_content)->paginate(2);
@@ -60,7 +64,7 @@ class ListController extends Controller
         //分区
        $part_data = Parts::get();
         //加载模板
-        return view('home.list.index',['data'=>$data,'search'=>$search,'tag_data1'=>$tag_data1,'part_data'=>$part_data,'part_name'=>$part_id,'tag_content'=>$tag_content]);
+        return view('home.list.index',['data'=>$data,'search'=>$search,'tag_data1'=>$tag_data1,'part_data'=>$part_data,'part_name'=>$part_id,'tag_content'=>$tag_content,'user_id'=>$user_id]);
     }
 
     /**

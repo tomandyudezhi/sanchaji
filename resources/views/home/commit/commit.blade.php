@@ -94,7 +94,7 @@
                   <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=4047604&amp;site=qq&amp;menu=yes" target="_blank" rel="nofollow" data-toggle="tooltip" data-placement="bottom" title=""  data-original-title="QQ:4047604">4047604</a>
               </h2>
               <h2>Email:
-              <a href="#" target="_blank" data-toggle="tooltip" rel="nofollow" data-placement="bottom" title=""  data-original-title="{{$configs_data -> bossinfo}}">{{$configs_data -> bossinfo}}</a></h2>
+              <a href="#" target="_blank" data-toggle="tooltip" rel="nofollow" data-placement="bottom" title=""  data-original-title="4047604@qq.com">4047604@qq.com</a></h2>
           </div>
         </div>
       </div>

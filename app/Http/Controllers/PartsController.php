@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Parts;
+use App\Models\ShieldWords;
+
 class PartsController extends Controller
 {
     /**
@@ -43,7 +45,20 @@ class PartsController extends Controller
     public function store(Request $request)
     {
         $data = $request->except('_token');
-        //dump($data);
+        // 获取屏蔽字段
+        $shieldwords = ShieldWords::find(1);
+        // 处理屏蔽词
+        $str = explode('|',$shieldwords -> content);
+        // 完成处理
+        foreach($str as $v)
+        {
+            $length = strlen($v);
+            $replace = '';
+            for($i = 0; $i < $length; $i++){
+            $replace .= '*';
+            }
+            $data['part_name'] = str_replace($v,$replace,$data['part_name']);
+        }
         $parts = new Parts;
         $parts -> part_name = $data['part_name'];
         $res = $parts -> save();

@@ -6,8 +6,8 @@
     <h3 class="aside-title">个人资料</h3>
         <div class="text-left">
             <p class="text-left">
-                <a href=""><img src="/{{ $articles -> users -> head_pic }}" alt="用户头像" width="80" style="margin:5px"></a>
-                <a href="" target="_blank" class="text-left" id="uid"><b>{{ $articles -> users -> username }}</b></a>
+                <a href="/list/index?user_id={{$articles -> users -> id}}"><img src="/{{ $articles -> users -> head_pic }}" alt="用户头像" width="80" style="margin:5px"></a>
+                <a href="/list/index?user_id={{$articles -> users -> id}}" target="_blank" class="text-left" id="uid"><b>{{ $articles -> users -> username }}</b></a>
                 @if(session() -> has('homeUser'))
                   @if(session() ->get('homeUser')->id != $articles -> users -> id)
                     @if(in_array(session() ->get('homeUser')->id,$fensi))
@@ -120,7 +120,7 @@
 	        		#{{ $k+1 }}
 	        		</span>
 	        		<div class="comment-main">
-	        			<p><a class="address" href="javascript:void(0)" rel="nofollow" target="_blank" draggable="false">{{  $v -> users -> username}}</a>
+	        			<p><a class="address" href="javascript:void(0)" rel="nofollow" target="_blank" draggable="false">{{  $v -> users -> users_details -> pet_name or $v -> users -> username}}</a>
 	        			<span class="time">({{ $v -> created_at }})</span><br>{{ $v -> content }}</p>
 	        		</div>
 	        	</li>

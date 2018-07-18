@@ -10,8 +10,8 @@
 		                    <li><a href="/article/create" rel="nofollow" title="写博客" draggable="false">写博客</a></li>
 		                    
 		                    <li><a title="我的收藏" href="/user/article/index" draggable="false">我的收藏</a></li>
-		                    
-		                    <li><a title="我的关注" href="/user/follows" draggable="false">我的关注</a></li>
+		                    <li><a title="我的关注" href="/user/follows" draggable="false">我的关注</a></li> <li><a title="站内信管理" href="/letters/index" draggable="false">站内信管理</a></li>
+                        	<li><a title="写信件" href="/letters/searchusers" draggable="false">写信件</a></li>
 		                    <li><a title="修改密码" href="/repass" draggable="false">修改密码</a></li>
 		                    <li><a title="反馈与建议" href="/user/feedbacks/index" draggable="false">反馈与建议</a></li>
 		                </ul>
@@ -101,7 +101,7 @@
 		           			@else	
 		           				<div class="readers">
 			           			@foreach($user_data -> articles as $k => $v)
-								<a class="item-readers item-readers-1" target="_blank" href="http://yigujin.cn/" rel="nofollow" draggable="false">
+								<a class="item-readers item-readers-1" target="_blank" href="/detail/{{$v -> id}}" rel="nofollow" draggable="false">
 				                <h4>{{str_limit($v -> title,15,'....')}}<small>[评论：{{count($v -> reviews)}}]</small></h4>发布时间：{{ $v->created_at }}</a>
 				                @endforeach
 				                </div>
