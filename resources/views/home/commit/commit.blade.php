@@ -5,7 +5,7 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>三叉戟博客</title>
+    <title>{{$configs_data -> title}}</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <link rel="stylesheet" type="text/css" href="/home/css/bootstrap.min.css">
@@ -36,7 +36,7 @@
   <nav class="navbar navbar-default" id="navbar">
     <div class="container">
       <div class="navbar-header">
-        <h1 class="logo hvr-bounce-in"><a href="/" title="三叉戟博客"><img src="http://www.muzhuangnet.com/upload/201610/17/201610171329086541.png" alt="三叉戟博客"></a></h1>
+        <h1 class="logo hvr-bounce-in"><a href="/" title="三叉戟博客"><img src="{{$configs_data -> logo}}" alt="三叉戟博客"></a></h1>
       </div>
       <div class="collapse navbar-collapse" id="header-navbar">
 
@@ -87,14 +87,14 @@
         </ul>
         <div class="tab-content">
           <div role="tabpanel" class="tab-pane contact active" id="notice">
-            <p></p>
+            <p><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$configs_data -> notice}}</strong></p>
           </div>
             <div role="tabpanel" class="tab-pane contact" id="contact">
               <h2>QQ:
-                  <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=577211782&amp;site=qq&amp;menu=yes" target="_blank" rel="nofollow" data-toggle="tooltip" data-placement="bottom" title=""  data-original-title="QQ:577211782">4047604</a>
+                  <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=4047604&amp;site=qq&amp;menu=yes" target="_blank" rel="nofollow" data-toggle="tooltip" data-placement="bottom" title=""  data-original-title="QQ:4047604">4047604</a>
               </h2>
               <h2>Email:
-              <a href="mailto:577211782@qq.com" target="_blank" data-toggle="tooltip" rel="nofollow" data-placement="bottom" title=""  data-original-title="Email:577211782@qq.com">4047604@qq.com</a></h2>
+              <a href="#" target="_blank" data-toggle="tooltip" rel="nofollow" data-placement="bottom" title=""  data-original-title="4047604@qq.com">4047604@qq.com</a></h2>
           </div>
         </div>
       </div>

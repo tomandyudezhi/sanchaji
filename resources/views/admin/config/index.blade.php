@@ -12,31 +12,7 @@
 	<div class="grid-form1">
 	<h2 id="h2.-bootstrap-heading">网站配置<a class="anchorjs-link" href="#h2.-bootstrap-heading"><span class="anchorjs-icon"></span></a></h2>
 
-	<!-- 提示信息开始 -->
-	@if (session('success'))
-	<div class="alert alert-success alert-dismissible" role="alert">
-		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	{{session('success')}}
-	</div>
-	@endif
 
-	@if (session('error'))
-	<div class="alert alert-danger alert-dismissible" role="alert">
-		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	{{session('error')}}
-	</div>
-	@endif
-	<!-- 提示信息结束 -->
-	<!-- 验证 -->
-	@if (count($errors) > 0)
-		<div class="alert alert-warning alert-dismissible" role="alert">
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		    @foreach ($errors->all() as $error)
-	                <li>{{ $error }}</li>
-	        @endforeach
-		</div>
-	@endif
-	<!-- 验证结束 -->
 
 	<div class="panel-body">
 		<form role="form" class="form-horizontal" action="/admin/config/update/{{$data -> id}}" method="post" enctype="multipart/form-data">
@@ -64,6 +40,16 @@
 				</div>
 			</div>
 			<div class="form-group">
+				<label class="col-md-2 control-label">网站公告</label>
+				<div class="col-md-8">
+					<div class="input-group">							
+						<span class="input-group-addon">
+							<i class="fa fa-tags"></i>
+						</span>
+						<textarea class="form-control" rows="6" name="notice"  style="resize:none;outline:none;">{{$data->notice}}</textarea>
+					</div>
+				</div>
+			</div>			<div class="form-group">
 				<label class="col-md-2 control-label">版权信息</label>
 				<div class="col-md-8">
 					<div class="input-group">							
@@ -93,7 +79,7 @@
 				<div class="col-md-8">
 					<div class="input-group">
 						<input type="file" class="form-control1" placeholder="LOGO" name="logo">
-						<img width="120" src="{{$logolink}}">
+						<img width="120" src="{{$data -> logo}}">
 					</div>
 				</div>
 			</div>

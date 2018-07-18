@@ -250,7 +250,7 @@ Route::get('/detail/{id}','Home\ArticleController@index');
 
 
 //前台登录中间件
-Route::group([],function(){
+Route::group(['middleware'=>'homelogin'],function(){
 
 
 /**

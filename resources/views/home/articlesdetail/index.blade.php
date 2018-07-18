@@ -120,7 +120,7 @@
 	        		#{{ $k+1 }}
 	        		</span>
 	        		<div class="comment-main">
-	        			<p><a class="address" href="javascript:void(0)" rel="nofollow" target="_blank" draggable="false">{{  $v -> users -> username}}</a>
+	        			<p><a class="address" href="javascript:void(0)" rel="nofollow" target="_blank" draggable="false">{{  $v -> users -> users_details -> pet_name or $v -> users -> username}}</a>
 	        			<span class="time">({{ $v -> created_at }})</span><br>{{ $v -> content }}</p>
 	        		</div>
 	        	</li>
