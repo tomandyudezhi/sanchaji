@@ -119,7 +119,7 @@
                     <img class="thumb"  src="/{{$v -> articles -> users -> head_pic}}" alt="{{$v->articles->content}}"  style="display: block;width:90px;height:90px;">
                 </span><span class="text">{{$v->articles->title}}</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
                     {{$v-> articles -> updated_at}}
-                </span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i>{{$v->articles->reading}}</span></a>
+                </span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i> {{$v->articles->reading}}</span></a>
                 
                 </li>
                 @endif

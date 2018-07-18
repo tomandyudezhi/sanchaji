@@ -24,8 +24,8 @@ class LettersRequest extends Request
     public function rules()
     {
         return [
-            'title':'required',
-            'content':'required'
+            'title' => 'required',
+            'content' => 'required'
         ];
     }
 
