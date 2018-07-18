@@ -201,6 +201,22 @@ Route::get('/admin/letters/sys','Admin\LettersController@sys');
 Route::get('/admin/letters/creates/{id}/{feed_id}','Admin\LettersController@creates');
 //反馈恢复操作
 Route::post('/admin/letters/replyed/{id}/{feed_id}','Admin\LettersController@replyed');
+	/**
+	 * 轮播图管理模块
+	 * 
+	 */
+//轮播图添加
+Route::get('/admin/turnimage/create','Admin\ImageController@create');
+//轮播图执行添加
+Route::post('/admin/turnimage/store','Admin\ImageController@store');
+//轮播图列表
+Route::get('/admin/turnimage/index','Admin\ImageController@index');
+//轮播图删除
+Route::get('/admin/turnimage/delete/{id}','Admin\ImageController@delete');
+//轮播图修改
+Route::get('/admin/turnimage/edit/{id}','Admin\ImageController@edit');
+//轮播图执行修改
+Route::post('/admin/turnimage/update/{id}','Admin\ImageController@update');
 });
 
 

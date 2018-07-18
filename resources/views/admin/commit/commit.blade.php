@@ -480,7 +480,12 @@
 										  </ul>
 									</li>
 									<li><a href="/admin/review/index"><i class="fa fa-comments"></i><span>评论管理</span><div class="clearfix"></div></a></li>
-									<li><a href="/admin/shieldwords/index"><i class="fa fa-lock"></i><span>屏蔽词管理</span><div class="clearfix"></div></a>
+									<li><a href="/admin/shieldwords/index"><i class="fa fa-lock"></i><span>屏蔽词管理</span><div class="clearfix"></div></a></li>
+									<li id="menu-academico" ><a href="/admin/turnimage/index"><i class="fa fa-picture-o" aria-hidden="true"></i><span> 轮播图管理</span> <span class="fa fa-angle-right" style="float: right"></span><div class="clearfix"></div></a>
+										<ul id="menu-academico-sub" >
+										    <li id="menu-academico-avaliacoes" ><a href="/admin/turnimage/index">查看轮播图</a></li>
+											<li id="menu-academico-avaliacoes" ><a href="/admin/turnimage/create">添加轮播图</a></li>
+										</ul>
 									</li>
 									<li><a href="/admin/tag/index"><i class="fa fa-tag"></i><span>标签管理</span><div class="clearfix"></div></a></li>
 									<li id="menu-academico" ><a href="#"><i class="fa fa-chain" aria-hidden="true"></i><span> 友情链接</span> <span class="fa fa-angle-right" style="float: right"></span><div class="clearfix"></div></a>

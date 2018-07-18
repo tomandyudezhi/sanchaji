@@ -52,20 +52,28 @@
 	</div>
 	</div>
 	<!-- 提示信息开始 -->
+		@if(count($errors) >0)
+        	<input type="hidden" value="{{$errors -> all()[0]}}" id="hidd" >
+			<script type="text/javascript">
+				var msg = document.getElementById('hidd');
+				layer.msg(msg.value);
+			</script>
+        @endif
+        <!-- 信息提示 -->
 		@if(session('success'))
             <input type="hidden" value="{{session('success')}}" id="success1">
             <script type="text/javascript">
-              var msg = document.getElementById('success1');
-              layer.msg(msg.value);
+				var msg = document.getElementById('success1');
+				layer.msg(msg.value);
             </script>
         @endif
         @if(session('error'))
             <input type="hidden" value="{{session('error')}}" id="error1">
             <script type="text/javascript">
-              var msg = document.getElementById('error1');
-              layer.msg(msg.value);
+				var msg = document.getElementById('error1');
+				layer.msg(msg.value);
             </script>
-         @endif
+        @endif
 	<!-- 提示信息结束 -->
 </body>
 </html>
