@@ -61,7 +61,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-md-2 control-label">前台网页开关</label>
+				<label class="col-md-2 control-label">前台网页</label>
 				<div class="col-md-8">
 					<div class="input-group">							
 						<span class="input-group-addon">

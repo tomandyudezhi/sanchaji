@@ -61,6 +61,11 @@
 							<input type="text" class="form-control" id="email" placeholder="邮箱" name="email">
 						</div>
 						<div class="form-group">
+							<label for="" class="sr-only">验证码</label>
+							<input type="text" style="width:60%;display: inline;" class="form-control"  placeholder="邮箱验证码" name="code">
+							<span class="layui-btn text-center" style="width:110px;height:50px;line-height:50px;" id="code">获取验证码</span>
+						</div>
+						<div class="form-group">
 							<label for="phone" class="sr-only">电话</label>
 							<input type="text" class="form-control" id="phone" placeholder="电话" name="phone">
 						</div>
@@ -76,6 +81,7 @@
 						<div class="form-group">
 							<p>有账号？ <a href="/login">立即登陆</a></p>
 						</div>
+						{{csrf_field()}}
 						<div class="form-group">
 							<input type="submit" value="立即注册" class="btn btn-primary">
 						</div>
@@ -127,6 +133,31 @@
 		$('input').eq(5).focus(function(){
 		layer.msg('重复以确认密码');
 		});
+
+		$('#code').click(function(){
+			var mail = $(this).parent().prev().find('input').val();
+			var ele = $(this);
+			var a = 5;
+			var val = $('input[type=hidden]').val();
+
+			//动画
+			ele.addClass('layui-btn-disabled');
+			ele.text(a);
+			var time = setInterval(function(){
+				a--;
+				ele.text(a);
+				if(a == 0){
+					ele.removeClass('layui-btn-disabled');
+					ele.text('获取验证码');
+					clearInterval(time);
+					time = null;
+				}
+			},1000)
+
+			//执行ajax
+			$.post('/send',{'_token':val,'email':mail});
+		});
+
 
 	</script>
 	</body>

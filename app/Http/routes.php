@@ -222,6 +222,12 @@ Route::post('/admin/turnimage/update/{id}','Admin\ImageController@update');
 
 
 
+//网站维护
+Route::get('/webclose','Home\WebcloseController@index');
+
+//关闭验证
+Route::group(['middleware'=>'homeclose'],function(){
+
 
 
 
@@ -247,6 +253,8 @@ Route::post('/login/check','Home\LoginController@check');
 Route::post('/signup/check','Home\LoginController@signupcheck'); 
 //前台文章详情
 Route::get('/detail/{id}','Home\ArticleController@index');
+//邮箱验证
+Route::post('/send','Home\SendController@sendmail');
 
 
 //前台登录中间件
@@ -350,4 +358,6 @@ Route::get('/letters/readed','Home\LettersController@readed');
 Route::get('/letters/del/{id}','Home\LettersController@del');
 //查看系统通知
 Route::get('/leters/sys','Home\LettersController@sys');
+});
+
 });

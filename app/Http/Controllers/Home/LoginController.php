@@ -134,4 +134,11 @@ class LoginController extends Controller
             return back() -> with('error', '修改失败');
         }
     }
+
+    /**
+     *  发送邮件
+     *
+     * 
+     */
+    
 }
