@@ -7,13 +7,14 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\FeedBacks;
+use App\Models\ShieldWords;
 
 class FeedbacksController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * 显示反馈页面
      *
-     * @return \Illuminate\Http\Response
+     * @return 模板
      */
     public function index(Request $request)
     {
@@ -25,9 +26,9 @@ class FeedbacksController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * 加载反馈发送页面
      *
-     * @return \Illuminate\Http\Response
+     * @return 模板
      */
     public function create()
     {
@@ -35,10 +36,10 @@ class FeedbacksController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * 执行反馈发送
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return boll
      */
     public function store(Request $request)
     {
@@ -46,7 +47,20 @@ class FeedbacksController extends Controller
         if(strlen($data['content']) == 0){
              return back() -> with('error', '反馈内容不能为空');
         }
-        //dump($data);
+        // 获取屏蔽字段
+        $shieldwords = ShieldWords::find(1);
+        // 处理屏蔽词
+        $str = explode('|',$shieldwords -> content);
+        // 完成处理
+        foreach($str as $v)
+        {
+            $length = strlen($v);
+            $replace = '';
+            for($i = 0; $i < $length; $i++){
+            $replace .= '*';
+            }
+            $data['content'] = str_replace($v,$replace,$data['content']);
+        }
         $feedbacks = new FeedBacks;
         $feedbacks -> content = $data['content'];
         $feedbacks -> uid = session()->get('homeUser')->id;

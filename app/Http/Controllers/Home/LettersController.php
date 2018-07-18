@@ -9,6 +9,7 @@ use App\Http\Requests\LettersRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Users;
 use App\Models\Letters;
+use App\Models\ShieldWords;
 
 class LettersController extends Controller
 {
@@ -74,6 +75,21 @@ class LettersController extends Controller
     {
     	$user_id = session() -> get('homeUser') -> id;
     	$data = $request -> except('_token');
+        // 获取屏蔽字段
+        $shieldwords = ShieldWords::find(1);
+        // 处理屏蔽词
+        $str = explode('|',$shieldwords -> content);
+        // 完成处理
+        foreach($str as $v)
+        {
+            $length = strlen($v);
+            $replace = '';
+            for($i = 0; $i < $length; $i++){
+            $replace .= '*';
+            }
+            $data['content'] = str_replace($v,$replace,$data['content']);
+            $data['title'] = str_replace($v,$replace,$data['title']);
+        }
     	$letters = new Letters;
     	$letters -> title = $data['title'];
     	$letters -> content = $data['content'];
