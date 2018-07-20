@@ -9,6 +9,13 @@
                 <time class="time"><i class="glyphicon glyphicon-time"></i> {{$v->created_at}}</time>
                 <span class="views"><i class="glyphicon glyphicon-eye-open"></i>{{$v->reading}}</span> <a class="comment" href="/detail/{{ $v -> id }}" title="评论" target="_blank" ><i class="glyphicon glyphicon-comment"></i>{{count($v->reviews)}}</a>
             </p>
-            <p class="note" style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical;">{{$v->content}}</p>
+            <span id="hidden_text-{{$v->id}}" style="display:none;">{!!$v->content!!}</span>
+            <p id="note-{{$v->id}}" style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical;color:#999;"></p>
+        </article>
+    <script type="text/javascript">
+        $(function(){
+        $('#note-{{$v->id}}').text($('#hidden_text-{{$v->id}}').text());
+    });
+    </script>
         </article>
 @endforeach

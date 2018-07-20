@@ -109,7 +109,6 @@ class UserController extends Controller
     public function edit($id)
     {
         $data = Users::find($id);
-
         return view('admin.user.edit', ['data' => $data]);
     }
 
@@ -146,6 +145,7 @@ class UserController extends Controller
     {
         $res = Users::find($id) -> delete();
         if($res){
+	    UsersDetails::where('uid','=',$id)-> delete();
             return redirect('/admin/user/index') -> with('success', '删除成功');
         }else{
             return back() -> with('error', '修改失败');
@@ -161,7 +161,6 @@ class UserController extends Controller
     public function detail($id)
     {
         $user = Users::find($id);
-
         return view('admin.user.edit2',['user'=>$user]);
     }
 

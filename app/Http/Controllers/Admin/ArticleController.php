@@ -195,6 +195,7 @@ class ArticleController extends Controller
     {
         $res = Articles::onlyTrashed() -> where('id', $id) -> forceDelete();
         if($res){
+		$tag = Tags::where('aid','=',$id)->first()->delete();
             return redirect('/admin/article/recycle') -> with('success', '删除成功');
         }else{
             return back() -> with('error', '删除失败');

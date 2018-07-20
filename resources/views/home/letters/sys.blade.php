@@ -38,8 +38,8 @@
                   <ul class="layui-nav layui-bg-blue" style="" lay-filter="demo">
                     <li class="layui-nav-item "><a href="/letters/index">发件箱</a></li>
                     <li class="layui-nav-item"><a href="/letters/noread">未读信件</a></li>\
-                    <li class="layui-nav-item layui-this"><a href="/letters/readed">已读信件</a></li>\
-                    <li class="layui-nav-item"><a href="/leters/sys">系统消息</a></li>
+                    <li class="layui-nav-item"><a href="/letters/readed">已读信件</a></li>\
+                    <li class="layui-nav-item layui-this"><a href="/leters/sys">系统消息</a></li>
                   </ul>
                   <form action="" class="form-inline text-right" style="margin-top: 5px;">
                     <div class="form-group">

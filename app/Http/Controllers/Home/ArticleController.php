@@ -13,7 +13,7 @@ use App\Models\ArticlesLikes;
 use App\Models\UsersUsers;
 use DB;
 use App\Models\ShieldWords;
-
+use Cache;
 class ArticleController extends Controller
 {
     /**
@@ -23,8 +23,13 @@ class ArticleController extends Controller
      */
     public function index($id)
     {
+	$str = $id.'-articles';
         // 根据id查找文章数据
-        $articles = Articles::find($id);
+	if(Cache::has($str)){
+		$articles = Cache::get($str);
+	}else{
+		$articles = Articles::find($id);
+	}
         $a = $articles -> reading;
         $articles -> reading = $a +1;
         $articles -> save();

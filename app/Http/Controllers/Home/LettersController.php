@@ -127,7 +127,7 @@ class LettersController extends Controller
     {
         $id = session() -> get('homeUser') -> id;
         $search = $request-> input('search','');
-        $letters = Letters::where('read_status','=',2) -> where('rec_id','=',$id) -> where('title','like',"%{$search}%") -> paginate(2);
+        $letters = Letters::where('sys','=',2) -> where('read_status','=',2) -> where('rec_id','=',$id) -> where('title','like',"%{$search}%") -> paginate(2);
 
         return view('home.letters.noread',['data'=>$letters,'search'=>$search]);
     }

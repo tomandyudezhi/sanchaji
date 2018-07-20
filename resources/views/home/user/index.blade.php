@@ -47,43 +47,29 @@
 									<br>
 									<span style="margin-top: 100px;padding:20px;">
 									  <span style="color: #FF5722;margin-right: 20px">
-									  @if($user_data -> users_details -> industry == null)
-										未知行业
-										@else
-										{{ $user_data -> users_details -> industry}}
-										@endif
+									  {{$user_data -> users_details -> industry or '未知行业'}}
 									  </span>	|
 									  <span style="color: #FF5722;margin:0px 20px 0px 20px;">
-									  @if($user_data -> users_details -> profession == null)
-										未知职业
-										@else
-										{{ $user_data -> users_details -> profession}}
-										@endif
+									  {{$user_data -> users_details -> profession or '未知职业'}}
+									  
 									  </span>	|
 									  <span style="color: #FF5722;margin:0px 20px 0px 20px;">
-										@if($user_data -> sex == 'm')
+										@if($user_data['sex'] == 'm')
 										男
-										@elseif($user_data -> sex == 'w')
+										@elseif($user_data['sex'] == 'w')
 										女
-										@elseif($user_data -> sex == 'unknown')
+										@elseif($user_data['sex'] == 'unknown')
 										未知性别
-										@endif
+										@endif 
 									  </span>	|
 									  <span style="color: #FF5722;margin:0px 20px 0px 20px;">
-									  	@if($user_data -> users_details -> birthday == null)
-										未知生日
-										@else
-										{{ $user_data -> users_details -> birthday}}
-										@endif
+									  {{$user_data -> users_details -> birthday or '未知生日'}}
 										</span>	
 									</span>
 									<hr>
 									<div style="color:#999;">
-										@if($user_data -> users_details -> descript == null)
-										自我描述
-										@else
-										{{ $user_data -> users_details -> descript}}
-										@endif
+										{{$user_data -> users_details -> descript or '自我描述'}}
+										
 									</div>
 								</div>
 								

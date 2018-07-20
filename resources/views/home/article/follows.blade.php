@@ -30,8 +30,8 @@
                   <h3 style="color:#FF5722;font-size:20px;">很抱歉！你暂时还没有关注的人</h3>
                 @endif
                 @foreach($data -> users_users as $k => $v)
-                <a class="item-readers item-readers-1" target="_blank" href="javascript:;" rel="nofollow" draggable="false">
-                <h4 style="display: inline;"><img style="width:25px;height:25px;" src="/{{$v -> head_pic}}" title="用户头像" alt="用户头像">{{$v -> users_details -> pet_name or $v -> username}} <small> [评论：{{count($v -> reviews)}}]</small></span></h4> <span value="{{$v -> id}}" class="layui-btn layui-btn-normal layui-btn-xs">取关</span><span  style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">{{$v -> users_details -> descript or '自我描述....'}}</span></a>
+                <a class="item-readers item-readers-1" target="_blank" href="/list/index?user_id={{$v->id}}" rel="nofollow" draggable="false">
+                <h4 style="display: inline;"><img style="width:25px;height:25px;" src="/{{$v -> head_pic}}" title="用户头像" alt="用户头像">{{$v -> users_details -> pet_name or $v -> username}} <small> [评论：{{count($v -> reviews)}}]</small></span></h4> <span value="{{$v -> id}}" class="layui-btn layui-btn-normal layui-btn-xs" onclick="return false;">取关</span><span  style="overflow: hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">{{$v -> users_details -> descript or '自我描述....'}}</span></a>
                     
                 @endforeach
                     

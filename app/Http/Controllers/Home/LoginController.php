@@ -78,6 +78,9 @@ class LoginController extends Controller
     {
         // 查询数据
         $data = $request -> except('_token');
+	if($data['mailcode'] != session()->get('mailcode')){
+		return back() -> with('error','验证码错误');
+	}
         $user = new Users;
         $user -> username = $data['username'];
         $user -> password = Hash::make($data['password']);

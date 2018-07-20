@@ -59,12 +59,12 @@
 						<div class="form-group">
 							<label for="email" class="sr-only">邮箱</label>
 							<input type="text" class="form-control" id="email" placeholder="邮箱" name="email">
-						</div>
-						<!-- <div class="form-group">
+						</div> 
+						<div class="form-group">
 							<label for="" class="sr-only">验证码</label>
-							<input type="text" style="width:60%;display: inline;" class="form-control"  placeholder="邮箱验证码" name="code">
+							<input type="text" style="width:60%;display: inline;" class="form-control"  placeholder="邮箱验证码" name="mailcode">
 							<span class="layui-btn text-center" style="width:110px;height:50px;line-height:50px;" id="code">获取验证码</span>
-						</div> -->
+						</div> 
 						<div class="form-group">
 							<label for="phone" class="sr-only">电话</label>
 							<input type="text" class="form-control" id="phone" placeholder="电话" name="phone">
@@ -137,7 +137,7 @@
 		$('#code').click(function(){
 			var mail = $(this).parent().prev().find('input').val();
 			var ele = $(this);
-			var a = 5;
+			var a = 60;
 			var val = $('input[type=hidden]').val();
 
 			//动画

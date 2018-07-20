@@ -9,7 +9,7 @@ use App\Models\Adverts;
 use App\Models\Configs;
 use App\Models\Users;
 use App\Models\Articles;
-
+use Cache;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -19,7 +19,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //获取注册总数
+	if(Cache::has('share_data')){
+		$share_data = Cache::get('share_data');	
+	}else{
+         //获取注册总数
         $user_count = count(Users::get());
         //获取发表博客总数
         $article = Articles::get();
@@ -43,7 +46,10 @@ class AppServiceProvider extends ServiceProvider
         $review_data = Reviews::orderBy('created_at','desc') -> limit(4)->get();
         $adverts_data = Adverts::get();
         $frilink_data = FriLinks::get();
-        view()->share(['frilink_data'=>$frilink_data,'review_data'=>$review_data,'adverts_data'=>$adverts_data,'configs_data'=>$configs_data,'user_count'=>$user_count,'article_count'=>$article_count,'article_month_count'=>$article_month_count,'review_count'=>$review_count,'man'=>$man,'new_data'=>$new_data]);
+	$share_data = ['frilink_data'=>$frilink_data,'review_data'=>$review_data,'adverts_data'=>$adverts_data,'configs_data'=>$configs_data,'user_count'=>$user_count,'article_count'=>$article_count,'article_month_count'=>$article_month_count,'review_count'=>$review_count,'man'=>$man,'new_data'=>$new_data];
+	Cache::put('share_data',$share_data,40);
+	}
+        view()->share($share_data); 
     }
 
     /**

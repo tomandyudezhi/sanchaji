@@ -58,7 +58,6 @@
 					@else
 					<a href="/admin/user/unshield/{{$v -> id}}" class="btn btn-xs btn-success">启用</a>
 					@endif
-					<a href="/admin/user/edit/{{$v -> id}}" class="btn btn-xs btn-info">修改</a>
 					<a href="/admin/user/del/{{$v -> id}}" class="bg-danger btn btn-xs btn-danger">删除</a>
 					</td>
 				</tr>

@@ -11,7 +11,7 @@ use App\Models\Frilinks;
 use App\Models\Reviews;
 use App\Models\Parts;
 use App\Models\TurnImage;
-
+use Cache;
 class IndexController extends Controller
 {
     /**
@@ -23,18 +23,34 @@ class IndexController extends Controller
     public function index(Request $request)
     {
         //文章列表数据
-        $list_data = Articles::orderBy('created_at','desc') -> paginate(2);
+        $list_data = Articles::where('hidd','=','n') -> orderBy('created_at','desc') -> paginate(5);
         if($request -> ajax()){
             $view = view('home.commit.data',compact('list_data'))->render();
             return response()->json(['html'=>$view]);
         }
         
         //分类列表数据
-        $part_data = Parts::get();
+	if(Cache::has('part_data')){
+		$part_data = Cache::get('part_data');
+	}else{
+        	$part_data = Parts::get();
+		Cache::put('part_data',$part_data,40);
+	}
         //轮播图数据
-        $turnimage = TurnImage::all();
+	if(Cache::has('turnimage')){
+		$turnimage = Cache::get('turnimage');
+	}else{
+        	$turnimage = TurnImage::all();
+		Cache::put('turnimage',$turnimage,40);
+	}
         //加载模板
-        return view('home.commit.index',['list_data'=>$list_data,'part_data'=>$part_data,'turnimage' => $turnimage]);
+	if(Cache::has('view_index')){
+		$view = Cache::get('view_index');
+	}else{
+        	$view = view('home.commit.index',['list_data'=>$list_data,'part_data'=>$part_data,'turnimage' => $turnimage]);
+		
+	}
+	return $view;
     }
 
     /**

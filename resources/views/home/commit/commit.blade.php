@@ -149,9 +149,8 @@
 </section>
     <footer class="footer">
   <div class="container">
-    <p>本站[<a href="/" >三叉戟博客</a>]的部分内容来源于网络，若侵犯到您的利益，请联系站长删除！谢谢！Powered By [<a href="http://www.dtcms.net/" target="_blank" rel="nofollow" >DTcms</a>] Version 4.0 &nbsp;<a href="http://www.miitbeian.gov.cn/" target="_blank" rel="nofollow" >闽ICP备00000000号-1</a> &nbsp; <a href="/" target="_blank" class="sitemap" >网站地图</a></p>
+    <p>本站[<a href="/" >三叉戟博客</a>] {{$configs_data->copyright}} [<a href="/" target="_blank" rel="nofollow" >DTcms</a>] Version 4.0 &nbsp;<a href="/" target="_blank" rel="nofollow" >闽ICP备00000000号-1</a> &nbsp; <a href="/" target="_blank" class="sitemap" >网站地图</a> &nbsp;前台模板来源:</p>
   </div>
-  <div id="gotop"><a class="gotop"></a></div>
 </footer>
     <script src="/home/js/bootstrap.min.js"></script>
     <script src="/home/js/jquery.ias.js"></script>

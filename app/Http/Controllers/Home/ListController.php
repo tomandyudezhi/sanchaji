@@ -31,12 +31,12 @@ class ListController extends Controller
         $user_id = $request -> input('user_id','');
         //根据ID取数据
         if($part_id != ''){
-            $data = Articles::where('pid','=',$part_id)->paginate(2) or [];
+            $data = Articles::where('hidd','=','n')->where('pid','=',$part_id)->paginate(2) or [];
         } elseif($search != '') {
-            $data = Articles::where('title','like',"%$search%")->paginate(2);
+            $data = Articles::where('hidd','=','n')->where('title','like',"%$search%")->paginate(2);
             //dump($data);
         } elseif($user_id != '') {
-            $data = Articles::where('uid','=',"$user_id")->paginate(2);
+            $data = Articles::where('hidd','=','n')->where('uid','=',"$user_id")->paginate(2);
             //dump($data);
         } elseif($tag_content != '') {
             $data = Tags::where('content','=',$tag_content)->paginate(2);

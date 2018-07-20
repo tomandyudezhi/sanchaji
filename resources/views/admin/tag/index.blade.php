@@ -55,7 +55,6 @@
 				<td>{{ $v -> created_at }}</td>
 				<td style="text-align:center;">
 					<a href="/admin/tag/edit/{{$v -> id}}" class="bg-warning btn">修改</a>
-					<a href="/admin/tag/delete/{{ $v -> id }}" class="bg-danger btn">删除</a>
 				</td>
 			</tr>
 			@endforeach

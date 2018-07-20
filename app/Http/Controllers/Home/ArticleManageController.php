@@ -69,6 +69,7 @@ class ArticleManageController extends Controller
     {
         $res = Articles::onlyTrashed() -> where('id',$id) -> forceDelete();
         if($res){
+	    $tag = Tags::where('aid','=',$id)->first()->delete();
             echo 'success';
         }else{
             echo 'error';
